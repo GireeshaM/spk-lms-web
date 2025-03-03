@@ -1,0 +1,183 @@
+<div class="moodle-container">
+
+  <!-- Hero Section -->
+   <!-- <section>
+  <div class="container-fluid p-0">
+    <video autoplay loop muted class="d-block w-100">
+      <source src="images/innovative lms solutions for seamless learning.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section> -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Innovative LMS Solutions for Seamless Learning</h1>
+      <ul>
+        <li>🎯 Customized LMS to fit your unique educational or corporate training needs</li>
+        <li>🔗 Seamless Integration with third-party tools, CRMs, and payment gateways</li>
+        <li>🎨 Branded User Experience with custom themes and intuitive UI</li>
+        <li>📱 Mobile-Friendly Learning with a dedicated LMS mobile app</li>
+        <li>📊 Advanced Analytics & Reporting for tracking learner progress and engagement</li>
+        <li>🔒 Scalable & Secure Infrastructure to support growing institutions and enterprises</li>
+        <li>✅ Certified integrations vetted by SprintLearning</li>
+      </ul>
+    </div>
+    <div>
+      <img src="\images\Untitleddesign.png" alt="Moodle Dashboard" />
+    </div>
+  </section> 
+
+  <section>
+    <div class="container">
+      <h2 class="title">Invest in your career</h2>
+      <div class="cards">
+        <!-- Card 1: Explore new skills -->
+        <div class="card">
+          <div class="icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3 class="card-title">Explore new skills</h3>
+          <p class="card-text">
+            Access 10,000+ courses in AI, business, technology, and more.
+          </p>
+        </div>
+
+        <!-- Card 2: Earn valuable credentials -->
+        <div class="card">
+          <div class="icon">
+            <i class="fas fa-id-badge"></i>
+          </div>
+          <h3 class="card-title">Earn valuable credentials</h3>
+          <p class="card-text">
+            Get certificates for every course you finish and boost your chances of getting hired at no additional cost.
+          </p>
+        </div>
+
+        <!-- Card 3: Learn from the best -->
+        <div class="card">
+          <div class="icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3 class="card-title">Learn from the best</h3>
+          <p class="card-text">
+            Take your skills to the next level with expert-led courses and Coursera Coach, your AI-powered guide.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+<section>
+  <app-faqs></app-faqs>
+</section>
+<section>
+  <div class="logo-section">
+    <h2 class="title">Trusted by leading brands worldwide</h2>
+    <div class="logo-carousel">
+      <div class="logos">
+        <img src="images/accenture.png" alt="Accenture" />
+        <img src="images/nucleus.webp" alt="Nucleus Software" />
+        <img src="images/payu.webp" alt="PayU" />
+        <img src="images/oracle.png" alt="Oracle" />
+        <img src="images/matrix.png" alt="Matrix" />
+        <img src="images/huron.png" alt="Huron" />
+        <img src="images/allianz.png" alt="Allianz" />
+        <img src="images/amazon.png" alt="J" />
+        <!-- Duplicate logos for smooth looping -->
+        <img src="images/accenture.png" alt="Accenture" />
+        <img src="images/nucleus.webp" alt="Nucleus Software" />
+        <img src="images/payu.webp" alt="PayU" />
+        <img src="images/oracle.png" alt="Oracle" />
+        <img src="images/matrix.png" alt="Matrix" />
+        <img src="images/huron.png" alt="Huron" />
+        <img src="images/allianz.png" alt="Allianz" />
+        <img src="images/amazon.png" alt="J" />
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section>
+  <div class="contact-page">
+    <!-- Left Side: Text Content -->
+    <div class="info-container">
+      <h1>Contact Our LMS Team</h1>
+      <div class="logo-container">
+        <img src="https://www.inovex.de/wp-content/uploads/Amazon_Web_Services_Logo-kl-300x300.png" alt="AWS Logo" />
+        <img src="https://devtools.in/wp-content/uploads/2022/10/CloudBees-.png" alt="CloudBees Logo" />
+        <img src="https://salesforcedevops.net/wp-content/uploads/2021/05/copado-cover.png" alt="Copado Logo" />
+        <img
+          src="https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw"
+          alt="Google Logo" />
+      </div>
+      <div class="para">
+        <p>Learn, grow, and elevate your professional career with our industry-leading learning management system.</p>
+        <p>Access a wide range of courses tailored to meet your needs, from upskilling to career advancement.</p>
+        <p>Join thousands of professionals enhancing their skills in various fields such as IT, project management, and
+          data analytics.</p>
+        <p>Get started today and see how SprintPark can help you achieve your learning goals.</p>
+      </div>
+      <h4>Popular LMS Features:</h4>
+      <ul class="list">
+        <li>Customizable learning paths</li>
+        <li>Interactive assessments and quizzes</li>
+        <li>Real-time progress tracking</li>
+        <li>Collaborative learning tools</li>
+        <li>Mobile-friendly access</li>
+      </ul>
+
+      <p>
+        <strong>"Sprint Park's LMS provides unparalleled support and resources for professionals looking to enhance
+          their skills."</strong>
+        <br>— John Doe, LMS Administrator at ABC Corp.
+      </p>
+    </div>
+
+    <!-- Right Side: Contact Form -->
+    <div class="contact-container">
+      <h3>Request More Information</h3>
+
+      <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" [(ngModel)]="formData.firstName" name="firstName" required />
+        </div>
+
+
+
+        <div class="form-group">
+          <label>Work Email</label>
+          <input type="email" [(ngModel)]="formData.email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="text" [(ngModel)]="formData.phoneNumber" name="phoneNumber" required />
+        </div>
+
+        <div class="form-group">
+          <label>Which best describes your needs?</label>
+          <select [(ngModel)]="formData.needs" name="needs" required>
+            <option value="" disabled>Select...</option>
+            <option value="Hiring">Hiring</option>
+            <option value="Upskilling">Upskilling</option>
+            <option value="Career Growth">Career Growth</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <!-- Terms and Conditions Checkbox -->
+        <div class="form-group">
+          <input type="checkbox" [(ngModel)]="formData.termsAccepted" name="termsAccepted" required />
+          <label for="termsAccepted">I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy
+              Notice</a>.</label>
+        </div>
+
+        <button type="submit">Request Info</button>
+      </form>
+    </div>
+  </div>
+
+</section>

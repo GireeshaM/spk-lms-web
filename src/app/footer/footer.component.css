@@ -1,0 +1,130 @@
+/* General Footer Styles */
+.footer {
+  background-color: #2c3e50; /* Dark background color */
+  color: #ecf0f1; /* Light text color */
+  padding: 60px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-column {
+  width: 22%;
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  color: #f39c12; /* Golden yellow for headings */
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #ecf0f1; /* Light text color */
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #f39c12; /* Hover color to match heading */
+}
+
+.social-media {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #f39c12; /* Hover color for social icons */
+}
+
+.social-icon i {
+  font-size: 20px; /* Slightly larger icons */
+}
+
+/* Newsletter Styles */
+.footer-column form {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-column input[type="email"] {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex: 1;
+}
+
+.footer-column button {
+  background-color: #f39c12;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer-column button:hover {
+  background-color: #e67e22;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  background-color: #34495e; /* Slightly lighter background */
+  font-size: 14px;
+  color: #bdc3c7;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-column {
+    width: 48%; /* Two columns on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-column {
+    width: 100%; /* Full-width for each column on very small screens */
+  }
+}
+
+/* Adding some padding to sections */
+.footer-column ul li a {
+  padding: 5px 0;
+}
+
+/* Adding space for footer bottom text */
+.footer-bottom p {
+  font-size: 16px;
+}

@@ -1,0 +1,118 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif; /* Use a modern, clean font */
+}
+
+body {
+    background-color: #f4f7fb;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+   
+    font-size: 16px;
+    
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 0; /* Ensures the container takes up available space */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #2d3e50;
+}
+
+header p {
+    font-size: 1.1em;
+    color: #888;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 2em;
+    color: #1a3d5a;
+    margin-bottom: 15px;
+}
+
+ul.feature-list, ul.benefit-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+li strong {
+    color: #2b8b88;
+}
+
+/* Collapsible Section */
+.collapsible {
+    background-color: #2d3e50;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.collapsible:hover {
+    background-color: #1a3d5a; /* Slightly darker shade on hover */
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.1em; /* Ensure content text is legible */
+}
+
+.collapsible.active + .content {
+    display: block;
+    transition: max-height 0.3s ease-out;
+}
+
+/* Footer */
+/* footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2d3e50;
+    color: white;
+    margin-top: auto;  /* Pushes footer to the bottom */
+ 
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

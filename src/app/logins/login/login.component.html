@@ -1,0 +1,18 @@
+<div class="login-container">
+  <div class="login-dialog">
+    <div class="login-content">
+      <h2>Login</h2>
+      <div class="input-group">
+        <input type="text" placeholder="Username" [(ngModel)]="username" />
+      </div>
+      <div class="input-group">
+        <input type="password" placeholder="Password" [(ngModel)]="password" />
+      </div>
+      <button class="login-btn" (click)="login()">Login</button>
+      <button class="close-btn" (click)="closeDialog()">Cancel</button>
+    </div>
+    <div class="login-image">
+      <img src="images/sushma.png" alt="Login Illustration" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<p>course-message works!</p>
+<div class="container">
+    <h2 class="heading">Upload a Course</h2>
+   <!-- Input for selecting directory -->
+      <input type="file" (change)="onDirectoryChange($event)" webkitdirectory multiple class="file-input"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  
+    
+      <!-- Button to show preview -->
+      <button *ngIf="selectedFiles.length > 0" (click)="togglePreview()" class="preview-btn">Preview Files</button>
+    
+      <!-- File Preview Section -->
+      <div *ngIf="showPreview" class="file-previews">
+        
+        <h2>File Preview</h2>
+        <button *ngIf="lastRemovedFile" (click)="undoRemoveFile()" class="undo-remove-btn">Undo Remove</button>
+  
+        <div class="video-grid">
+          <div *ngFor="let file of selectedFiles; let i = index" class="video-item">
+            <div class="video-container">
+              <!-- Editable Numbering -->
+              <input 
+                type="number" 
+                [(ngModel)]="file.numbering" 
+                class="numbering-input"
+                (blur)="saveManualNumbering(i)"
+                (keyup.enter)="saveManualNumbering(i)"
+                min="1" 
+              />
+    
+              <!-- Display Number -->
+              <div class="file-number">
+                #{{file.numbering}}
+              </div>
+    
+              <!-- Editable File Name -->
+              <input 
+                type="text" 
+                [(ngModel)]="file.name" 
+                class="file-name-input"
+                (blur)="saveFileName(i)"
+                (keyup.enter)="saveFileName(i)"
+              />
+    
+              <!-- Video Preview -->
+              <video *ngIf="file.type.startsWith('video/')" [src]="file.preview" controls class="media-preview"></video>
+    
+              <!-- Image Preview -->
+              <img *ngIf="file.type.startsWith('image/')" [src]="file.preview" class="media-preview"/>
+    
+              <!-- Text File Preview and Edit -->
+              <div *ngIf="file.type === 'text/plain' || file.type === 'application/json'" class="text-preview">
+                <textarea 
+                  [(ngModel)]="file.content" 
+                  (ngModelChange)="updateTextContent(i, file.content)"
+                  rows="10" cols="50" 
+                  class="text-editor"
+                ></textarea>
+              </div>
+    
+              <!-- File Description -->
+              <textarea [(ngModel)]="file.description" placeholder="Add a description..." class="description-box"></textarea>
+        
+              <div class="button-container">
+                <button (click)="undoChanges(i)" class="undo-btn">Undo</button>
+                <button (click)="saveDescription(i)" class="save-btn">Save</button>
+                <button (click)="removeFile(i)" class="remove-btn">🗑</button>
+              </div>
+            
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    
+      <!-- Upload Button -->
+      <button (click)="uploadFiles()" class="upload-btn">Upload Files</button>
+    
+      <!-- Upload Progress -->
+      <div *ngIf="uploadProgress !== null" class="progress-bar">
+        Upload Progress: {{ uploadProgress }}%
+      </div>
+    
+      <!-- Success Message -->
+      <div *ngIf="uploadSuccess" class="success-message">
+        Files uploaded successfully!
+      </div>
+    </div>

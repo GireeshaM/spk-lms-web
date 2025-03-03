@@ -1,0 +1,20 @@
+/* Carousel Custom Height */
+.carousel-inner {
+  height: 500px;
+  /* Adjust height as needed */
+  overflow: hidden;
+  margin-top: 0;
+  /* Removes any default margin */
+}
+
+.carousel-item {
+  height: 100%;
+  /* Ensures the item takes full height */
+}
+
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  /* Ensures the image stretches to fit */
+}

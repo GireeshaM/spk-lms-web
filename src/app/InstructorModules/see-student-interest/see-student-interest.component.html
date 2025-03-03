@@ -1,0 +1,67 @@
+<app-admin-nav></app-admin-nav>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <h1 class="header">Student Interest Insights</h1>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+    <div class="chart-box">
+      <h2>Top 10 Most Accessed Courses</h2>
+      <ngx-charts-bar-vertical
+        [view]="[500, 350]"
+        [results]="mostAccessedCourses"
+        [gradient]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        xAxisLabel="Courses"
+        yAxisLabel="Visits"
+        [animations]="true">
+      </ngx-charts-bar-vertical>
+    </div>
+
+    <div class="chart-box">
+      <h2>Top 10 Completed Courses</h2>
+      <ngx-charts-bar-vertical
+        [view]="[500, 350]"
+        [results]="completedCourses"
+        [gradient]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        xAxisLabel="Courses"
+        yAxisLabel="Completion Rate (%)"
+        [animations]="true">
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+  <!-- Wishlist & Notes Row -->
+  <div class="info-row">
+    <!-- Wishlist as Cards -->
+    <div class="wishlist-box">
+      <h2>Wishlist</h2>
+      <div class="wishlist-grid">
+        <div class="wishlist-item" *ngFor="let item of wishlist">
+          <i class="fas fa-bookmark"></i>
+          <p>{{ item.name }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes as Sticky Notes -->
+    <div class="notes-box">
+      <h2>Notes & Bookmarks</h2>
+      <div class="notes-grid">
+        <div class="note" *ngFor="let note of notes">
+          <p>{{ note }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

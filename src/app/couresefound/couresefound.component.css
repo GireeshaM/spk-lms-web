@@ -1,0 +1,51 @@
+/* Light Pastel Theme */
+:root {
+    --primary-bg: #E3F2FD; /* Pastel Blue */
+    --secondary-bg: #FFEBEE; /* Light Pastel Pink */
+    --footer-bg: #FFF3E0; /* Soft Peach */
+    --text-color: #333;
+    --highlight-color: #FFCDD2; /* Light Red Highlight */
+  }
+  
+  /* Course Header */
+  .course-header {
+    background-color: var(--primary-bg);
+    padding: 2rem 0;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  /* Footer Card in Header */
+  .course-info-footer {
+    width: 85%;
+    background-color: var(--footer-bg);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  /* Increase spacing for better layout */
+  .course-info-footer .row > div {
+    padding: 15px;
+  }
+  
+  /* Tabs Styling */
+  .nav-tabs .nav-link {
+    color: var(--text-color);
+  }
+  
+  .nav-tabs .nav-link.active {
+    font-weight: bold;
+    border-bottom: 3px solid var(--highlight-color);
+  }
+  
+  /* List Styling */
+  ul {
+    padding-left: 1rem;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  

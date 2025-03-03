@@ -1,0 +1,177 @@
+/* Container Styling */
+.container {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+/* Heading */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #1d4ed8;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+/* Tabs Styling */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.tabs button.active,
+.tabs button:hover {
+  background-color: #1d4ed8;
+  color: white;
+  
+}
+
+/* Course Cards Grid */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* Individual Course Card */
+.course-card {
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Course Image */
+.course-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Course Details */
+.course-card h2 {
+  font-size: 1.25rem;
+  margin: 10px 0;
+  color: #111827;
+}
+
+.course-card p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Rating */
+.rating {
+  color: #f59e0b;
+  font-weight: bold;
+}
+
+/* Price */
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1d4ed8;
+}
+
+/* Premium Button */
+.premium {
+  background-color: #10b981;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.premium:hover {
+  background-color: #059669;
+}
+
+/* Read More Button */
+.read-more {
+  background-color: #b1ddc9;
+  /* Green */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 40px auto 20px;
+  /* Adjusted margin to move button down */
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+  background-color: #107447;
+}
+/* Mobile View Adjustments */
+@media screen and (max-width: 768px) {
+  /* General Container Adjustments */
+  .container {
+    padding: 15px;
+    text-align: center;
+  }
+
+  /* Tabs Styling for Mobile */
+  .tabs {
+    display: flex;
+    justify-content: flex-start; /* Align tabs to the left */
+    gap: 10px;
+    margin-bottom: 25px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-bottom: 10px; /* Add space at the bottom */
+    white-space: nowrap; /* Prevent wrapping of tabs */
+  }
+
+  .tabs button {
+    padding: 10px 20px;
+    background-color: #e5e7eb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #1f2937;
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+  }
+
+  .tabs button.active,
+  .tabs button:hover {
+    background-color: #1d4ed8;
+    color: white;
+  }
+}

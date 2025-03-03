@@ -1,0 +1,74 @@
+<div class="curriculum-builder">
+    <section>
+        <h2>📚 Guidelines for Creating Course Content</h2>
+        <p>As an instructor, structuring your course effectively is crucial for student engagement and learning outcomes. A well-organized curriculum helps learners grasp concepts easily and stay motivated throughout the course.</p>
+    
+        <img src="https://via.placeholder.com/800x300" alt="Course Structure Example" class="course-guide-image">
+    
+        <h3>📝 Steps to Create an Effective Curriculum</h3>
+        <ul>
+            <li><strong>🎯 Define Learning Objectives:</strong> Clearly outline what students should achieve by the end of the course.</li>
+            <li><strong>📂 Break Content into Sections:</strong> Organize topics into sections to create a structured learning experience.</li>
+            <li><strong>🎥 Add Engaging Lectures:</strong> Use a mix of video lessons, articles, and hands-on exercises.</li>
+            <li><strong>🗜️ Keep it Concise:</strong> Ensure each lecture is to the point, avoiding unnecessary complexity.</li>
+            <li><strong>💡 Encourage Interaction:</strong> Include quizzes, assignments, and discussion forums to enhance engagement.</li>
+            <li><strong>🔄 Update Regularly:</strong> Keep your content fresh and relevant with periodic updates.</li>
+        </ul>
+    
+        <h3>🚀 Best Practices for Course Development</h3>
+        <p>To ensure a high-quality learning experience, follow these best practices:</p>
+        <ul>
+            <li><strong>👨‍🏫 Instructor Presence:</strong> Be active in discussions and provide timely feedback.</li>
+            <li><strong>🎬 High-Quality Videos:</strong> Use clear visuals, good lighting, and professional audio.</li>
+            <li><strong>🖥️ Interactive Learning:</strong> Include real-world examples, case studies, and practical exercises.</li>
+            <li><strong>📈 Track Student Progress:</strong> Use analytics to improve content based on learner feedback.</li>
+        </ul>
+    
+        
+        <p>Start building your course today and provide learners with an engaging and impactful educational experience!</p>
+    
+    </section>
+        <h1>Curriculum</h1>
+    
+        <div *ngFor="let section of sections; let sectionIndex = index" class="section">
+            <!-- Section Header -->
+            <div class="section-header">
+                <input [(ngModel)]="section.title" class="section-title" placeholder="Enter section name" />
+                <button (click)="removeSection(sectionIndex)" title="Remove Section">✖</button>
+                <button title="Reorder Section" draggable="true" (dragstart)="moveSection(sectionIndex, sectionIndex - 1)"
+                    (dragend)="moveSection(sectionIndex, sectionIndex + 1)">
+                    ☰
+                </button>
+            </div>
+    
+            <!-- Lectures -->
+            <div *ngFor="let lecture of section.lectures; let lectureIndex = index" class="lecture">
+                <div class="lecture-header">
+                    <input [(ngModel)]="lecture.title" class="lecture-title" placeholder="Enter lecture name" />
+                    <div class="btn" (click)="openVideoUpload(sectionIndex, lectureIndex)">🎥 Video</div>
+                    <div class="btn" (click)="openArticleEditor(sectionIndex, lectureIndex)">📄 Article</div>
+                    <br>
+                   <button (click)="removeLecture(sectionIndex, lectureIndex)" title="Remove Lecture">
+                        ✖
+                    </button>
+                    <button title="Reorder Lecture" draggable="true"
+                        (dragstart)="moveLecture(sectionIndex, lectureIndex, lectureIndex - 1)"
+                        (dragend)="moveLecture(sectionIndex, lectureIndex, lectureIndex + 1)">
+                        ☰
+                    </button>
+                </div>
+                <div *ngIf="lecture.isVideo" class="video-upload">
+                    <input type="file" (change)="onVideoUpload($event, sectionIndex, lectureIndex)" />
+                    <button (click)="uploadVideo(sectionIndex, lectureIndex)">Upload Video</button>
+                </div>
+                <div *ngIf="lecture.isArticle" class="article-editor">
+                    <textarea [(ngModel)]="lecture.articleContent" placeholder="Write your article here..."></textarea>
+                    <button (click)="saveArticle(sectionIndex, lectureIndex)">Save Article</button>
+                </div>
+            </div>
+    
+            <button class="add-lecture" (click)="addLecture(sectionIndex)">+ Add Lecture</button>
+        </div>
+    
+        <button class="add-section" (click)="addSection()">+ Add Section</button>
+    </div>

@@ -1,0 +1,258 @@
+/* General Container Styling */
+.container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Animation for fading in the container */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* File Input */
+  .file-input {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    border: 2px solid #1c87c9;
+    border-radius: 25px;
+    font-size: 18px;
+    background-color: #e0f7fa;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .file-input:hover {
+    transform: scale(1.05);
+    background-color: #b2ebf2;
+    border-color: #00796b;
+  }
+  
+  /* Buttons */
+  .preview-btn, .upload-btn {
+    background: linear-gradient(145deg, #1c87c9, #00bcd4);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 15px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .preview-btn:hover, .upload-btn:hover {
+    background: linear-gradient(145deg, #00bcd4, #1c87c9);
+    transform: translateY(-3px);
+  }
+  
+  /* File Previews Section */
+  .file-previews {
+    margin-top: 20px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.8s ease-out;
+  }
+  
+  @keyframes slideIn {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* File Preview Grid */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  /* Individual File Item */
+  .video-item {
+    border: 2px solid #80deea;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .video-item:hover {
+    border-color: #0097a7;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* File Numbering and Name Input */
+  .numbering-input, .file-name-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #80deea;
+    border-radius: 10px;
+    background-color: #e0f7fa;
+    transition: all 0.3s ease;
+  }
+  
+  .numbering-input:hover, .file-name-input:hover {
+    border-color: #0097a7;
+    background-color: #b2ebf2;
+  }
+  
+  .numbering-input {
+    width: 70px;
+    text-align: center;
+  }
+  
+  .file-name-input {
+    margin-top: 10px;
+  }
+  
+  /* Media Preview */
+  .media-preview {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Text File Editor */
+  .text-editor {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #80deea;
+    border-radius: 12px;
+    background-color: #e0f7fa;
+    resize: none;
+    margin-top: 10px;
+  }
+  
+  /* Caption Text */
+  .caption {
+    font-size: 16px;
+    font-style: italic;
+    color: #00796b;
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  /* Upload Progress */
+  .progress-bar {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #b2ebf2;
+    color: #00796b;
+    border-radius: 12px;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Success Message */
+  .success-message {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #c8e6c9;
+    color: #388e3c;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* File Description and Controls */
+  .description-box {
+    width: 100%;
+    height: 80px;
+    font-size: 14px;
+    border: 2px solid #80deea;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #e0f7fa;
+    transition: all 0.3s ease;
+  }
+  
+  .description-box:hover {
+    border-color: #0097a7;
+    background-color: #b2ebf2;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .undo-btn, .save-btn, .remove-btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #80deea;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .undo-btn:hover, .save-btn:hover, .remove-btn:hover {
+    background-color: #4db6ac;
+  }
+  
+  .undo-btn {
+    background-color: #b2ebf2;
+  }
+  
+  .save-btn {
+    background-color: #80deea;
+  }
+  
+  .remove-btn {
+    background-color: #ff5252;
+    color: white;
+  }
+  
+  /* Hover effects for remove button */
+  .remove-btn:hover {
+    background-color: #ff1744;
+  }
+  /* File Preview Grid - 2 videos per row */
+  /* File Preview Grid - 2 videos per row with wider grid */
+  /* File Preview Grid - 2 videos per row with wider grid */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 videos per row */
+    gap: 20px;
+    padding: 15px;
+    justify-items: center; /* Centers items in each grid cell */
+    max-width: 3000px; /* Increased max width for the grid */
+    margin: 0 auto; /* Center the grid horizontally */
+  }
+  
+  /* Individual File Item */
+  .video-item {
+    border: 2px solid #80deea;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    width: 100%; /* Ensures the item fills the grid cell */
+    max-width: 600px; /* Increased max width for the individual video items */
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .video-grid {
+      grid-template-columns: 1fr; /* 1 video per row for smaller screens */
+   
+    }}

@@ -1,0 +1,52 @@
+<app-admin-nav></app-admin-nav>
+<br>
+<br>
+<br>
+<div class="container my-4">
+    <h2 class="text-center mb-4">Student Reviews & Feedback</h2>
+  
+    <!-- Search & Filter Section -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <input type="text" class="form-control w-50" placeholder="Search reviews..." [(ngModel)]="searchQuery" (input)="searchReviews()">
+  
+      <select class="form-select w-25" [(ngModel)]="filterType" (change)="applyFilter()">
+        <option value="latest">Latest</option>
+        <option value="mostLiked">Most Liked</option>
+        <option value="topRated">Top Rated</option>
+        <option value="mostRelevant">Most Relevant</option>
+      </select>
+    </div>
+  
+    <!-- Reviews List -->
+    <div *ngFor="let review of filteredReviews" class="card review-card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <img [src]="review.studentImage" class="student-img me-3" alt="Student Image">
+          <div>
+            <h5 class="mb-1">{{ review.studentName }}</h5>
+            <p class="text-muted">{{ review.timestamp | date:'medium' }}</p>
+          </div>
+        </div>
+        
+        <p class="mt-2">{{ review.message }}</p>
+  
+        <!-- Actions -->
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-outline-success btn-sm" (click)="toggleReadStatus(review)">
+            {{ review.adminRead ? 'Read' : 'Unread' }}
+          </button>
+          <button class="btn btn-outline-danger btn-sm" (click)="likeReview(review)">❤️ {{ review.likes }}</button>
+        </div>
+  
+        <!-- Admin Reply -->
+        <div class="mt-3">
+          <p *ngIf="review.adminReply"><strong>Admin Reply:</strong> {{ review.adminReply }}</p>
+          <div *ngIf="!review.adminReply">
+            <textarea #replyBox class="form-control" placeholder="Write a reply..."></textarea>
+            <button class="btn btn-primary btn-sm mt-2" (click)="replyToReview(review, replyBox)">Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

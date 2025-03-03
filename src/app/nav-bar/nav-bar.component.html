@@ -1,0 +1,162 @@
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar-container" [ngClass]="{'expanded': isExpanded}">
+    <div class="d-flex flex-column flex-shrink-0 bg-light">
+      <!-- Navigation Menu -->
+      <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+        <ng-container *ngFor="let module of modules; index as i">
+          <li class="nav-item has-submenu" *ngIf="module.aspNetMenuItems.length">
+            <a class="nav-link submenu-toggle" routerLink="/{{module.url}}" data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#'+i" aria-expanded="false" aria-controls="submenu-2">
+              <span class="nav-icon" [innerHTML]="module.icon"></span>
+              <span class="nav-link-text">{{module.moduleName}}</span>
+              <span class="submenu-arrow">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+              </span>
+            </a>
+            <div id="{{i}}" class="collapse submenu" data-bs-parent="#menu-accordion">
+              <ul class="submenu-list list-unstyled">
+                <li class="submenu-item" *ngFor="let menu of module.aspNetMenuItems; index as j">
+                  <a class="submenu-link" routerLink="/{{menu.url}}" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">{{menu.menuItemName}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <!-- Sidebar (Remains Unchanged) -->
+    <div class="sidebar-container" [ngClass]="{'expanded': isExpanded}">
+      <div class="d-flex flex-column flex-shrink-0 bg-light">
+        <!-- Navigation Menu -->
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <ng-container *ngFor="let module of modules; index as i">
+            <li class="nav-item has-submenu" *ngIf="module.aspNetMenuItems.length">
+              <a class="nav-link submenu-toggle" routerLink="/{{module.url}}" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#'+i" aria-expanded="false" aria-controls="submenu-2">
+                <span class="nav-icon" [innerHTML]="module.icon"></span>
+                <span class="nav-link-text">{{module.moduleName}}</span>
+                <span class="submenu-arrow">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                  </svg>
+                </span>
+              </a>
+              <div id="{{i}}" class="collapse submenu" data-bs-parent="#menu-accordion">
+                <ul class="submenu-list list-unstyled">
+                  <li class="submenu-item" *ngFor="let menu of module.aspNetMenuItems; index as j">
+                    <a class="submenu-link" routerLink="/{{menu.url}}" routerLinkActive="active"
+                      [routerLinkActiveOptions]="{exact: true}">{{menu.menuItemName}}</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Unified Navbar Wrapper -->
+    <div class="navbar-wrapper bg-light shadow-sm fixed-top w-100 px-3 d-flex align-items-center">
+      
+      <!-- Sidebar Toggle Button (Placed First) -->
+      <button class="btn btn-dark me-3" (click)="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+      </button>
+      
+      <!-- Logo Section with Increased Size -->
+      <div class="navbar-logo me-3">
+        <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="navigateHome()">
+          <img src="images/sushma.png" alt="logo" class="logo-img" />
+        </a>
+      </div>
+      
+      <!-- Main Navbar (Navigation Links & Others) -->
+      <nav class="navbar navbar-expand-lg navbar-light flex-grow-1">
+        <div class="container-fluid">
+          <!-- Toggle Button for Mobile -->
+          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <!-- Navbar Links -->
+          <div class="collapse navbar-collapse" [ngClass]="{'show': isExpanded}" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="./student-dashboard">Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="./instructor-dashboard">Instructor</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/admin-dashboard">Admin</a>
+              </li>
+            </ul>
+    
+            <!-- Search Form -->
+            <form class="d-flex mobile-search-bar w-50" (ngSubmit)="onSearch()">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search for anything" [(ngModel)]="searchQuery"
+                  name="searchQuery" required>
+              </div>
+            </form>
+    
+            <!-- Right Side Icons -->
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" routerLink="/courses">
+                  <i class="far fa-book"></i>
+                  <span class="d-lg-none ms-2">My Courses</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" routerLink="/wishList">
+                  <i class="far fa-heart"></i>
+                  <span class="d-lg-none ms-2">Wishlist</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" routerLink="/cart">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span class="d-lg-none ms-2">Cart</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" routerLink="/notifications">
+                  <i class="far fa-bell"></i>
+                  <span class="d-lg-none ms-2">Notifications</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" (click)="openlogin()">
+                  <i class="fa fa-user"></i>
+                  <span class="d-lg-none ms-2">Login</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" (click)="openRegistration()">
+                  <i class="fa fa-user-plus"></i>
+                  <span class="d-lg-none ms-2">Sign Up</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+
+</div>

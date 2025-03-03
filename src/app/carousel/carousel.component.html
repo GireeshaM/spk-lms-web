@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>One door, infinite possibilities-unlock your potential</h2>
+  <p>Skills that shape you, knowledge that drives you—start learning today.</p>
+
+  <!-- Tabs for Filtering -->
+  <div class="tabs">
+    <button *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab === selectedTab">
+      {{ tab }}
+    </button>
+  </div>
+
+  <!-- Filtered Courses -->
+  <div class="courses">
+    <div class="course-card" *ngFor="let course of filteredCourses | slice:0:visibleCourses">
+      <img [src]="course.image" alt="Course Image" />
+      <h2>{{ course.title }}</h2>
+      
+      <p>{{ course.instructor }}</p>
+      <p class="rating">⭐ {{ course.rating }} ({{ course.reviews }} reviews)</p>
+      <p class="price">₹{{ course.price }}</p>
+      <button class="premium">Premium</button>
+    </div>
+  </div>
+
+  <!-- Read More Button -->
+  <button *ngIf="visibleCourses < filteredCourses.length" (click)="showMore()" class="read-more">Load More</button>
+</div>

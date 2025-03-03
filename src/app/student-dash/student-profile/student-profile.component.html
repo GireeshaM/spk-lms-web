@@ -1,0 +1,275 @@
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="profile-section">
+      <img src="https://i.pravatar.cc/150?img=3" alt="Profile Picture" class="profile-pic">
+      <h4 class="profile-name">{{profileName}}</h4>
+      <div class="progress-container">
+        <div class="progress">
+          <div 
+            class="progress-bar" 
+            role="progressbar" 
+            [style.width.%]="profileCompletion" 
+            [attr.aria-valuenow]="profileCompletion" 
+            aria-valuemin="0" 
+            aria-valuemax="100">
+            {{ profileCompletion }}%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <ul>
+        <li [class.active]="activeTab === 'basic'" (click)="setActiveTab('basic')">
+          <i class="fas fa-user"></i> Basic Details
+        </li>
+        <li [class.active]="activeTab === 'contact'" (click)="setActiveTab('contact')">
+          <i class="fas fa-phone"></i> Contact Details
+        </li>
+        <li [class.active]="activeTab === 'professional'" (click)="setActiveTab('professional')">
+          <i class="fas fa-briefcase"></i> Professional Details
+        </li>
+        <li [class.active]="activeTab === 'academics'" (click)="setActiveTab('academics')">
+          <i class="fas fa-graduation-cap"></i> Academics
+        </li>
+        <li [class.active]="activeTab === 'learning'" (click)="setActiveTab('learning')">
+          <i class="fas fa-book"></i> Learning Outcome
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <div class="content flex-grow-1 p-4">
+    
+   <!-- Basic Details -->
+   <div *ngIf="activeTab === 'basic'">
+    <h2 class="head">Basic Details</h2>
+
+    <div class="profile-edit-section text-center mb-3 d-flex align-items-center justify-content-center">
+      <div class="profile-container position-relative">
+        <img [src]="profilePicture || 'https://i.pravatar.cc/150?img=3'" 
+             alt="Profile Picture" 
+             class="profile-picb">
+      </div>
+      
+      <div class="ms-1 d-flex gap-2">
+      
+        <label for="profilePicUpload" class="btn btn-outline-primary d-flex align-items-center">
+          <i class="fas fa-camera me-2"></i> Change Photo
+          <input type="file" id="profilePicUpload" class="d-none" (change)="onProfilePicChange($event)">
+        </label>
+        <button type="button" class="btn btn-outline-danger d-flex align-items-center" (click)="removePhoto()">
+          <i class="fas fa-trash-alt me-2"></i> Remove Photo
+        </button>
+      </div>
+    </div>
+    
+
+    <form [formGroup]="basicForm">
+        <div class="form-group">
+            <label>Title</label>
+            <select class="form-control" formControlName="title">
+                <option value="Mr.">Mr.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Mrs.">Mrs.</option>
+            </select>
+            <small class="text-danger" *ngIf="basicForm.get('title')?.invalid && basicForm.get('title')?.touched">
+             Title is required .
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" formControlName="firstName">
+            <small class="text-danger" *ngIf="basicForm.get('firstName')?.invalid && basicForm.get('firstName')?.touched">
+              First name is required .
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Middle Name</label>
+            <input type="text" class="form-control" formControlName="middleName">
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName">
+            <small class="text-danger" *ngIf="basicForm.get('lastName')?.invalid && basicForm.get('lastName')?.touched">
+              Last name is required (min 2 characters).
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select class="form-control" formControlName="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+            <small class="text-danger" *ngIf="basicForm.get('gender')?.invalid && basicForm.get('gender')?.touched">
+              gender is required .
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control" formControlName="dob">
+            <small class="text-danger" *ngIf="basicForm.get('dob')?.invalid && basicForm.get('dob')?.touched">
+              Date of Birth is required .
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>LinkedIn Profile</label>
+            <input type="text" class="form-control" formControlName="linkedIn">
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+        <button type="button" class="btn btn-secondary" (click)="discardChanges()">Discard</button>
+    </form>
+</div>
+
+  
+
+
+   <!-- Professional Details -->
+<div *ngIf="activeTab === 'professional'">
+  <h2>Professional Details</h2>
+  <form [formGroup]="professionalForm">
+    <div class="form-group">
+      <label>Total years of experience</label>
+      <select class="form-control" formControlName="experience">
+        <option value="">Select Experience</option>
+        <option value="No experience">No experience</option>
+        <option value="1-2 years">1-2 years</option>
+        <option value="3-5 years">3-5 years</option>
+        <option value="5+ years">5+ years</option>
+      </select>
+      <small class="text-danger" *ngIf="professionalForm.get('experience')?.invalid && professionalForm.get('experience')?.touched">
+        this field is required .
+      </small>
+    </div>
+
+    <div class="form-group">
+      <div class="d-flex align-items-center ">
+        <label class="me-2">Work Experience(s)</label>
+        <button type="button" class="btn btn-link" (click)="addWorkExperience()">+ Add</button>
+      </div>
+    
+      <div *ngFor="let experience of workExperiences.controls; let i = index" class="d-flex align-items-center mt-2" [formGroupName]="i">
+        <input type="text" class="form-control me-2" formControlName="workExperience" placeholder="Enter work experience">
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeWorkExperience(i)">Remove</button>
+      </div>
+    </div>
+    
+
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+    <button type="button" class="btn btn-secondary" (click)="discardChanges()">Discard</button>
+  </form>
+</div>
+
+
+    
+    <!-- Contact Details -->
+<div *ngIf="activeTab === 'contact'">
+  <h2>Contact Details</h2>
+  <form [formGroup]="contactForm">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" [disabled]="false">
+      <small class="text-danger" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+        Email is required .
+      </small>
+    </div>
+
+    <!-- <div class="form-group">
+      <label>State</label>
+      <select class="form-control" formControlName="state">
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+    </div> -->
+
+    <div class="form-group">
+      <label class="heading">Contact Number</label>
+      <div class="d-flex">
+        <select class="form-control " formControlName="countryCode">
+          
+          <option *ngFor="let country of countryCodes" [value]="country.code">
+            {{ country.country }} ({{ country.code }})
+          </option>
+        </select>
+        <input type="text" class="form-control" formControlName="contactNumber" placeholder="Enter mobile number">       
+      </div>
+      <small class="text-danger" *ngIf="contactForm.get('contactNumber')?.invalid && contactForm.get('contactNumber')?.touched">
+       contact number is required .
+      </small>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+    <button type="button" class="btn btn-secondary" (click)="discardChanges()">Discard</button>
+  </form>
+</div>
+
+
+    <!-- Academics -->
+    <div *ngIf="activeTab === 'academics'">
+      <h2>Academics</h2>
+      <form [formGroup]="academicForm" (ngSubmit)="saveAcademics()">
+        <div class="form-group col-md-12 mb-2">
+          <label class="fw-bold mb-1">Highest level of education</label>
+          <select class="form-control p-2" formControlName="educationLevel" placeholder="">
+            <option>Bachelor's Degree</option>
+            <option>Master's Degree</option>
+            <option>Ph.D.</option>
+            <option>Diploma</option>
+            <option>High School</option>
+          </select>
+          <small class="text-danger" *ngIf="academicForm.get('educationLevel')?.invalid && academicForm.get('educationLevel')?.touched">
+            Please select an education level.
+          </small>
+        </div>
+
+        <div class="form-group row g-1">
+          <div class="col-md-12">
+          <div class="d-flex align-items-center ">
+          <label class="me-2">Academic Experience(s)</label>
+          <button type="button" class="btn btn-link" (click)="addAcademicExperience()">+ Add</button>
+          </div>
+        </div>
+          <div *ngFor="let academic of academicExperiences.controls; let i = index" class="d-flex align-items-center mt-2">
+            <input type="text" class="form-control me-2" [formControlName]="i" placeholder="Enter academic experience">
+            <button type="button" class="btn btn-danger byn sm" (click)="removeAcademicExperience(i)">Remove</button>
+          </div>
+        </div>
+        <button class="btn btn-secondary" (click)="discardChanges()">Discard</button>
+        <button class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+      </form>
+    </div>
+
+    <div class="content flex-grow-1 p-4">
+      <div *ngIf="activeTab === 'learning'">
+        <h2>Learning Outcome</h2>
+        <form [formGroup]="learningForm" (ngSubmit)="saveLearningOutcome()">
+          <div class="form-group">
+            <label>What is your desired learning outcome? <span class="text-danger">*</span></label>
+            <select class="form-control" formControlName="learningOutcome">
+              <option>Skill Enhancement</option>
+              <option>Obtaining a certificate</option>
+              <option>Career Advancement (Pay Raise or Promotion)</option>
+              <option>Start a New Career or Shift Career</option>
+            </select>
+            <small class="text-danger" *ngIf="learningForm.get('learningOutcome')?.invalid && learningForm.get('learningOutcome')?.touched">
+              This field is required.
+            </small>
+          </div>
+    
+          <button type="button" class="btn btn-secondary me-3" (click)="discardChanges()">Discard</button>
+          <button type="submit" class="btn btn-primary me-3" (click)="saveChanges()">Save Changes</button>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+</div>

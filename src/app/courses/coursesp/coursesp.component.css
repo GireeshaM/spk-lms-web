@@ -1,0 +1,247 @@
+/* Enrolled Courses Section */
+.enrolled-courses {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping */
+  gap: 20px; /* Spacing between cards */
+  overflow-x: auto; /* Allows horizontal scrolling */
+  padding: 20px;
+  padding-left: 10px;
+  background-color: #f9f9f9;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  margin-top: 30px;
+}
+#enr{
+  margin-top: 90px;
+ padding-left: 600px;
+ 
+}
+
+.enrolled-courses .course-card {
+  flex: 0 0 280px; /* Each card takes up 280px */
+  min-width: 280px; /* Ensures each card has a minimum width */
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.enrolled-courses .course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.enrolled-courses .image-wrapper {
+  height: 120px; /* Adjust image height */
+  overflow: hidden;
+}
+
+.enrolled-courses .course-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.enrolled-courses .course-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.enrolled-courses .course-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.enrolled-courses .course-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.progress-bar{
+
+  width:auto;
+}
+.enrolled-courses .progress {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 0px;
+}
+
+h1{
+  padding-left: 600px;
+}
+.enrolled-courses .progress-bar {
+  background-color: #ee5219;
+  height: 15px;
+  width: 6px;
+  border-radius: 20px;
+}
+
+.enrolled-courses .progress-bar {
+  transition: width 0.3s ease-in-out;
+}
+
+.popular-courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.popular-courses .course-card {
+  flex: 0 0 280px;
+  width: calc(20% - 16px); /* Adjust for 5 cards in a row */
+  min-width: 280px;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Allow the height to adjust based on content */
+}
+
+.popular-courses .course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.popular-courses .image-wrapper {
+  height: 120px; /* Reduced image height */
+  overflow: hidden; /* Ensure image does not overflow */
+}
+
+.popular-courses .course-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image fits without distorting */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.popular-courses .course-content {
+  flex-grow: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Course title */
+.popular-courses .course-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* Course description */
+.popular-courses .course-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+/* Course rating */
+.popular-courses .course-rating {
+  font-size: 14px;
+  color: #ffa500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.popular-courses .rating-stars {
+  font-weight: bold;
+}
+
+.popular-courses .rating-count {
+  color: #666;
+}
+
+/* Course price */
+.popular-courses .course-price {
+  font-size: 14px;
+  color: #999;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popular-courses .current-price {
+  font-weight: bold;
+  color: #e53935;
+}
+
+.popular-courses .original-price {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Add to Cart Button */
+.popular-courses .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.popular-courses .add-to-cart {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popular-courses .add-to-cart:hover {
+  background-color: #0056b3;
+}
+
+/* Wishlist Icon */
+.popular-courses .wishlist {
+  font-size: 16px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.popular-courses .wishlist:hover {
+  color: red;
+}
+
+.popular-courses .wishlist-selected {
+  color: #e53935;
+}
+
+/* Popular Badge */
+.popular-courses .popular-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: violet;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}

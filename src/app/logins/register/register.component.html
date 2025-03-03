@@ -1,0 +1,71 @@
+<div class="register-container" *ngIf="showDialog">
+  <div class="register-dialog">
+    <!-- ✅ Added Close Button -->
+    <button class="close-btn" (click)="closeDialog()">X</button>
+
+    <div class="register-content">
+      <h2>Register</h2>
+
+      <form [formGroup]="registerForm">
+        <!-- Step 1: Basic Details -->
+        <div *ngIf="step === 1">
+          <div class="input-group">
+            <input type="text" placeholder="Full Name" formControlName="fullName" />
+          </div>
+          <div class="input-group">
+            <input type="email" placeholder="Email" formControlName="email" />
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Password" formControlName="password" />
+          </div>
+          <button class="next-btn" (click)="nextStep()">Next</button>
+        </div>
+
+        <!-- Step 2: Area of Interest -->
+        <div *ngIf="step === 2">
+          <h3>Select Your Areas of Interest</h3>
+          <div class="card-container">
+            <div *ngFor="let area of areasOfInterest" 
+                 [class.selected]="isSelectedInterest(area.name)"
+                 class="card" 
+                 (click)="toggleInterest(area.name)">
+              {{ area.name }}
+            </div>
+          </div>
+          <button class="prev-btn" (click)="prevStep()">Back</button>
+          <button class="next-btn" (click)="nextStep()">Next</button>
+        </div>
+
+        <!-- Step 3: Skills Selection -->
+        <div *ngIf="step === 3">
+          <h3>Select Your Skills</h3>
+          <div class="card-container">
+            <div *ngFor="let skill of filteredSkills" 
+                 [class.selected]="isSelectedSkill(skill)" 
+                 class="card" 
+                 (click)="toggleSkill(skill)">
+              {{ skill }}
+            </div>
+          </div>
+          <button class="prev-btn" (click)="prevStep()">Back</button>
+          <button class="next-btn" (click)="nextStep()">Next</button>
+        </div>
+
+        <!-- Step 4: Review & Submit -->
+        <div *ngIf="step === 4">
+          <h3>Review & Submit</h3>
+          <p><strong>Name:</strong> {{ registerForm.value.fullName }}</p>
+          <p><strong>Email:</strong> {{ registerForm.value.email }}</p>
+          <p><strong>Phone:</strong> {{ registerForm.value.phoneNumber }}</p>
+          <p><strong>Areas of Interest:</strong> {{ selectedInterests.join(', ') }}</p>
+          <p><strong>Skills:</strong> {{ selectedSkills.join(', ') }}</p>
+          <button class="prev-btn" (click)="prevStep()">Back</button>
+          <button class="submit-btn" (click)="register()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

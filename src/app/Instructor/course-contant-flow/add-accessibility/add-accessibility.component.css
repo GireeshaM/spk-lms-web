@@ -1,0 +1,148 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header h1 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Main Content */
+.main-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Introduction Section */
+.intro p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.intro a {
+    color: #4080ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.intro a:hover {
+    text-decoration: underline;
+}
+
+/* Accessibility Checklists Section */
+.checklists-section {
+    margin-top: 20px;
+}
+
+.checklists-section h2 {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.checklist-item label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checklist-item p {
+    margin-left: 35px;
+    color: #555;
+}
+
+/* Accessibility Resources Section */
+.resources-section {
+    margin-top: 30px;
+}
+
+.resources-section h3 {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.resources {
+    list-style: none;
+    padding: 0;
+}
+
+.resources li {
+    margin-bottom: 10px;
+}
+
+.resources a {
+    color: #4080ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.resources a:hover {
+    text-decoration: underline;
+}
+
+/* SVG Styling */
+svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        font-size: 90%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .checklist-item label {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.underline {
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #27ae60;
+    display: inline-block;
+    padding-bottom: 5px;
+}

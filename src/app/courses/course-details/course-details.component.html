@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ course.title }} - Course Details</title>
+
+  <!-- Add Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Custom Styles -->
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="logo-container">
+        <i class="fas fa-graduation-cap logo"></i> <!-- Logo as Icon -->
+      </div>
+      <h1>{{ course.title }}</h1>
+      <p class="subtitle">{{ course.description }}</p>
+      <button class="cta-btn">Enroll Now</button>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Course Details Section -->
+        <section class="course-details card">
+          <h2><i class="fas fa-info-circle"></i> Course Details</h2>
+          <section class="course-video">
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/pdPRdhify1Q?si=mqFqgvrbCanscl3U"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+          </section>
+          <p><strong>Instructor:</strong> {{ course.instructor.name }}</p>
+          <p><strong>Ratings:</strong> ⭐⭐⭐⭐⭐ ({{ course.ratings }} / 5) | {{ course.enrolled }} students enrolled</p>
+          <p><strong>Language:</strong> {{ course.language }}</p>
+        </section>
+        <section class="course-details card">
+          <div class="course-includes">
+            <h3>This course includes:</h3>
+            <div class="features-grid">
+              <div class="feature-item" *ngFor="let feature of features">
+                <span [class]="feature.iconClass"></span>
+                <span class="feature-text">{{ feature.text }}</span>
+              </div>
+            </div>
+          </div>
+
+        </section>
+        <!-- What You'll Learn Section -->
+        <section class="course-content card">
+          <h2><i class="fas fa-book-open"></i> What You'll Learn</h2>
+          <ul>
+            <li><i></i> Understand C programming syntax</li>
+            <li><i></i> Master functions and recursion</li>
+            <li><i></i> Work with data structures like arrays and pointers</li>
+            <li><i></i> Develop efficient programs using C</li>
+          </ul>
+        </section>
+
+        <section class="course-details card">
+          <h3>Course Content</h3>
+          <div class="accordion" id="courseAccordion">
+            <div class="accordion-item" *ngFor="let section of displayedSections; let i = index">
+              <h2 class="accordion-header" id="heading{{ i }}">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i === 0 ? 'true' : 'false'"
+                  [attr.aria-controls]="'collapse' + i">
+                  {{ section.title }}
+                </button>
+              </h2>
+              <div [id]="'collapse' + i" class="accordion-collapse collapse" [ngClass]="{ show: i === 0 }"
+                [attr.aria-labelledby]="'heading' + i" data-bs-parent="#courseAccordion">
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let lecture of section.lectures" class="lecture-item">
+                      <span>
+                        <span class="icon" [ngClass]="getIconClass(lecture.type)"></span>
+                        {{ lecture.title }}
+                      </span>
+                      <span class="duration">{{ lecture.duration }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <button *ngIf="sections.length > maxSections" class="btn btn-link toggle-btn" (click)="toggleSections()">
+              {{ showAllSections ? 'Show Less' : 'Show More' }}
+            </button>
+          </div>
+
+
+        </section>
+        <!-- Instructor Section -->
+
+      </main>
+
+      <!-- Sidebar Section -->
+      <aside class="sidebar card">
+        <div class="price-section">
+          <h2>₹{{ course.price }}</h2>
+          <button class="cta-btn">Buy Now</button>
+          <button class="wishlist-btn">Add to Wishlist</button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Instructor Section -->
+
+
+    <section class="course-details card">
+      <div class="instructor-profile">
+        <div class="profile-header">
+          <img [src]="instructor.imageUrl" alt="Instructor Photo" class="profile-image" />
+          <div class="profile-details">
+            <h2>{{ instructor.name }}</h2>
+            <p class="title">{{ instructor.title }}</p>
+            <div class="ratings">
+              <span class="rating">
+                <i class="icon-star"></i> {{ instructor.rating }} Instructor Rating
+              </span>
+              <span class="reviews">
+                <i class="icon-review"></i> {{ instructor.reviews }} Reviews
+              </span>
+              <span class="students">
+                <i class="icon-student"></i> {{ instructor.students }} Students
+              </span>
+              <span class="courses">
+                <i class="icon-course"></i> {{ instructor.courses }} Courses
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio">
+          <p>{{ expanded ? instructor.bio : (instructor.bio | slice: 0:200) + '...' }}</p>
+          <button class="toggle-bio" (click)="toggleBio()">
+            {{ expanded ? 'Show less' : 'Show more' }}
+          </button>
+        </div>
+      </div>
+
+    </section>
+    <section class="course-details card">
+
+      <div class="reviews-section">
+
+        <div class="reviews-header">
+
+          <h2>
+
+            <i class="icon-star"></i> {{ courseRating }} course rating • {{ totalRatings }} ratings
+
+          </h2>
+
+        </div>
+
+
+
+        <div class="reviews-grid">
+
+          <div class="review-card" *ngFor="let review of reviews">
+
+            <div class="review-header">
+
+              <div class="profile-circle">{{ getInitials(review.name) }}</div>
+
+              <div class="review-details">
+
+                <p class="review-name">{{ review.name }}</p>
+
+                <p class="review-time">{{ review.time }}</p>
+
+                <div class="rating">
+
+                  <ng-container *ngFor="let star of getStars(review.rating)">
+
+                    <i class="icon-star"></i>
+
+                  </ng-container>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="review-body">
+
+              <p>
+
+                {{ review.expanded ? review.comment : (review.comment | slice: 0:100) + '...' }}
+
+              </p>
+
+              <button *ngIf="review.comment.length > 100" (click)="toggleReview(review)">
+
+                {{ review.expanded ? 'Show less' : 'Show more' }}
+
+              </button>
+
+            </div>
+
+            <div class="review-footer">
+
+              <p>Helpful?</p>
+
+              <div class="actions">
+
+                <button [ngClass]="{ 'active': review.liked }" (click)="toggleLikeDislike(review, 'like')">
+
+                  <i class="icon-thumbs-up"></i>
+
+                </button>
+
+                <button [ngClass]="{ 'active': review.disliked }" (click)="toggleLikeDislike(review, 'dislike')">
+
+                  <i class="icon-thumbs-down"></i>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <button class="show-all-reviews">Show all reviews</button>
+
+      </div>
+
+
+
+    </section>
+
+
+  </div>
+</body>
+
+</html>

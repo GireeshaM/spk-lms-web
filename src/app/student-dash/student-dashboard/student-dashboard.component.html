@@ -1,0 +1,118 @@
+<div class="student-dashboard-container d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar bg-dark text-light p-3">
+        <h4 class="mb-4">Academy LMS</h4>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active text-light">📊 Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="/coursesp" (click)="viewCourses()">📚 Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="/interests" (click)="viewInterests()">📌 My Interests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="/grades">📊 Grades</a>
+            </li>
+            
+        </ul>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-content p-4 flex-grow-1">
+        <!-- Header Section -->
+        <div class="profile-image">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <a [routerLink]="['/student-profile']">
+                        <img [src]="'https://i.pravatar.cc/150?img=12'" class="rounded-circle ms-3" alt="Profile">
+                    </a>
+                    <span class="ms-2">{{ student.name }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats Cards -->
+        <div class="quickcards">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <a  class="text-decoration-none">
+                        <div class="card p-3 text-center shadow-sm">
+                            <h5>📘 Active Courses</h5>
+                            <p class="fs-4">{{ student.activeCourses.length }} courses</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a  class="text-decoration-none">
+                        <div class="card p-3 text-center shadow-sm">
+                            <h5>🎓 Completed Courses</h5>
+                            <p class="fs-4">{{ student.completedCourses.length }} courses</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a  class="text-decoration-none">
+                        <div class="card p-3 text-center shadow-sm">
+                            <h5>📖 Enrolled Courses</h5>
+                            <p class="fs-4">{{ student.enrolledCourses.length }} courses</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Row -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card p-3 shadow-sm">
+                    <h5>This Week</h5>
+                    <canvas id="weeklyChart"></canvas> <!-- Chart.js Graph -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3 text-center shadow-sm">
+                    <h5>📊 Activity Breakdown</h5>
+                    <p>Study: 57% | Exams: 19%</p>
+                    <div class="progress-circle" style="width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(#FF6384 57%, #FFCE56 19%);"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- My Courses Section -->
+        <div class="mt-4">
+            <h5>📚 {{ selectedCategoryTitle }}</h5>
+            <div class="row">
+                <div *ngFor="let course of displayedCourses" class="col-md-6">
+                    <div class="card p-3 shadow-sm">
+                        <img [src]="course.image" class="img-fluid mb-2" alt="{{ course.name }}">
+                        <h6>{{ course.name }}</h6>
+                        <p>{{ course.description }}</p>
+                        <div class="progress">
+                            <a [routerLink]="['/coursedetails']" [queryParams]="{ name: course.name, category: selectedCategoryTitle }"
+                               class="progress-bar bg-primary text-white text-center"
+                               [style.width.%]="course.progress || 50">
+                                {{ course.progress || 50 }}%
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="mt-4">
+            <h5>📅 Calendar</h5>
+            <div class="card p-3 shadow-sm">
+                <p><strong>February 2025</strong></p>
+                <ul>
+                    <li>🕙 10:00 AM - AI in Education</li>
+                    <li>🕚 11:00 AM - Web Design Trends</li>
+                    <li>🕑 2:00 PM - JavaScript Features</li>
+                    <li>🕟 4:30 PM - Exam (JavaScript)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

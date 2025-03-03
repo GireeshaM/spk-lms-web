@@ -1,0 +1,145 @@
+.course-upload {
+    max-width: 800px;          /* Width of the container */
+    margin: 30px 0 30px 0;     /* Top and bottom margin, 0 for left/right */
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-left: 150px;         /* Moves the container to the left by 20px */
+  }
+  
+  h2, h3, h4 {
+    color: #333;
+    text-align: left; /* Align headings to the left */
+  }
+  
+  h1{
+    color: #333;
+    text-align: center; /* Align headings to the center */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    text-align: left; /* Align labels to the left */
+    width: 100%; /* Ensure labels take full width */
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  /* Textarea for course description */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px; /* Add space between input fields */
+    height: 150px; /* Increased height for larger textarea */
+  }
+  
+  
+  .features {
+    margin-top: 20px;
+  }
+  
+  .feature-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Button container to center buttons */
+  .button-container {
+    display: flex;
+    justify-content: center;  /* Center buttons horizontally */
+    gap: 10px;  /* Space between buttons */
+    margin-top: 20px;  /* Optional: Add margin for spacing */
+  }
+  
+  /* Style for the buttons */
+  button {
+    background: #28a745;  /* Lighter green */
+    color: white;
+    padding: 10px 20px;  /* Adjusted padding for smaller buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;  /* Button width based on content */
+    margin: 0;  /* No extra margin on buttons themselves */
+  }
+  
+  button:hover {
+    background: #218838;  /* Darker green on hover */
+  }
+  
+  /* Align buttons in a row and ensure they are centered */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center the form contents horizontally */
+  }
+  
+  /* Remove margin for the last button */
+  form button:last-child {
+    margin-right: 0;
+  }
+  
+  
+  .course-preview {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .banner-preview {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .video-preview {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .feature-preview {
+    margin-top: 20px;
+  }
+  
+  .feature-item-preview {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  .feature-image {
+    width:300 ; /* Increased more */
+    height: 150px; /* Increased more */
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .course-preview p {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
+  .header-image {
+    width: 100%;             /* Ensure the image takes the full width of the container */
+    height: 200px;           /* Set a fixed height for the image (you can adjust this as needed) */
+    object-fit: cover;       /* Ensures the image fills the container without stretching */
+    border-radius: 10px;     /* Optional: rounded corners */
+    margin-bottom: 20px;     /* Optional: space between the image and other content */
+  }

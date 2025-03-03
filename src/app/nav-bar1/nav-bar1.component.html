@@ -1,0 +1,16 @@
+<div class="navbar">
+  <ul class="nav-links">
+    <li *ngFor="let category of categories">
+      <a href="#" (click)="toggleCategory(category)">{{ category.name }}</a>
+      
+      <!-- Display Submodules when the category is active -->
+      <div *ngIf="activeCategory === category" class="submodule-list">
+        <ul>
+          <li *ngFor="let subModule of category.subModules" (click)="onSubModuleClick(subModule)">
+            {{ subModule }}
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

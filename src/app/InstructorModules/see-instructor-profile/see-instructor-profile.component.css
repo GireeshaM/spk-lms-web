@@ -1,0 +1,71 @@
+/* General styling */
+.container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .profile-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .detail-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .course-img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .card {
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .instructor-card {
+    transition: transform 0.3s;
+  }
+  
+  .instructor-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .badge {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  ::ng-deep app-admin-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }

@@ -1,0 +1,124 @@
+/* Centered Login Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh;
+  background: linear-gradient(135deg, #6e8efb, #a777e3); */
+}
+
+/* Login Dialog */
+.login-dialog {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 500px;
+}
+
+/* Login Form */
+.login-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.input-group {
+  margin: 10px 0;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn {
+  background: #007bff;
+  color: white;
+}
+
+.login-btn:hover {
+  background: #0056b3;
+}
+
+.close-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.close-btn:hover {
+  background: #b52a37;
+}
+
+/* Image Section */
+.login-image {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  padding: 20px;
+}
+
+.login-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* SweetAlert2 Custom Styling */
+.swal-popup {
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+.swal-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.swal-icon {
+  animation: pop 0.4s ease-in-out;
+}
+
+/* Animation for SweetAlert */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

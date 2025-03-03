@@ -1,0 +1,47 @@
+<div class="main">
+  <div class="container mt-4">
+    
+    <!-- Image and Title Side by Side -->
+    <div class="d-flex align-items-center mb-3">
+      <img src="images/illustration.png" alt="User Interests" class="img-fluid me-3" style="max-width: 120px; height: 80px;">
+      <h3 class="mb-0">User Interests</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let interest of interests">
+        <div class="card interest-card position-relative">
+          <!-- Remove Interest Button -->
+          <span class="close-icon" (click)="removeInterest(interest.name)">&#10006;</span>
+
+          <img [src]="interest.logoUrl" class="card-img-top interest-img" alt="{{ interest.name }}" />
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ interest.name }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Interest Section -->
+    <div class="d-flex align-items-center mt-4">
+      <input 
+        type="text" 
+        class="form-control me-3 w-50" 
+        placeholder="Add new interest" 
+        [(ngModel)]="newInterest" 
+        (input)="updateRecommendations()"
+      />
+      <button class="btn btn-primary custom-btn" (click)="addInterest()">Add</button>
+    </div>
+
+    <!-- Recommended Interests -->
+    <div *ngIf="recommendedInterests.length > 0" class="mt-4">
+      <h6>Recommended Interests</h6>
+      <div class="d-flex flex-wrap">
+        <div class="recommended-card" *ngFor="let rec of recommendedInterests" (click)="addInterestFromRecommendation(rec.name)">
+          <img [src]="rec.logoUrl || 'images/default.jpg'" class="recommended-img small-img" alt="{{ rec.name }}" />
+          <span class="recommended-text">{{ rec.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

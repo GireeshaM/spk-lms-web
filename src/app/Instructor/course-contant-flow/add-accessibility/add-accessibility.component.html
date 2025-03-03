@@ -1,0 +1,80 @@
+<div class="page-container">
+
+    <header>
+        <h1>Accessibility Guidelines</h1>
+    </header>
+
+    <main class="main-content">
+        <!-- Introduction Section -->
+        <section class="intro">
+            <p>
+                Accessibility ensures everyone, including people with disabilities, has equal access to information,
+                interactions, and services. Making your content accessible is not just equitable—it’s essential for
+                reaching a broader audience.
+            </p>
+            <p>
+                Learn more about
+                <a href="https://www.udemy.com" target="_blank" rel="noopener noreferrer">creating accessible
+                    content</a>
+                in SprintPark Learning Management System.
+            </p>
+        </section>
+
+        <!-- Accessibility Checklists Section -->
+        <section class="checklists-section">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="none" viewBox="0 0 96 96"
+                    id="checklist">
+                    <path fill="#1CE3E3" stroke="#000" stroke-width="5"
+                        d="M10 19C10 14.0294 14.0294 10 19 10H48.3199C50.1733 10 51.951 10.735 53.2632 12.0438L62.1362 20.8939L65.1656 24.2063C66.3456 25.4966 67 27.1819 67 28.9304V77C67 81.9706 62.9706 86 58 86H19C14.0294 86 10 81.9706 10 77V19Z">
+                    </path>
+                    <path stroke="#000" stroke-width="5" d="M50 11V25C50 26.6569 51.3431 28 53 28H67"></path>
+                    <path stroke="#000" stroke-linecap="round" stroke-width="5"
+                        d="M23 44H39M23 56H53M23 68H28.7118M38.5 68H54"></path>
+                </svg>
+                <span class="underline">Accessibility Checklists</span>
+            </h2>
+            <div class="checklists">
+                <!-- Dynamically generated checklists -->
+                <div class="checklist-item" *ngFor="let checklist of checklists; let i = index">
+                    <label>
+                        <input type="checkbox" [checked]="checklist.checked" (change)="toggleCheck(i)" />
+                        {{ checklist.title }}
+                    </label>
+                    <p>{{ checklist.description }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accessibility Resources Section -->
+        <section class="resources-section">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 48 48"
+                    id="QuestionFocusMarketingSales">
+                    <path
+                        d="M19 34c-8.271 0-15-6.729-15-15S10.729 4 19 4s15 6.729 15 15c0 3.284-1.035 6.391-2.992 8.982l-.228.291a14.65 14.65 0 0 1-2.503 2.505l-.28.219C25.391 32.966 22.285 34 19 34zm0-28C11.832 6 6 11.832 6 19s5.832 13 13 13c2.846 0 5.535-.895 7.777-2.588l.274-.215a12.593 12.593 0 0 0 2.151-2.153l.218-.277C31.105 24.535 32 21.846 32 19c0-7.168-5.832-13-13-13z"
+                        fill="#34a853" class="color000000 svgShape"></path>
+                    <path
+                        d="M19 30c-1.93 0-3.832-.51-5.5-1.474A11.04 11.04 0 0 1 8 19c0-6.065 4.935-11 11-11s11 4.935 11 11c0 2.507-.818 4.862-2.367 6.813a11.07 11.07 0 0 1-1.824 1.822c-.436.345-.866.638-1.313.894A11.008 11.008 0 0 1 19 30zm0-20c-4.962 0-9 4.037-9 9a9.037 9.037 0 0 0 4.501 7.795c2.728 1.576 6.27 1.577 8.999-.001a8.417 8.417 0 0 0 1.07-.729 8.94 8.94 0 0 0 1.497-1.496A8.863 8.863 0 0 0 28 19c0-4.963-4.038-9-9-9zm22.171 36.998a2.99 2.99 0 0 1-2.121-.877l-5.657-5.656a3.003 3.003 0 0 1 0-4.243l2.828-2.828a3.001 3.001 0 0 1 4.243 0l5.657 5.657c.567.565.879 1.319.879 2.121 0 .801-.312 1.555-.879 2.121l-2.828 2.828a2.99 2.99 0 0 1-2.122.877zm-2.828-12.482a1 1 0 0 0-.708.292l-2.828 2.828a1.002 1.002 0 0 0 0 1.415l5.657 5.656c.389.39 1.024.391 1.415 0l2.828-2.828a.997.997 0 0 0 .001-1.413l-5.657-5.658a.996.996 0 0 0-.708-.292zM41 7c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zm0-4a1.001 1.001 0 0 0 0 2 1.001 1.001 0 0 0 0-2zm3 14h-6c-1.103 0-2-.897-2-2v-3c0-1.654 1.346-3 3-3h4c1.654 0 3 1.346 3 3v3c0 1.103-.897 2-2 2zm-5-6c-.551 0-1 .448-1 1v3h6.001L44 12c0-.552-.449-1-1-1h-4zM6 37c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zm0-4a1.001 1.001 0 0 0 0 2 1.001 1.001 0 0 0 0-2zm3 14H3c-1.103 0-2-.897-2-2v-3c0-1.654 1.346-3 3-3h4c1.654 0 3 1.346 3 3v3c0 1.103-.897 2-2 2zm-5-6c-.551 0-1 .448-1 1v3h6.001L9 42c0-.552-.449-1-1-1H4z"
+                        fill="#34a853" class="color000000 svgShape"></path>
+                    <path
+                        d="m34.1 38.344-8.226-8.226 1.177-.921a12.593 12.593 0 0 0 2.151-2.153l.914-1.173 8.229 8.229-4.245 4.244zm-5.229-8.057 5.229 5.229 1.416-1.416-5.229-5.229c-.439.504-.912.977-1.416 1.416zM19 20a1 1 0 1 1 0-2c1.103 0 2-.897 2-2s-.897-2-2-2-2 .897-2 2a1 1 0 1 1-2 0c0-2.206 1.794-4 4-4s4 1.794 4 4-1.794 4-4 4zm0 6a.994.994 0 0 1-1-1c0-.13.03-.26.08-.38s.12-.23.21-.33c.28-.28.73-.37 1.09-.21.13.05.23.12.33.21.18.189.29.45.29.71a.99.99 0 0 1-1 1z"
+                        fill="#34a853" class="color000000 svgShape"></path>
+                    <path d="M19 22a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1z" fill="#34a853"
+                        class="color000000 svgShape"></path>
+                    <path fill="none" d="M0 0h48v48H0z"></path>
+                </svg>
+                <span class="underline">Accessibility Resources</span>
+            </h3>
+            <ul class="resources">
+                <li><a href="#" aria-label="Learn how to create accessible learning content">Creating accessible
+                        learning content</a></li>
+                <li><a href="#" aria-label="Explore audio content for accessible learning">Audio content for accessible
+                        learning</a></li>
+                <li><a href="#" aria-label="Learn about visual content for accessible learning">Visual content for
+                        accessible learning</a></li>
+            </ul>
+        </section>
+    </main>
+
+</div>

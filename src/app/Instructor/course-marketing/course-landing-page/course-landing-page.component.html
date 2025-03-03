@@ -1,0 +1,79 @@
+<div class="course-upload">
+    <!-- Image added at the top of the container -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <img src="images/instructortoadmin.png" alt="Course Banner" class="header-image">
+    <h1>Upload New Course Content</h1>
+  
+    <form (submit)="submitCourse()">
+        <!-- Course Title -->
+       <label for="title">Course Title</label>
+        <input type="text" id="title" [(ngModel)]="course.title" required>
+  
+        <!-- Course Description -->
+        <label for="description">Course Description</label>
+        <textarea id="description" [(ngModel)]="course.description" required></textarea>
+  
+        <!-- Course Price -->
+        <label for="price">Course Price</label>
+        <input type="number" id="price" [(ngModel)]="course.price" required>
+  
+        <!-- Course Banner Upload -->
+        <label for="banner">Upload Course Banner</label>
+        <input type="file" id="banner" (change)="onBannerUpload($event)">
+  
+        <!-- Course Video Upload -->
+        <label for="video">Upload Course Video</label>
+        <input type="file" id="video" accept="video/*" (change)="onVideoUpload($event)">
+  
+        <!-- Features Section -->
+        <div class="features">
+            <h2>Course Features</h2>
+            <div *ngFor="let feature of course.features; let i = index" class="feature-item">
+                <input type="text" [(ngModel)]="feature.text" placeholder="Feature Description" required>
+                <input type="file" (change)="onFeatureImageUpload($event, i)">
+                <!-- Inside your feature-item div -->
+<i class="fas fa-times-circle" style="color: red; cursor: pointer;" (click)="removeFeature(i)"></i>
+
+            </div>
+            <button type="button" (click)="addFeature()">+ Add Feature</button>
+        </div>
+  
+      <!-- Buttons -->
+<div class="button-container">
+    <button type="submit">Upload Course</button>
+    <button type="button" (click)="sendForReview()">Send for Review</button>
+  </div>
+  
+    </form>
+  
+    <!-- Course Preview Section (Visible after Upload) -->
+    <div class="course-preview" *ngIf="showPreview">
+        <h2>Course Preview</h2>
+        <div *ngIf="course.imageUrl">
+            <img [src]="course.imageUrl" class="banner-preview" alt="Course Banner">
+        </div>
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+  
+        <!-- Course Pricing -->
+        <p><strong>Price: </strong>{{ course.price | currency }}</p>
+  
+        <!-- Video Preview -->
+        <div *ngIf="course.videoUrl">
+            <h4>Course Video</h4>
+            <video [src]="course.videoUrl" controls class="video-preview"></video>
+        </div>
+  
+        <!-- Feature Preview -->
+        <div class="feature-preview">
+            <h4>Key Features</h4>
+            <div *ngFor="let feature of course.features" class="feature-item-preview">
+                <div *ngIf="feature.imageUrl">
+                    <p>{{ feature.text }}</p>
+                    <img [src]="feature.imageUrl" class="feature-image" alt="Feature Image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

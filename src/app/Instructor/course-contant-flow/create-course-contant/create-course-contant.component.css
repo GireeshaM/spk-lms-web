@@ -1,0 +1,169 @@
+.curriculum-builder {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.section {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.section-header,
+.lecture-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+button {
+    margin-left: 5px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6200ea;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+button[title="Reorder Section"],
+button[title="Reorder Lecture"] {
+    background-color: #03dac6;
+    cursor: grab;
+}
+
+button[title="Reorder Section"]:hover,
+button[title="Reorder Lecture"]:hover {
+    background-color: #018786;
+}
+
+.add-section,
+.add-lecture {
+    background-color: #03dac6;
+}
+
+.add-section:hover,
+.add-lecture:hover {
+    background-color: #018786;
+}
+
+.video-upload,
+.article-editor {
+    margin-top: 20px;
+}
+
+.video-upload input {
+    display: block;
+    margin-bottom: 10px;
+    
+}
+
+.video-upload button {
+    display: block;
+    margin-top: 10px;
+}
+textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    resize: vertical;
+}
+
+/* Styling the curriculum section */
+section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Section Headers */
+section h2, section h3 {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Paragraph Styling */
+section p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* List Styling */
+section ul {
+    list-style: none;
+    padding: 0;
+}
+
+section ul li {
+    background: #fff;
+    margin: 8px 0;
+    padding: 12px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+}
+
+section ul li:hover {
+    background: #ecf0f1;
+    transform: translateX(5px);
+}
+
+
+
+/* Images */
+.course-guide-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+/* Highlighted Key Points */
+strong {
+    color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        padding: 15px;
+    }
+
+    section ul li {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

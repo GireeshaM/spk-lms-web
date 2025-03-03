@@ -1,0 +1,154 @@
+/* Centering Dashboard Overview */
+.dashboard-overview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+    width: 100%;
+}
+.dashboard-overview-container .row {
+    margin-top: -50px; /* Move cards up slightly */
+}
+.profile-image {
+    position: absolute;
+    top: 5rem;
+    right: 3rem;
+  }
+  .profile-image img {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    border-radius: 50%;
+  }
+  
+  .ms-2 {
+    margin-left: 0.5rem; /* Adds spacing between the profile picture and the student's name */
+  }
+/* Dashboard Title */
+.dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    margin-top: 100px;  /* Adjust this to move it further */
+    text-align: center;
+}
+.quickcards{
+    margin-top: 60px;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+}
+
+.nav-link {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.dashboard-content {
+    margin-top: 60px;;
+    margin-left: 260px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progress-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dashboard Cards */
+.pastel-card {
+    background: #ffe6e6; /* Soft pastel pink */
+    color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+   
+    /* Add margin for spacing */
+    margin: 55px auto; 
+}
+
+.pastel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Dashboard Row - Increased Spacing */
+.row.justify-content-center {
+    gap: 60px; /* Adds space between the cards */
+}
+
+/* Course Display Section */
+.course-display {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Course Cards */
+.course-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px; /* Adds spacing between course cards */
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Course Image */
+.course-img {
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Number Display */
+.number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+}
+.student-profile {
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+}
+
+/* Profile Image */
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+/* Student Info */
+.student-info {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.student-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+/* Move Student Profile Down */
+
+.text-muted {
+    font-size: 14px;
+    margin: 0;
+}

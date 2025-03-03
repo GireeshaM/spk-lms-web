@@ -1,0 +1,32 @@
+.student-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.review-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 10px;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  position: relative;
+}
+
+textarea {
+  resize: none;
+}
+::ng-deep app-admin-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

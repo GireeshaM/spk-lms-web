@@ -1,0 +1,25 @@
+/* Style for the navbar */
+.nav-bar {
+  position: fixed;
+  top: -100px; /* Start from off-screen (above the view) */
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  opacity: 0; /* Initially invisible */
+  transition: top 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Apply animation after some delay */
+.nav-bar.show {
+  top: 0;
+  opacity: 1;
+  transition-delay: 2s; /* Delay before appearing */
+}
+
+/* To ensure the content doesn't overlap with the navbar */
+router-outlet {
+  margin-top: 60px; /* Adjust based on navbar height */
+}

@@ -1,0 +1,114 @@
+:root {
+  --primary-bg-color: #d0f2e5; /* Light pastel color for background */
+  --hover-color: #f7b2b5; /* Soft coral/pink for hover */
+  --submodule-bg-color: #a6e1db; /* Light pastel mint for submenu items */
+  --submodule-hover-color: #f1f9f5; /* Very light mint for hover/selected items */
+  --text-color: #333333; /* Dark text color */
+  --highlight-text-color: #333333; /* Dark text for the selected item */
+  --box-shadow-color: rgba(0, 0, 0, 0.1); /* Soft shadow */
+  --transition-duration: 0.3s; /* Default transition duration */
+}
+
+.navbar {
+  background-color: var(--primary-bg-color);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 20px;
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color); /* Dark text for links */
+  font-size: 16px;
+  font-weight: bold;
+  transition: color var(--transition-duration);
+}
+
+/* Submodule List Styling */
+.submodule-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  z-index: 999;
+  display: none;
+  transition: all var(--transition-duration);
+}
+
+.nav-links li:hover .submodule-list,
+.nav-links li.active .submodule-list {
+  display: block;
+}
+
+.submodule-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Submenu Items - Single Line Text */
+.submodule-list li {
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: var(--text-color); /* Dark text for submenu items */
+  background-color: var(--submodule-bg-color); /* Light pastel background */
+  border-radius: 5px;
+  white-space: nowrap; /* Ensure the text stays in a single line */
+  overflow: hidden; /* Hide overflow if text exceeds the width */
+  text-overflow: ellipsis; /* Show ellipsis (...) for long text */
+  transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+/* Hover Effect: Highlight with pastel color and text color */
+.submodule-list li:hover,
+.submodule-list li.selected {
+  background-color: var(--submodule-hover-color); /* Highlight with pastel mint */
+  color: var(--highlight-text-color); /* Dark text when hovered or selected */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .submodule-list {
+    width: 100%;
+    padding: 15px 0;
+  }
+
+  .submodule-list li {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+}

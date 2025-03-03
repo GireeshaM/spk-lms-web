@@ -1,0 +1,74 @@
+<div class="grades-container">
+    <div class="container mt-5">
+        <h3>📊 Grades for {{ studentName }}</h3>
+
+        <!-- Grade Statistics -->
+        <div class="row mt-3 d-flex align-items-start">
+            <!-- Profile Card -->
+            <div class="col-md-4">
+                <div class="stat-card profile-card">
+                    <h6><strong>{{ studentName }}</strong></h6>
+                    <h6><strong>{{ email }}</strong></h6>
+                    <div class="circle-progress1 high-score">
+                        <img [src]="'images/student.jpg'" alt="Profile Picture" class="profile-pic">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strong Domains Section -->
+            <div class="col-md-8 d-flex flex-wrap gap-3">
+                <div class="small-card" *ngFor="let domain of strongDomains">
+                    <h6>🏅 {{ domain.name }}</h6>
+                    <div class="circle-progress domain-score">
+                        <span class="name">{{ domain.averageScore | number:'1.0-2' }}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grades Cards -->
+        <div class="row mt-4">
+            <div class="col-md-4 g-4" *ngFor="let grade of grades">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- Front Side -->
+                        <div class="flip-card-front">
+                            <h5>{{ grade.courseName }}</h5>
+                            <div class="circle-progress">
+                                <span>{{ grade.score }}%</span>
+                            </div>
+                            <span class="badge" [ngClass]="{
+                                'bg-success': grade.score >= 80,
+                                'bg-warning': grade.score >= 60 && grade.score < 80,
+                                'bg-danger': grade.score < 60
+                            }">{{ grade.score >= 80 ? 'A' : grade.score >= 60 ? 'B' : 'C' }}</span>
+                        </div>
+                        <!-- Back Side -->
+                        <div class="flip-card-back">
+                            <h6>📊 Course Analytics</h6>
+                            <p><strong>Score:</strong> {{ grade.score }}</p>
+                            <p><strong>Domain:</strong> {{ grade.domain }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Needs Improvement Section -->
+<!-- Needs Improvement Section -->
+<div class="mt-5">
+    <h4>⚠️ Needs Improvement</h4>
+    <div class="alert alert-danger" *ngIf="weakDomains.length === 0">No weak areas detected.</div>
+    <div class="row" *ngIf="weakDomains.length > 0">
+        <div class="col-md-6" *ngFor="let weak of weakDomains">
+            <div class="alert alert-warning">
+                <h6>📉 {{ weak.name }}</h6>
+                <p>Current Score: {{ weak.averageScore | number:'1.0-2' }}%</p>
+                <p>⚡ <strong>Suggestion:</strong> Focus on revision, practice exercises, and additional resources.</p>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>   
+    </div>
+

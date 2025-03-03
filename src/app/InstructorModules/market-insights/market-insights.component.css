@@ -1,0 +1,178 @@
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  
+  /* Title styling */
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Search & Filter Controls */
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .controls select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Search Container with Icon */
+  .search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 300px;
+  }
+  
+  .search-container input {
+    padding: 8px 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 30px;
+    background: url('https://static-00.iconduck.com/assets.00/search-icon-2048x2048-cmujl7en.png') no-repeat left 8px center;
+    background-size: 16px;
+  }
+  
+  /* Grid Layout - 4 Cards Per Row */
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Course Card */
+  .course-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Card Image */
+  .course-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  /* Course Information */
+  .course-info {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .course-info h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .course-info p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .course-info .instructor {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .course-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .course-grid {
+      grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
+    }
+  }
+
+
+  /* Statistics Cards */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+.stat-card p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .course-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .course-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+::ng-deep app-admin-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

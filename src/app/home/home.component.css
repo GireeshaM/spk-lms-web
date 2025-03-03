@@ -1,0 +1,97 @@
+::ng-deep .mat-dialog-container.custom-dialog {
+    width: 80vw !important;  /* 80% of the viewport width */
+    height: 80vh !important; /* 80% of the viewport height */
+    max-width: 100% !important; /* Ensure it doesn't overflow */
+    border-radius: 12px; /* Rounded corners */
+    overflow: hidden; /* Prevent scrollbars */
+    background-color: #d0f2e5; /* Soft green background */
+    animation: fadeIn 0.5s ease-out; /* Fade-in effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Dialog Title */
+  ::ng-deep .mat-dialog-title {
+    background-color: #ffffff; /* White background for title */
+    color: #3f51b5;  /* Dark color for contrast */
+    padding: 16px;
+    border-radius: 8px 8px 0 0;
+    font-size: 1.25rem;
+  }
+  
+  /* Dialog Content */
+  ::ng-deep .mat-dialog-content {
+    padding: 24px;
+    background-color: #ffffff; /* White background for the content */
+    border-radius: 0 0 12px 12px; /* Rounded corners at the bottom */
+    color: #333; /* Dark text for readability */
+    font-size: 1rem;
+  }
+  
+  /* Optional: Add some spacing between form fields */
+  ::ng-deep .mat-form-field {
+    margin-bottom: 16px;
+  }
+  
+  /* Buttons */
+  ::ng-deep .mat-raised-button {
+    background-color: #3f51b5; /* Primary color for buttons */
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  ::ng-deep .mat-raised-button:hover {
+    background-color: #303f9f; /* Darker shade for hover effect */
+  }
+  
+  ::ng-deep .mat-stroked-button {
+    border-color: #3f51b5; /* Border color for stroked buttons */
+    color: #3f51b5;
+  }
+  
+  ::ng-deep .mat-stroked-button:hover {
+    background-color: #d0f2e5; /* Hover effect for stroked buttons */
+  }
+  
+  /* Close Button */
+  ::ng-deep .mat-dialog-actions button {
+    color: #3f51b5;
+    font-weight: bold;
+  }
+  /* Align the button to the right */
+.right-aligned-button {
+    position: absolute;
+    right: 20px; /* Adjust the distance from the right edge */
+    bottom: 2px; /* Adjust the distance from the bottom edge */
+    padding: 12px 24px;
+    background-color: #d0f2e5; /* Set the background color */
+    color: rgb(40, 36, 36); /* Set the text color to white */
+    border-radius: 25px; /* Curved edges */
+    border: none;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition for hover effects */
+  }
+  
+  /* Hover animation */
+  .right-aligned-button:hover {
+    transform: translateY(-4px); /* Slightly lift the button */
+    background-color: #a8e0b4; /* Darken the background color on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow to make the button stand out */
+  }
+  
+  /* Focus animation */
+  .right-aligned-button:focus {
+    outline: none; /* Remove the outline when focused */
+    box-shadow: 0 0 0 3px rgba(81, 147, 177, 0.6); /* Add a focus ring around the button */
+  }

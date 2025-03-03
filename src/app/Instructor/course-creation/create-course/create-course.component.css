@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9fafc;
+    color: #2d3436;
+    line-height: 1.6;
+}
+
+.course-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-image {
+    width: 150px;
+    margin-bottom: 15px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #27ae60;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.3);
+}
+
+.radio-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.submit-button {
+    padding: 12px 25px;
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #1e8449;
+}
+
+.steps {
+    margin-top: 40px;
+}
+
+.step {
+    margin-bottom: 30px;
+    background-color: #f4f4f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.8s ease-in-out;
+}
+
+.checklist {
+    margin: 10px 0 0 20px;
+    padding: 0;
+    list-style-type: none;
+    color: #2d3436;
+}
+
+.checklist li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.checklist li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #27ae60;
+    font-size: 1.2rem;
+}
+
+a {
+    color: #27ae60;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,24 @@
+<div class="faq-container">
+    <div class="faq-left">
+      <h2 class="faq-title">
+        Frequently<br /><span>Asked</span> Questions
+      </h2>
+    </div>
+  
+    <div class="faq-right">
+      <div class="faq-wrapper">
+        <div *ngFor="let faq of faqs; let i = index" class="faq">
+          <div class="faq-header" (click)="toggleFAQ(i)">
+            {{ faq.question }}
+            <span class="faq-icon">
+              {{ activeIndex === i ? '−' : '+' }}
+            </span>
+          </div>
+          <div class="faq-content" [ngClass]="{ 'show': activeIndex === i }">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
