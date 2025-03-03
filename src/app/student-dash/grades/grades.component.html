@@ -1,38 +1,150 @@
 <div class="grades-container">
     <div class="container mt-5">
-        <h3>📊 Grades for {{ studentName }}</h3>
+        <h3>📊 Student Summary: {{ studentName }}</h3>
 
-        <!-- Grade Statistics -->
-        <div class="row mt-3 d-flex align-items-start">
-            <!-- Profile Card -->
-            <div class="col-md-4">
-                <div class="stat-card profile-card">
-                    <h6><strong>{{ studentName }}</strong></h6>
-                    <h6><strong>{{ email }}</strong></h6>
-                    <div class="circle-progress1 high-score">
-                        <img [src]="'images/student.jpg'" alt="Profile Picture" class="profile-pic">
-                    </div>
-                </div>
+        <!-- Overall Summary Card -->
+<div class="summary-card p-3 mb-4 bg-light rounded">
+    <div class="row">
+        <!-- Performance Metrics -->
+        <div class="col-md-6">
+            <h4 class="mb-3">Performance Overview</h4>
+            <div class="metric-item d-flex justify-content-between align-items-center mb-2">
+                <span>Performance Index:</span>
+                <strong class="text-primary">{{ overallPerformance | number:'1.0-2' }}%</strong>
             </div>
-
-            <!-- Strong Domains Section -->
-            <div class="col-md-8 d-flex flex-wrap gap-3">
-                <div class="small-card" *ngFor="let domain of strongDomains">
-                    <h6>🏅 {{ domain.name }}</h6>
-                    <div class="circle-progress domain-score">
-                        <span class="name">{{ domain.averageScore | number:'1.0-2' }}%</span>
-                    </div>
-                </div>
+            <div class="metric-item d-flex justify-content-between align-items-center mb-2">
+                <span>Performance Category:</span>
+                <span class="badge" [ngClass]="{
+                    'bg-success': overallPerformance >= 80,
+                    'bg-warning': overallPerformance >= 60 && overallPerformance < 80,
+                    'bg-danger': overallPerformance < 60
+                }">
+                    {{ overallPerformance >= 80 ? 'Exceeds Expectations' : 
+                       overallPerformance >= 60 ? 'Meets Expectations' : 
+                       'Needs Improvement' }}
+                </span>
+            </div>
+            <div class="metric-item d-flex justify-content-between align-items-center mb-2">
+                <span>Proficiency Level:</span>
+                <strong>{{ getProficiencyLevel(overallPerformance) }}</strong>
             </div>
         </div>
 
-        <!-- Grades Cards -->
+        <!-- Competency Benchmarking -->
+        <div class="col-md-6 border-start ps-4">
+            <h4 class="mb-3">Benchmark Analysis</h4>
+            <div class="metric-item d-flex justify-content-between align-items-center mb-2">
+                <span>Peer Comparison:</span>
+                <strong>Top 15% Cohort</strong>
+            </div>
+            <div class="metric-item d-flex justify-content-between align-items-center mb-2">
+                <span>Skill Application:</span>
+                <div class="progress" style="width: 50%; height: 20px;">
+                    <div class="progress-bar bg-info" [style.width.%]="engagementScore * 10"></div>
+                </div>
+            </div>
+            <div class="metric-item d-flex justify-content-between align-items-center mb-2">
+                <span>Role Readiness:</span>
+                <strong>Level II Capacity</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Achievements & Development -->
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="alert alert-success p-2">
+                <strong>Key Strengths:</strong>
+                <ul class="mb-0">
+                    <li>Consistently exceeds technical competency targets</li>
+                    <li>Top 10% in cross-functional collaboration metrics</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-warning p-2">
+                <strong>Development Opportunities:</strong>
+                <ul class="mb-0">
+                    <li>Strategic prioritization skills (Current: 65%)</li>
+                    <li>Stakeholder communication frequency (+15% needed)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 text-muted small">
+        <i class="fas fa-info-circle"></i> Performance categories based on organizational benchmarks: 
+        Exceeds (80-100%), Meets (60-79%), Needs Improvement (Below 60%)
+    </div>
+</div>
+    
+
+    <!-- Profile & Proficiency Cards Section -->
+<div class="row mt-3 d-flex align-items-start">
+    <!-- Profile Card -->
+    <div class="col-md-4">
+        <div class="stat-card profile-card text-center p-3">
+            <h6><strong>{{ studentName }}</strong></h6>
+            <img [src]="'images/student.jpg'" alt="Profile Picture" class="profile-pic rounded-circle mt-2" width="100">
+        </div>
+    </div>
+
+    <!-- Proficiency Cards -->
+    <div class="col-md-8">
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <div class="proficiency-card bg-success bg-opacity-10 p-3 rounded">
+                    <h6 class="text-success mb-3">🔝 Top Proficiencies</h6>
+                    <div class="badge bg-success">{{ proficientCourses.length }} Skills</div>
+                    <ul class="mt-2 mb-0">
+                        <li *ngFor="let course of proficientCourses">
+                            {{ course.courseName }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Intermediate Courses -->
+            <div class="col-md-4">
+                <div class="proficiency-card bg-warning bg-opacity-10 p-3 rounded">
+                    <h6 class="text-warning mb-3">📈 Developing Skills</h6>
+                    <div class="badge bg-warning">{{ intermediateCourses.length }} Skills</div>
+                    <ul class="mt-2 mb-0">
+                        <li *ngFor="let course of intermediateCourses">
+                            {{ course.courseName }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Average Courses -->
+            <div class="col-md-4">
+                <div class="proficiency-card bg-danger bg-opacity-10 p-3 rounded">
+                    <h6 class="text-danger mb-3">📉 Improvement Areas</h6>
+                    <div class="badge bg-danger">{{ averageCourses.length }} Skills</div>
+                    <ul class="mt-2 mb-0">
+                        <li *ngFor="let course of averageCourses">
+                            {{ course.courseName }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Grades Cards with Skill Badges -->
         <div class="row mt-4">
             <div class="col-md-4 g-4" *ngFor="let grade of grades">
-                <div class="flip-card">
+                <div class="flip-card position-relative">
+                    <!-- Skill Level Badge Positioned Diagonally -->
+                    <div class="banner">
+                        <span class="banner-text"></span>
+                      </div>
                     <div class="flip-card-inner">
                         <!-- Front Side -->
-                        <div class="flip-card-front">
+                        <div class="flip-card-front text-center p-3">
                             <h5>{{ grade.courseName }}</h5>
                             <div class="circle-progress">
                                 <span>{{ grade.score }}%</span>
@@ -41,10 +153,10 @@
                                 'bg-success': grade.score >= 80,
                                 'bg-warning': grade.score >= 60 && grade.score < 80,
                                 'bg-danger': grade.score < 60
-                            }">{{ grade.score >= 80 ? 'A' : grade.score >= 60 ? 'B' : 'C' }}</span>
+                            }">{{ grade.grade }}</span>
                         </div>
                         <!-- Back Side -->
-                        <div class="flip-card-back">
+                        <div class="flip-card-back p-3">
                             <h6>📊 Course Analytics</h6>
                             <p><strong>Score:</strong> {{ grade.score }}</p>
                             <p><strong>Domain:</strong> {{ grade.domain }}</p>
@@ -53,22 +165,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Needs Improvement Section -->
-<!-- Needs Improvement Section -->
-<div class="mt-5">
-    <h4>⚠️ Needs Improvement</h4>
-    <div class="alert alert-danger" *ngIf="weakDomains.length === 0">No weak areas detected.</div>
-    <div class="row" *ngIf="weakDomains.length > 0">
-        <div class="col-md-6" *ngFor="let weak of weakDomains">
-            <div class="alert alert-warning">
-                <h6>📉 {{ weak.name }}</h6>
-                <p>Current Score: {{ weak.averageScore | number:'1.0-2' }}%</p>
-                <p>⚡ <strong>Suggestion:</strong> Focus on revision, practice exercises, and additional resources.</p>
-            </div>
-        </div>
-    </div>
-</div>
     </div>   
-    </div>
-
+</div>
