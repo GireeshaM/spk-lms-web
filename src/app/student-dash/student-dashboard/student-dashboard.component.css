@@ -1,3 +1,13 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2f3, #d9e4f5);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 /* Centering Dashboard Overview */
 .dashboard-overview-container {
     display: flex;
@@ -5,150 +15,219 @@
     align-items: center;
     text-align: center;
     margin-top: 80px;
-    width: 100%;
+    width: 90%;
+    max-width: 1100px;
+    background: linear-gradient(135deg, #ffffff, #f4f7fc);
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    animation: fadeInUp 0.6s ease-in-out;
 }
-.dashboard-overview-container .row {
-    margin-top: -50px; /* Move cards up slightly */
-}
-.profile-image {
-    position: absolute;
-    top: 5rem;
-    right: 3rem;
-  }
-  .profile-image img {
-    width: 30px; /* Adjust the width as needed */
-    height: 30px; /* Adjust the height as needed */
-    border-radius: 50%;
-  }
-  
-  .ms-2 {
-    margin-left: 0.5rem; /* Adds spacing between the profile picture and the student's name */
-  }
-/* Dashboard Title */
-.dashboard-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-    margin-top: 100px;  /* Adjust this to move it further */
-    text-align: center;
-}
-.quickcards{
+
+/* Dashboard Content */
+.dashboard-content {
     margin-top: 60px;
+    margin-left: 260px;
+    opacity: 1;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-in-out forwards;
+    transition: transform 0.3s ease-out;
 }
+
+/* Animated Fade-in */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Study Plan Layout */
+.study-plan-container {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}
+.card {
+    background: linear-gradient(135deg, #ffffff, #f4f7fc);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+/* Active Course */
+.active-course {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-left: 5px solid #003b80;
+}
+
+/* Enrolled Course */
+.enrolled-course {
+    background: linear-gradient(135deg, #ffcc00, #ffb300);
+    color: #222;
+    border-left: 5px solid #cc9900;
+}
+
+/* Completed Course */
+.completed-course {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+    border-left: 5px solid #155724;
+}
+
+
+/* Study Plan Cards */
+.study-plan-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #222;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.study-plan-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease-in-out;
+}
+
+.study-plan-card:hover::before {
+    left: 100%;
+}
+
+.study-plan-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Week Title */
+.week-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-left: 5px solid #4A90E2;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.study-plan-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.study-plan-card ul li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.study-plan-card ul li i {
+    margin-right: 8px;
+    color: #ffcc00;
+}
+
+/* Sidebar */
 .sidebar {
     width: 250px;
     height: 100vh;
     position: fixed;
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link {
-    padding: 10px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    margin: 10px;
     font-size: 16px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 
-.dashboard-content {
-    margin-top: 60px;;
-    margin-left: 260px;
+.nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
 }
 
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #222;
+    transform: translateX(5px);
+    box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
 }
 
-.progress-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Dashboard Cards */
-.pastel-card {
-    background: #ffe6e6; /* Soft pastel pink */
-    color: #333;
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-   
-    /* Add margin for spacing */
-    margin: 55px auto; 
-}
-
-.pastel-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Dashboard Row - Increased Spacing */
-.row.justify-content-center {
-    gap: 60px; /* Adds space between the cards */
-}
-
-/* Course Display Section */
-.course-display {
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* Course Cards */
-.course-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 20px; /* Adds spacing between course cards */
-}
-
-.course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Course Image */
-.course-img {
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Number Display */
-.number {
-    font-size: 20px;
-    font-weight: bold;
-    color: #555;
-}
-.student-profile {
-    display: flex;
-    align-items: center;
-    padding-top: 100px;
-}
-
-/* Profile Image */
-.profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ddd;
-}
-
-/* Student Info */
-.student-info {
-    margin-left: 10px;
-    text-align: left;
+/* Profile Section */
+.profile-section {
+    margin-right: 30px;
 }
 
 .student-name {
-    font-size: 16px;
+    background-color: #ffcc00;
+    color: black;
+    border-radius: 50%;
+    padding: 10px 15px;
     font-weight: bold;
-    margin: 0;
 }
-/* Move Student Profile Down */
 
-.text-muted {
-    font-size: 14px;
-    margin: 0;
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    color: rgb(175, 149, 149);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #e52d27, #b31217);
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .study-plan-container {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        width: 200px;
+    }
 }

@@ -2,6 +2,16 @@
     <!-- Sidebar -->
     <div class="sidebar bg-dark text-light p-3">
         <h4 class="mb-4">Academy LMS</h4>
+        
+        <!-- Profile Section -->
+        <div class="profile-section mb-4 text-center">
+            <a [routerLink]="['/student-profile']" class="d-block">
+                <img [src]="'images/student.jpg'" class="rounded-circle mb-2" alt="Profile" style="width: 80px; height: 80px;">
+            </a>
+            <div class="student-name">{{ student.name }}</div>
+        </div>
+    
+        <!-- Navigation Menu -->
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active text-light">📊 Dashboard</a>
@@ -15,46 +25,36 @@
             <li class="nav-item">
                 <a class="nav-link text-light" routerLink="/grades">📊 Grades</a>
             </li>
-            
         </ul>
     </div>
 
     <!-- Main Dashboard Content -->
     <div class="dashboard-content p-4 flex-grow-1">
         <!-- Header Section -->
-        <div class="profile-image">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <a [routerLink]="['/student-profile']">
-                        <img [src]="'https://i.pravatar.cc/150?img=12'" class="rounded-circle ms-3" alt="Profile">
-                    </a>
-                    <span class="ms-2">{{ student.name }}</span>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Quick Stats Cards -->
         <div class="quickcards">
             <div class="row mt-4">
-                <div class="col-md-4">
-                    <a  class="text-decoration-none">
-                        <div class="card p-3 text-center shadow-sm">
+                <div class="col-md-4" routerLink="/coursesp">
+                    <a  class="text-decoration-none" routerLink="/coursesp">
+                        <div class="card  active-course p-3 text-center shadow-sm">
                             <h5>📘 Active Courses</h5>
-                            <p class="fs-4">{{ student.activeCourses.length }} courses</p>
+                            <p class="fs-4" >{{ student.activeCourses.length }} courses</p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a  class="text-decoration-none">
-                        <div class="card p-3 text-center shadow-sm">
+                <div class="col-md-4 " >
+                    <a  class="text-decoration-none" routerLink="/coursesp">
+                        <div class="card  completed-course p-3 text-center shadow-sm ">
                             <h5>🎓 Completed Courses</h5>
                             <p class="fs-4">{{ student.completedCourses.length }} courses</p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a  class="text-decoration-none">
-                        <div class="card p-3 text-center shadow-sm">
+                <div class="col-md-4" >
+                    <a  class="text-decoration-none" routerLink="/coursesp">
+                        <div class="card enrolled-course p-3 text-center shadow-sm">
                             <h5>📖 Enrolled Courses</h5>
                             <p class="fs-4">{{ student.enrolledCourses.length }} courses</p>
                         </div>
@@ -65,36 +65,138 @@
 
         <!-- Statistics Row -->
         <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="card p-3 shadow-sm">
-                    <h5>This Week</h5>
-                    <canvas id="weeklyChart"></canvas> <!-- Chart.js Graph -->
-                </div>
+           
+                <div class="col-md-6">
+                    <div class="card p-3 shadow-sm h-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5> Activity</h5>
+                            <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedTimeRange" (change)="updateChart()">
+                                <option value="thisWeek">This Week</option>
+                                <option value="lastWeek">Last Week</option>
+                                <option value="thisMonth">This Month</option>
+                                <option value="lastMonth">Last Month</option>
+                            </select>
+                        </div>
+                        <canvas id="weeklyChart"></canvas>
+                    </div>
+                
             </div>
+            
+            
             <div class="col-md-6">
-                <div class="card p-3 text-center shadow-sm">
-                    <h5>📊 Activity Breakdown</h5>
-                    <p>Study: 57% | Exams: 19%</p>
-                    <div class="progress-circle" style="width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(#FF6384 57%, #FFCE56 19%);"></div>
+                <div class="card p-3 shadow-sm h-100">
+                    <h5 class="mb-3">📊 Performance Overview</h5>
+                    
+                    <!-- Achievement Section -->
+                    <div *ngIf="achievement; else noAchievement" class="achievement-container mb-3">
+                        <div class="achievement-ribbon" [ngClass]="achievement.tier">
+                            <span class="ribbon-text">{{ achievement.title }}</span>
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    </div>
+                    <ng-template #noAchievement>
+                        <div class="text-muted small mb-3">Start learning to unlock achievements!</div>
+                    </ng-template>
+
+                    <!-- Combined Visualization -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="chart-container position-relative" style="height: 100px">
+                                <canvas id="activityChart"></canvas>
+                                <div class="chart-center-label position-absolute top-50 start-50 translate-middle" style="padding: 5px;">
+                                    <div class="fs-5 fw-bold">{{ totalStudyHours | number:'1.0-0' }}h</div>
+                                    <div class="small text-muted">Study Time</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container position-relative" style="height: 100px">
+                                <canvas id="performanceChart"></canvas>
+                                <div class="chart-center-label position-absolute top-50 start-50 translate-middle" style="padding: 5px;">
+                                    <div class="fs-4 fw-bold text-success">
+                                        {{ overallScore | number:'1.0-0' }}%
+                                    </div>
+                                    <div class="small text-muted">Overall Score</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Indicators -->
+                    <div class="progress-indicators mt-2">
+                        <div class="indicator-item">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <span class="legend-color study-color"></span>
+                                    Study Commitment ({{ studyPercentage | number:'1.0-0' }}%)
+                                </div>
+                                <div class="small text-muted">
+                                    {{ totalStudyHours | number:'1.0-0' }}h / {{ studyTargetHours }}h
+                                </div>
+                            </div>
+                            <div class="progress study-progress">
+                                <div class="progress-bar" role="progressbar" 
+                                    [style.width]="studyPercentage + '%'"></div>
+                            </div>
+                        </div>
+
+                        <div class="indicator-item mt-2s">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <span class="legend-color exam-color"></span>
+                                    Exam Performance ({{ examAverage | number:'1.0-0' }}%)
+                                </div>
+                                <div class="small text-muted">
+                                    {{ completedExams }} exams completed
+                                </div>
+                            </div>
+                            <div class="progress exam-progress">
+                                <div class="progress-bar" role="progressbar" 
+                                    [style.width]="examAverage + '%'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Progress -->
+                    <div *ngIf="nextAchievement" class="achievement-progress mt-4">
+                        <div class="d-flex justify-content-between small mb-2">
+                            <span>Next Level: {{ nextAchievement.title }}</span>
+                            <span>{{ achievementProgress }}%</span>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" role="progressbar" 
+                                [style.width]="achievementProgress + '%'"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- My Courses Section -->
         <div class="mt-4">
-            <h5>📚 {{ selectedCategoryTitle }}</h5>
-            <div class="row">
-                <div *ngFor="let course of displayedCourses" class="col-md-6">
-                    <div class="card p-3 shadow-sm">
-                        <img [src]="course.image" class="img-fluid mb-2" alt="{{ course.name }}">
-                        <h6>{{ course.name }}</h6>
-                        <p>{{ course.description }}</p>
-                        <div class="progress">
-                            <a [routerLink]="['/coursedetails']" [queryParams]="{ name: course.name, category: selectedCategoryTitle }"
-                               class="progress-bar bg-primary text-white text-center"
-                               [style.width.%]="course.progress || 50">
-                                {{ course.progress || 50 }}%
-                            </a>
+            <h5 class="h6 mb-3">📚 {{ selectedCategoryTitle }}</h5>
+            <div class="row g-3">
+                <div *ngFor="let course of displayedCourses" class="col-md-4 col-sm-6">
+                    <div class="card p-2 shadow-sm h-150">
+                        <img [src]="course.image" 
+                             class="card-img-top img-fluid mb-1" 
+                             alt="{{ course.name }}"
+                             style="max-height: 100px; object-fit: cover;">
+                        <div class="card-body p-2">
+                            <h6 class="card-title mb-1 small fw-bold">{{ course.name }}</h6>
+                            <p class="card-text small text-muted mb-2 line-clamp-2" 
+                               style="font-size: 0.8rem; ">
+                                {{ course.description }}
+                            </p>
+                            <div class="progress" style="height: 10px;">
+                                <a [routerLink]="['/coursedetails']" 
+                                   [queryParams]="{ name: course.name, category: selectedCategoryTitle }"
+                                   class="progress-bar bg-primary text-decoration-none" 
+                                   [style.width]="(course.progress || 50) + '%'"
+                                   style="font-size: 0.7rem; padding: 1px;">
+                                    {{ course.progress || 50 }}%
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,17 +204,44 @@
         </div>
 
         <!-- Calendar Section -->
-        <div class="mt-4">
-            <h5>📅 Calendar</h5>
-            <div class="card p-3 shadow-sm">
-                <p><strong>February 2025</strong></p>
+        <div class="study-plan-container">
+            <div class="study-plan-card">
+                <h3 class="week-title">Week 1: Foundations</h3>
                 <ul>
-                    <li>🕙 10:00 AM - AI in Education</li>
-                    <li>🕚 11:00 AM - Web Design Trends</li>
-                    <li>🕑 2:00 PM - JavaScript Features</li>
-                    <li>🕟 4:30 PM - Exam (JavaScript)</li>
+                    <li><i class="fas fa-book"></i> HTML5 & CSS Basics (2hrs)</li>
+                    <li><i class="fas fa-paint-brush"></i> CSS Grid & Flexbox (3hrs)</li>
+                    <li><i class="fas fa-laptop-code"></i> JavaScript Intro (2hrs)</li>
+                </ul>
+            </div>
+        
+            <div class="study-plan-card">
+                <h3 class="week-title">Week 2: JavaScript</h3>
+                <ul>
+                    <li><i class="fas fa-code"></i> ES6+ Features (3hrs)</li>
+                    <li><i class="fas fa-sync-alt"></i> Async Programming (3hrs)</li>
+                    <li><i class="fas fa-terminal"></i> DOM Manipulation (2hrs)</li>
+                </ul>
+            </div>
+        
+            <div class="study-plan-card">
+                <h3 class="week-title">Week 3: Frameworks</h3>
+                <ul>
+                    <li><i class="fas fa-react"></i> React Basics (3hrs)</li>
+                    <li><i class="fas fa-cogs"></i> State Management (2hrs)</li>
+                    <li><i class="fas fa-project-diagram"></i> Webpack & Bundling (2hrs)</li>
+                </ul>
+            </div>
+        
+            <div class="study-plan-card">
+                <h3 class="week-title">Week 4: Exam Prep</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Mock Tests (3hrs)</li>
+                    <li><i class="fas fa-lightbulb"></i> Weak Areas Focus (4hrs)</li>
+                    <li><i class="fas fa-clipboard-check"></i> Final Review (3hrs)</li>
                 </ul>
             </div>
         </div>
-    </div>
+        
+        
+        
 </div>

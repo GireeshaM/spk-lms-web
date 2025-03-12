@@ -17,7 +17,7 @@ export class StudentProfileComponent implements OnInit {
   contactForm!: FormGroup;
   learningForm!: FormGroup;
   profileCompletion = 55;
-  profileName: string = 'Yahen Y';
+  profileName: string = 'John Doe';
   profilePicture: string = 'https://i.pravatar.cc/150?img=3';
  
   countryCodes = [
