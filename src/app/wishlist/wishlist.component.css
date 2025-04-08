@@ -1,0 +1,139 @@
+/* Wishlist Container */
+.wishlist-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9ff; /* Light Background */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+  }
+  
+  /* Wishlist Header */
+  .wishlist-header {
+    background: linear-gradient(to right, #0056b3, #007bff);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  /* Empty Wishlist */
+  .empty-wishlist {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    padding: 20px;
+  }
+  
+  /* Wishlist Items */
+  .wishlist-list {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  
+  .wishlist-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    transition: transform 0.2s;
+  }
+  
+  .wishlist-item:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Course Image */
+  .course-image {
+    width: 120px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Course Details */
+  .wishlist-details {
+    flex-grow: 1;
+    margin-left: 15px;
+  }
+  
+  .course-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .course-instructor, .course-rating {
+    font-size: 0.9rem;
+    color: gray;
+  }
+  
+  /* Buttons with Animation */
+  .wishlist-actions {
+    margin-top: 5px;
+  }
+  
+  .btn-animated {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-animated:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Primary Button */
+  .btn-primary {
+    background-color: #0056b3;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+  }
+  
+  /* Outline Button */
+  .btn-outline-primary {
+    border-color: #0056b3;
+    color: #0056b3;
+    padding: 6px 12px;
+  }
+  
+  /* Suggested Courses */
+  .suggestions-title {
+    font-size: 1.5rem;
+    color: #0056b3;
+    margin-top: 50px;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .suggested-courses {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .suggested-course {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 160px;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  
+  .suggested-course:hover {
+    transform: scale(1.05);
+  }
+  
+  .suggested-image {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }

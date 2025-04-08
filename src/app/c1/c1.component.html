@@ -1,0 +1,46 @@
+<div class="page-center">
+    <div class="course-creation-container">
+        <span class="back-arrow" (click)="navigateToDashboard()">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </span>
+      <h2 class="title">Create Your Course</h2>
+  
+      <!-- Course Title Input -->
+      <div class="input-group">
+        <label for="courseTitle">Course Title</label>
+        <input
+          type="text"
+          id="courseTitle"
+          [(ngModel)]="courseTitle"
+          (input)="showCategorySelection()"
+          placeholder="e.g. Advanced Angular for Professionals"
+        />
+      </div>
+    <!-- Parent Component (C2) -->
+
+
+      <!-- Category Selection (Appears only after typing title) -->
+      <div class="input-group fade-in" *ngIf="showCategory">
+        <label for="courseCategory">Category</label>
+        <select id="courseCategory" [(ngModel)]="selectedCategory">
+          <option disabled selected value="">Select a suitable category</option>
+          <option value="development">Development</option>
+          <option value="design">Design</option>
+          <option value="marketing">Marketing</option>
+          <option value="management">Project Management</option>
+          <option value="ai">AI & Machine Learning</option>
+        </select>
+      </div>
+  
+      <!-- Button Group -->
+      <button 
+      class="continue-btn fade-in" 
+      [disabled]="!courseTitle || !selectedCategory"
+      (click)="goToNextStep()"
+    >
+      Continue
+    </button>
+    </div>
+  </div>

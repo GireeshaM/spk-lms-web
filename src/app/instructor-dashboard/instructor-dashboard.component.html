@@ -1,174 +1,122 @@
-<div class="d-flex">
-    <!-- Sidebar -->
-    <div class="sidebar p-3 bg-dark text-white">
-        <div class="text-center mb-4">
-            <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_f5dddc105ddd9405c9c1bbdee23c2959.webp" alt="Instructor" class="rounded-circle" width="80">
-            <h5 class="mt-2">Avinash</h5>
-            <p class="text-muted">Instructor</p>
-        </div>
-        
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link text-white" routerLink="/dashboard" routerLinkActive="active">📊 Dashboard</a>
+<br>
+<br>
+<nav class="navbar navbar-expand-lg pastel-navbar small-navbar fixed-top">
+  <div class="container-fluid">
+    <!-- Brand Name -->
+    <div class="navbar-logo me-3">
+      <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="navigateHome()">
+        <img src="images/sushma.png" alt="logo" class="logo-img" /> </a>
+    </div>
+    <!-- Navbar Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Course Creation -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="courseCreationDropdown" role="button"
+            data-bs-toggle="dropdown">
+            📊 Course Creation
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Instructor/course-creation/create-course">Create Course</a></li>
+            <li><a class="dropdown-item" href="/Instructor/course-creation/define-course-learnings">Define Learnings</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" routerLink="/courses" routerLinkActive="active">📚 Courses <span class="badge bg-danger">3</span></a>
+            <li><a class="dropdown-item" href="/Instructor/course-creation/list-requirements">List Requirements</a></li>
+          </ul>
+        </li>
+
+        <!-- Course Content Flow -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="courseContentDropdown" role="button"
+            data-bs-toggle="dropdown">
+            📚 Course Content Flow
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item"
+                href="/Instructor/instructor-community-support/access-teaching-resources">Course Content</a></li>
+            <li><a class="dropdown-item" href="/Instructor/course-contant-flow/add-accessibility">Add Accessibility</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" routerLink="/students" routerLinkActive="active">👨‍🎓 Students</a>
+            <li><a class="dropdown-item" href="/Instructor/course-contant-flow/create-course-contant">Customize Create
+                Content</a></li>
+          </ul>
+        </li>
+
+        <!-- Course Marketing -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="courseMarketingDropdown" role="button"
+            data-bs-toggle="dropdown">
+            📢 Course Marketing
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Instructor/course-marketing/pricing-page">My Courses</a></li>
+            <li><a class="dropdown-item" href="/Instructor/course-marketing/promotions-page">Promotions</a></li>
+            <li><a class="dropdown-item" href="/Instructor/course-marketing/send-course-for-review">Send for Review</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" routerLink="/reports" routerLinkActive="active">📈 Reports</a>
+          </ul>
+        </li>
+
+        <!-- user Engagement -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="studentEngagementDropdown" role="button"
+            data-bs-toggle="dropdown">
+            💬 User Engagement
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Instructor/communication-student-engagement/users">Users</a></li>
+            <li><a class="dropdown-item" href="/Instructor/communication-student-engagement/add-faqs">Add FAQs</a></li>
+            <li><a class="dropdown-item"
+                href="/Instructor/communication-student-engagement/view-assignments-feedback">Assignment Feedback</a>
             </li>
-        </ul>
+            <li><a class="dropdown-item" href="/Instructor/communication-student-engagement/view-messages">Create
+                Quiz</a></li>
+          </ul>
+        </li>
+
+        <!-- Engagement & Traffic Analysis -->
+        <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="trafficAnalysisDropdown" role="button" data-bs-toggle="dropdown">
+              📈 Engagement & Traffic
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Instructor/engagement-traffic-analysis/track-course-engagement">Track Engagement</a></li>
+              <li><a class="dropdown-item" href="/Instructor/engagement-traffic-analysis/view-traffic">View Traffic</a></li>
+            </ul>
+          </li> -->
+
+        <!-- Instructor Support -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="instructorSupportDropdown" role="button"
+            data-bs-toggle="dropdown">
+            👥 Feedback
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Instructor/instructor-community-support/contact-help-support">User
+                Feedback</a></li>
+            <!-- <li><a class="dropdown-item" href="/Instructor/instructor-community-support/instructor-community">Community</a></li> -->
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Profile Section (Right Side) -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+            <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_f5dddc105ddd9405c9c1bbdee23c2959.webp"
+              alt="Profile" class="rounded-circle" width="30">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/instructor-profile">👤 Profile</a></li>
+            <li><a class="dropdown-item" href="/Instructor/settings">⚙️ Settings</a></li>
+            <li><a class="dropdown-item text-danger" href="/logout">🚪 Logout</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <!-- Main Content with Right Sidebar -->
-    <div class="content p-4 flex-grow-1 container-fluid">
-        <div class="row">
-            <!-- Main Dashboard Content -->
-            <div class="col-lg-8">
-                <h2 class="mb-4">Instructor Dashboard</h2>
-
-                <!-- Key Stats -->
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card stat-card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">📚 Total Courses</h5>
-                                <p class="display-5 text-primary">{{ totalCourses }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card stat-card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">👨‍🎓 Total Students</h5>
-                                <p class="display-5 text-success">{{ totalStudents }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card stat-card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">📊 Avg Performance</h5>
-                                <p class="display-5 text-warning">{{ avgPerformance }}%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts Section -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <h5>📈 Course Completion Rate</h5>
-                        <ngx-charts-bar-vertical [view]="[500, 350]" [scheme]="'cool'" [results]="barChartData"
-                            [showDataLabel]="true" [gradient]="false" [xAxis]="true" [yAxis]="true"
-                            [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Courses"
-                            yAxisLabel="Completion %">
-                        </ngx-charts-bar-vertical>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>🧑‍🏫 Student Engagement</h5>
-                        <ngx-charts-pie-chart [view]="[400, 300]" [scheme]="'flame'" [results]="pieChartData"
-                            [labels]="true" [doughnut]="false" [explodeSlices]="false" [animations]="true">
-                        </ngx-charts-pie-chart>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Sidebar Content -->
-            <!-- Right Sidebar Content -->
-<div class="col-lg-4">
-    <!-- Calendar Section -->
-    <div class="calendar-container p-3 bg-light rounded shadow-sm">
-       
-
-        <!-- Calendar Action Buttons -->
-        <div class="mt-3 text-center">
-            <button class="btn btn-primary btn-sm me-2" (click)="createCourse()">➕ Create Course</button>
-            <button class="btn btn-success btn-sm" (click)="uploadCourse()">📤 Upload Course</button>
-        </div>
-    </div>
-
-    <!-- Quick Actions for Instructor -->
-    <div class="quick-actions p-3 bg-light rounded shadow-sm mt-3">
-        <h5>⚡ Quick Actions</h5>
-        <button class="btn btn-outline-primary btn-sm w-100 my-1" (click)="showData('reports')">📄 View Reports</button>
-        <button class="btn btn-outline-success btn-sm w-100 my-1" (click)="showData('assignments')">📑 Manage Assignments</button>
-        <button class="btn btn-outline-danger btn-sm w-100 my-1" (click)="showData('notifications')">🔔 Check Notifications</button>
-    </div>
-    
-    <!-- Data Display Section -->
-    <div class="p-3 bg-white rounded shadow-sm mt-3" *ngIf="selectedData">
-        <h5>📌 Selected Data</h5>
-        <p>{{ selectedData }}</p>
-    </div>
-    
-
-    <!-- Upcoming Events -->
-    <div class="events-section p-3 bg-light rounded shadow-sm mt-3">
-        <h5>📌 Upcoming Events</h5>
-        <ul class="list-unstyled">
-            <li>🗓 Live Webinar: Teaching Trends (Feb 20)</li>
-            <li>📢 Course Enrollment Deadline (Feb 25)</li>
-            <li>🎓 Student Progress Meeting (March 5)</li>
-        </ul>
-    </div>
-</div>
-
-                
-                <!-- Personal Notes Section -->
-                <div class="notes-section p-3 bg-light rounded shadow-sm">
-                    <h5>📝 Personal Notes</h5>
-                    <ul>
-                        <li>📌 Check Official IELTS Practice Materials</li>
-                        <li>📌 Prepare new materials for C1 English</li>
-                        <li>📌 Business English vocabulary study</li>
-                        <li>📌 Prepare group class materials</li>
-                    </ul>
-                </div>
-                
-                <!-- Recent Documents Section -->
-                <div class="documents-section p-3 bg-light rounded shadow-sm mt-3">
-                    <h5>📄 Recent Documents</h5>
-                    <ul>
-                        <li>C2_Proficient.pdf (313 KB) 📥 🗑</li>
-                        <li>Computing_SB_1-3.pdf (478 KB) 📥 🗑</li>
-                        <li>IELTS_15_Academic.pdf 📥 🗑</li>
-                    </ul>
-                </div>
-                <!-- ChatBoxUI -->
-                <div class="chat-box p-3 bg-light rounded shadow-sm mt-3">
-                    <h5>💬 Quick Chat</h5>
-                    
-                    <!-- Chat Messages -->
-                    <div class="chat-messages p-2" style="max-height: 300px; overflow-y: auto;">
-                        <div *ngFor="let message of chatMessages" class="d-flex mb-2" [ngClass]="{'flex-row-reverse': message.sender === 'Instructor'}">
-                            
-                            <!-- User Avatar -->
-                            <img *ngIf="message.sender !== 'Instructor'" src="https://st.depositphotos.com/1770836/1372/i/450/depositphotos_13720433-Young-Indian-Student.jpg" class="avatar rounded-circle me-2" width="30" height="30">
-                            <img *ngIf="message.sender === 'Instructor'" src="https://www.highereducationdigest.com/wp-content/uploads/2019/12/Ms.-Shalini-passport-size-pic__800x480.jpg" class="avatar rounded-circle ms-2" width="30" height="30">
-                
-                            <!-- Message Bubble -->
-                            <div class="message-bubble p-2 rounded shadow-sm" [ngClass]="{'bg-primary text-white': message.sender === 'Instructor', 'bg-light': message.sender !== 'Instructor'}">
-                                <strong>{{ message.sender === 'Instructor' ? 'You' : message.sender }}</strong>
-                                <p class="mb-1">{{ message.text }}</p>
-                                <small class="text-muted">{{ message.timestamp }}</small>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <!-- Typing Indicator -->
-                    <div *ngIf="isTyping" class="text-muted small mt-2">Student is typing...</div>
-                
-                    <!-- Chat Input -->
-                    <div class="input-group mt-2">
-                        <input type="text" [(ngModel)]="newMessage" class="form-control" placeholder="Type a message..." (keyup)="detectTyping($event)">
-                        <button class="btn btn-primary" (click)="sendMessage()">📩 Send</button>
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
+<app-dashboard></app-dashboard>

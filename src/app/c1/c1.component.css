@@ -1,0 +1,223 @@
+/* -----------------------------------------------
+   Global Layout and Background
+-------------------------------------------------- */
+.page-center {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #f0f4ff, #e0e7ff);
+    padding: 40px 20px;
+  }
+  
+  .course-creation-container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 32px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    position: relative;
+    animation: fadeSlideIn 0.5s ease;
+  }
+  
+  /* -----------------------------------------------
+     Title Styling
+  -------------------------------------------------- */
+  .title {
+    text-align: center; /* Center the text horizontally */
+    font-size: 30px; /* Set the font size */
+    font-weight: 800; /* Make the font weight bold */
+    margin-bottom: 30px; /* Add space below the title */
+    
+    /* Create a gradient background for the text */
+    background: linear-gradient(45deg, #1e3a8a, #3b82f6, #64748b);
+    
+    /* Apply background-clip to the text to make the background show through the text */
+    -webkit-background-clip: text;  /* WebKit-based browsers like Chrome and Safari */
+    background-clip: text; /* Standard property for modern browsers */
+    
+    color: transparent; /* Make the text color transparent so the background shows through */
+    
+    /* Add a text shadow to create a soft outline for the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+  
+  /* -----------------------------------------------
+     Input Group Styling
+  -------------------------------------------------- */
+  .input-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .input-group label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 15px;
+  }
+  
+  .input-group input,
+  .input-group select {
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 16px;
+    background: #fff;
+    transition: all 0.3s ease;
+    color: #1f2937;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  }
+  
+  .input-group input:focus,
+  .input-group select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+  }
+  
+  .input-group input::placeholder {
+    color: #9ca3af;
+  }
+  
+  /* -----------------------------------------------
+     Back Arrow Navigation
+  -------------------------------------------------- */
+  .back-arrow {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    cursor: pointer;
+    color: #1e3a8a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.4s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  }
+  
+  .back-arrow:hover {
+    transform: scale(1.15) rotate(-8deg);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  }
+  
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.5;
+  }
+  
+  /* -----------------------------------------------
+     Continue Button
+  -------------------------------------------------- */
+  .continue-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    margin-top: 30px;
+  }
+  
+  .continue-btn:hover:not(:disabled) {
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+  }
+  
+  .continue-btn:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+  }
+  
+  /* -----------------------------------------------
+     Animation Effects
+  -------------------------------------------------- */
+  .fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* -----------------------------------------------
+     Responsive Tweaks
+  -------------------------------------------------- */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 26px;
+    }
+  
+    .course-creation-container {
+      padding: 28px 20px;
+    }
+  
+    .continue-btn {
+      width: 100%;
+    }
+  }
+
+  /* Continue Button */
+.continue-btn {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .continue-btn:hover:not(:disabled) {
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+  }
+  
+  .continue-btn:disabled {
+    background: #cbd5e1;
+    color: #6b7280;
+    cursor: not-allowed;
+    box-shadow: none;
+  }

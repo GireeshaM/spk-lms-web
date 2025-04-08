@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InstructorNavbarComponent } from "../../instructor-navbar/instructor-navbar.component";
 
 @Component({
   selector: 'app-create-course-contant',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InstructorNavbarComponent],
   templateUrl: './create-course-contant.component.html',
   styleUrl: './create-course-contant.component.css'
 })

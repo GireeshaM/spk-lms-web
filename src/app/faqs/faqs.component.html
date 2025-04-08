@@ -1,8 +1,6 @@
 <div class="faq-container">
     <div class="faq-left">
-      <h2 class="faq-title">
-        Frequently<br /><span>Asked</span> Questions
-      </h2>
+      <img src="images/innovative lms solutions for seamless learning (1276 x 500 px) (1235 x 766 px).png" alt="faq" width="600px" height="400px">
     </div>
   
     <div class="faq-right">
@@ -11,7 +9,7 @@
           <div class="faq-header" (click)="toggleFAQ(i)">
             {{ faq.question }}
             <span class="faq-icon">
-              {{ activeIndex === i ? '−' : '+' }}
+              {{ activeIndex === i ? '-' : '+' }}
             </span>
           </div>
           <div class="faq-content" [ngClass]="{ 'show': activeIndex === i }">

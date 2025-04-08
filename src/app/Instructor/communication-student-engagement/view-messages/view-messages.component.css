@@ -1,0 +1,126 @@
+/* Full-width container styling with a pastel theme */
+form {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #f7f9fc; /* Soft pastel background */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1e0e0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #a0c4ff;
+    outline: none;
+  }
+  
+  hr {
+    border: 0;
+    border-top: 1px solid #d1e0e0;
+    margin: 30px 0;
+  }
+  
+  .question-group {
+    border: 1px solid #d1e0e0;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  
+  .question-group h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .options-group {
+    margin-bottom: 20px;
+  }
+  
+  .option-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .option-item label {
+    flex: 0 0 120px;
+    margin: 0;
+    font-weight: 500;
+    color: #666;
+  }
+  
+  .option-item input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #a0c4ff;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #669bbc;
+  }
+  
+  .btn-secondary {
+    background-color: #bde0fe;
+    color: #333;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #8ecae6;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .option-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .option-item label {
+      margin-bottom: 5px;
+    }
+  }
+
+  
+h3{
+  text-align: center;
+}

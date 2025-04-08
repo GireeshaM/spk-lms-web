@@ -1,86 +1,30 @@
 <div class="d-flex">
-  <!-- Sidebar -->
-  <div class="sidebar-container" [ngClass]="{'expanded': isExpanded}">
-    <div class="d-flex flex-column flex-shrink-0 bg-light">
-      <!-- Navigation Menu -->
-      <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-        <ng-container *ngFor="let module of modules; index as i">
-          <li class="nav-item has-submenu" *ngIf="module.aspNetMenuItems.length">
-            <a class="nav-link submenu-toggle" routerLink="/{{module.url}}" data-bs-toggle="collapse"
-              [attr.data-bs-target]="'#'+i" aria-expanded="false" aria-controls="submenu-2">
-              <span class="nav-icon" [innerHTML]="module.icon"></span>
-              <span class="nav-link-text">{{module.moduleName}}</span>
-              <span class="submenu-arrow">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                </svg>
-              </span>
-            </a>
-            <div id="{{i}}" class="collapse submenu" data-bs-parent="#menu-accordion">
-              <ul class="submenu-list list-unstyled">
-                <li class="submenu-item" *ngFor="let menu of module.aspNetMenuItems; index as j">
-                  <a class="submenu-link" routerLink="/{{menu.url}}" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">{{menu.menuItemName}}</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ng-container>
-      </ul>
-    </div>
-  </div>
+
 
   <div class="d-flex">
     <!-- Sidebar (Remains Unchanged) -->
     <div class="sidebar-container" [ngClass]="{'expanded': isExpanded}">
       <div class="d-flex flex-column flex-shrink-0 bg-light">
         <!-- Navigation Menu -->
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <ng-container *ngFor="let module of modules; index as i">
-            <li class="nav-item has-submenu" *ngIf="module.aspNetMenuItems.length">
-              <a class="nav-link submenu-toggle" routerLink="/{{module.url}}" data-bs-toggle="collapse"
-                [attr.data-bs-target]="'#'+i" aria-expanded="false" aria-controls="submenu-2">
-                <span class="nav-icon" [innerHTML]="module.icon"></span>
-                <span class="nav-link-text">{{module.moduleName}}</span>
-                <span class="submenu-arrow">
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                  </svg>
-                </span>
-              </a>
-              <div id="{{i}}" class="collapse submenu" data-bs-parent="#menu-accordion">
-                <ul class="submenu-list list-unstyled">
-                  <li class="submenu-item" *ngFor="let menu of module.aspNetMenuItems; index as j">
-                    <a class="submenu-link" routerLink="/{{menu.url}}" routerLinkActive="active"
-                      [routerLinkActiveOptions]="{exact: true}">{{menu.menuItemName}}</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ng-container>
-        </ul>
+
       </div>
     </div>
-  
+
     <!-- Unified Navbar Wrapper -->
     <div class="navbar-wrapper bg-light shadow-sm fixed-top w-100 px-3 d-flex align-items-center">
-      
+
       <!-- Sidebar Toggle Button (Placed First) -->
-      <button class="btn btn-dark me-3" (click)="toggleSidebar()">
+      <!-- <button class="btn btn-dark me-3" (click)="toggleSidebar()">
         <i class="fa fa-bars"></i>
       </button>
-      
+       -->
       <!-- Logo Section with Increased Size -->
       <div class="navbar-logo me-3">
         <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="navigateHome()">
           <img src="images/sushma.png" alt="logo" class="logo-img" />
         </a>
       </div>
-      
+
       <!-- Main Navbar (Navigation Links & Others) -->
       <nav class="navbar navbar-expand-lg navbar-light flex-grow-1">
         <div class="container-fluid">
@@ -89,7 +33,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-    
+
           <!-- Navbar Links -->
           <div class="collapse navbar-collapse" [ngClass]="{'show': isExpanded}" id="navbarNav">
             <ul class="navbar-nav me-auto">
@@ -102,8 +46,11 @@
               <li class="nav-item">
                 <a class="nav-link" routerLink="/admin-dashboard">Admin</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/create-path">Workplace Learning</a>
+              </li>
             </ul>
-    
+
             <!-- Search Form -->
             <form class="d-flex mobile-search-bar w-50" (ngSubmit)="onSearch()">
               <div class="input-group">
@@ -112,7 +59,7 @@
                   name="searchQuery" required>
               </div>
             </form>
-    
+
             <!-- Right Side Icons -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
@@ -122,10 +69,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" routerLink="/wishList">
+                <a class="nav-link d-flex align-items-center" routerLink="/wishlist">
                   <i class="far fa-heart"></i>
                   <span class="d-lg-none ms-2">Wishlist</span>
                 </a>
+                           
               </li>
               <li class="nav-item">
                 <a class="nav-link d-flex align-items-center" routerLink="/cart">
@@ -133,11 +81,25 @@
                   <span class="d-lg-none ms-2">Cart</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" routerLink="/notifications">
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
                   <i class="far fa-bell"></i>
-                  <span class="d-lg-none ms-2">Notifications</span>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                  <li *ngFor="let notification of notifications" class="dropdown-item d-flex align-items-center">
+                    <img [src]="notification.profilePhoto" alt="Profile Photo" class="rounded-circle me-2" width="40"
+                      height="40">
+                    <div>
+                      <div class="fw-bold">{{ notification.sender }}</div>
+                      <div class="text-muted">{{ notification.subject }}</div>
+                    </div>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item text-center" href="/notifications">See all notifications</a></li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link d-flex align-items-center" (click)="openlogin()">
@@ -157,6 +119,4 @@
       </nav>
     </div>
   </div>
-  
-
 </div>

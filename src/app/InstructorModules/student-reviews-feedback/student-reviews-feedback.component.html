@@ -1,42 +1,58 @@
 <div class="reviews-container">
-    <div class="header">
-      <h2>Student Reviews & Feedback</h2>
-      <input type="text" placeholder="Search reviews..." [(ngModel)]="searchQuery" (input)="searchReviews()">
-    </div>
-  
-    <div class="filters">
-      <label>Sort by:</label>
-      <select [(ngModel)]="filterType" (change)="applyFilter()">
-        <option value="latest">Latest</option>
-        <option value="mostLiked">Most Liked</option>
-        <option value="topRated">Top Rated</option>
-        <option value="mostRelevant">Most Relevant</option>
-      </select>
-    </div>
-  
-    <div *ngFor="let review of filteredReviews" class="review-card">
-      <div class="student-info">
-        <img [src]="review.studentImage" alt="Student Image">
-        <div>
-          <h4>{{ review.studentName }}</h4>
-          <p>{{ review.message }}</p>
-        </div>
+  <div class="header">
+    <h2>Student Reviews & Feedback</h2>
+    <input type="text" placeholder="Search reviews..." [(ngModel)]="searchQuery" (input)="searchReviews()">
+  </div>
+
+  <div class="filters">
+    <label>Sort by:</label>
+    <select [(ngModel)]="filterType" (change)="applyFilter()">
+      <option value="latest">Latest</option>
+      <option value="mostLiked">Most Liked</option>
+      <option value="topRated">Top Rated</option>
+    </select>
+
+    <label>Instructor:</label>
+    <select [(ngModel)]="selectedInstructor" (change)="applyFilter()">
+      <option value="all">All</option>
+      <option *ngFor="let instructor of instructors" [value]="instructor">
+        {{ instructor }}
+      </option>
+    </select>
+
+    <label>Course:</label>
+    <select [(ngModel)]="selectedCourse" (change)="applyFilter()">
+      <option value="all">All</option>
+      <option *ngFor="let course of courses" [value]="course">
+        {{ course }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngFor="let review of filteredReviews" class="review-card">
+    <div class="student-info">
+      <img [src]="review.studentImage" alt="Student Image">
+      <div>
+        <h4>{{ review.studentName }}</h4>
+        <p><strong>Course:</strong> {{ review.courseName }}</p>
+        <p><strong>Instructor:</strong> {{ review.instructorName }}</p>
+        <p>{{ review.message }}</p>
       </div>
-      
-      <div class="actions">
-        <button (click)="toggleReadStatus(review)" [class.read]="review.adminRead">
-          {{ review.adminRead ? 'Read' : 'Unread' }}
-        </button>
-        <button (click)="likeReview(review)">❤️ {{ review.likes }}</button>
-      </div>
-  
-      <div class="admin-reply">
-        <p *ngIf="review.adminReply"><strong>Admin Reply:</strong> {{ review.adminReply }}</p>
-        <div *ngIf="!review.adminReply">
-          <textarea #replyBox placeholder="Write a reply..."></textarea>
-          <button (click)="replyToReview(review, replyBox)">Reply</button>
-        </div>
+    </div>
+    
+    <div class="actions">
+      <button (click)="toggleReadStatus(review)" [class.read]="review.adminRead">
+        {{ review.adminRead ? 'Read' : 'Unread' }}
+      </button>
+      <button (click)="likeReview(review)">❤️ {{ review.likes }}</button>
+    </div>
+
+    <div class="admin-reply">
+      <p *ngIf="review.adminReply"><strong>Admin Reply:</strong> {{ review.adminReply }}</p>
+      <div *ngIf="!review.adminReply">
+        <textarea #replyBox placeholder="Write a reply..."></textarea>
+        <button (click)="replyToReview(review, replyBox)">Reply</button>
       </div>
     </div>
   </div>
-  
+</div>

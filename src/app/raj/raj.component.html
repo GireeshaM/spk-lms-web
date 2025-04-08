@@ -1,0 +1,153 @@
+<br><br>
+<br>
+<div class="course-container">
+    <!-- Left Side: Video/Document Player -->
+    <div class="player-section">
+      <div class="player-box">
+        <video *ngIf="selectedVideo" controls>
+          <source [src]="selectedVideo" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+  
+        <iframe *ngIf="selectedDocument" [src]="selectedDocument"></iframe>
+  
+        <div *ngIf="!selectedVideo && !selectedDocument" class="placeholder">
+          Select a lecture to begin
+        </div>
+      </div>
+    </div>
+  
+    <!-- Right Side: Course Content -->
+    <div class="sidebar">
+      <h2>📚 Course Content</h2>
+      <div *ngFor="let section of courseSections; let i = index">
+        <button class="accordion-btn" (click)="toggleSection(i)">
+          {{ section.title }} ({{ section.length }})
+        </button>
+        <div class="accordion-content" *ngIf="section.isOpen">
+          <ul>
+            <li *ngFor="let lecture of section.lectures">
+              <button class="lecture-btn" (click)="playContent(lecture)">
+                <span class="icon">
+                  <span *ngIf="lecture.type === 'video'">🎥</span>
+                  <span *ngIf="lecture.type === 'document'">📄</span>
+                  <span *ngIf="lecture.type === 'quiz'">🎯</span>
+                </span>
+                {{ lecture.title }} <span class="duration">({{ lecture.duration }})</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- tabs content -->
+  <div class="tabs">
+    <button 
+      *ngFor="let tab of tabs; let i = index" 
+      (click)="selectTab(i)" 
+      [class.active]="selectedTab === i"
+    >
+      {{ tab.label }}
+    </button>
+  </div>
+  
+  <!-- Content Section -->
+  <div class="tab-content">
+    <ng-container *ngIf="selectedTab === 0">
+      <h2>Maya Quick Start Program</h2>
+      <p>English language fluency with the most important English conversation topics, expressions, idioms, and culture.</p>
+  
+      <div class="course-details">
+        <div class="rating">
+          <span class="stars">⭐ 4.5</span>
+          <span>3,432 ratings</span>
+        </div>
+        <div class="stats">
+          <span>👥 25,130 Students</span> | <span>⏳ 8 hours Total</span>
+        </div>
+        <p>📅 Last updated: <strong>May 2019</strong></p>
+        <p>🌍 Language: <strong>English [Auto]</strong></p>
+      </div>
+  
+      <h3>🎯 What You'll Learn</h3>
+<div class="learning-container">
+  <div class="learning-card">
+    <div class="left">
+      <div *ngFor="let point of whatYouWillLearn.slice(0, 3)">
+        <span class="icon">✔️</span> {{ point }}
+      </div>
+    </div>
+    <div class="right">
+      <div *ngFor="let point of whatYouWillLearn.slice(3, 6)">
+        <span class="icon">✔️</span> {{ point }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>📌 Pre-requirements</h3>
+<div class="prerequisites-section">
+  <div class="prerequisite-card" *ngFor="let requirement of prerequisites">
+    <span class="icon">🔹</span> {{ requirement }}
+  </div>
+</div>
+
+      
+      <!-- Instructor Section -->
+      <h3>👨‍🏫 Instructor</h3>
+      <div class="instructor">
+        <img src="assets/instructor.jpg" alt="John Doe">
+        <div>
+          <h4>John Doe</h4>
+          <p>John Doe is an experienced 3D artist and animator, with over 10 years of expertise in using Maya for creating stunning visual effects and animations. He has worked with top studios and is passionate about teaching others the skills needed to succeed in the world of 3D design.</p>
+        </div>
+      </div>
+  
+      <!-- Skills Section -->
+      <h3>💡 Skills You'll Gain</h3>
+      <div class="skills-container">
+        <div class="skill-card" *ngFor="let skill of displayedSkills">
+          {{ skill }}
+        </div>
+      </div>
+      <button class="read-more-btn" *ngIf="!showAllSkills" (click)="showMoreSkills()">Read More</button>
+    </ng-container>
+
+
+  
+    <ng-container *ngIf="selectedTab === 1">
+      <h2>Notes</h2>
+      <p>Here you can find your saved notes and highlights.</p>
+    </ng-container>
+  
+    <ng-container *ngIf="activeTab === 'announcements'">
+        <h2>📢 Announcements</h2>
+        <div class="announcement-card" *ngFor="let announcement of announcements">
+          <h4>{{ announcement.title }}</h4>
+          <p>{{ announcement.content }}</p>
+          <span class="date">📅 {{ announcement.date }}</span>
+        </div>
+      </ng-container>
+    
+      <ng-container *ngIf="activeTab === 'reviews'">
+        <h2>⭐ Reviews</h2>
+        <div class="review-card" *ngFor="let review of reviews">
+          <div class="review-header">
+            <img [src]="review.avatar" alt="User Avatar" class="avatar" />
+            <div>
+              <h4>{{ review.name }}</h4>
+              <p class="rating">⭐ {{ review.rating }}/5</p>
+            </div>
+          </div>
+          <p>{{ review.comment }}</p>
+        </div>
+      </ng-container>
+  
+    <ng-container *ngIf="selectedTab === 4">
+      <h2>Learning Tools</h2>
+      <p>Access various learning tools to enhance your experience.</p>
+    </ng-container>
+  </div>
+  

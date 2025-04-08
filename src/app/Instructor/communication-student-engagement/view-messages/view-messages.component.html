@@ -1,1 +1,91 @@
-<p>view-messages works!</p>
+
+<app-instructor-navbar> </app-instructor-navbar>
+<form [formGroup]="quizForm">
+  <h3>Create Your Own Quiz</h3>
+    <!-- Quiz Details -->
+    <div class="form-group">
+      <label for="title">Quiz Title:</label>
+      <input id="title" formControlName="title" type="text" placeholder="Enter quiz title" />
+    </div>
+  
+    <div class="form-group">
+      <label for="course">Course Name:</label>
+      <select id="course" formControlName="course">
+        <option value="">Select Course</option>
+        <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="session">Session:</label>
+      <select id="session" formControlName="session">
+        <option value="">Select Session</option>
+        <!-- Display only sessions corresponding to the selected course -->
+        <option *ngFor="let session of availableSessions" [value]="session">{{ session }}</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="quizTime">Quiz Time (minutes):</label>
+      <input id="quizTime" formControlName="quizTime" type="number" min="1" placeholder="Enter quiz duration" />
+    </div>
+  
+    <hr />
+  
+    <!-- Dynamic Questions Section -->
+    <div formArrayName="questions">
+      <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i" class="question-group">
+        <h3>Question {{ i + 1 }}</h3>
+  
+        <!-- Select Question Type -->
+        <div class="form-group">
+          <label>Question Type:</label>
+          <select formControlName="questionType">
+            <option value="mcq">MCQ</option>
+            <option value="direct">Direct Question</option>
+          </select>
+        </div>
+  
+        <!-- Question Text -->
+        <div class="form-group">
+          <label>Question:</label>
+          <input formControlName="questionText" type="text" placeholder="Enter question" />
+        </div>
+  
+        <!-- For MCQ Questions -->
+        <div *ngIf="question.get('questionType')?.value === 'mcq'">
+          <div formArrayName="options" class="options-group">
+            <div *ngFor="let option of getOptions(i).controls; let j = index" class="option-item">
+              <label>Option {{ j + 1 }}:</label>
+              <input [formControlName]="j" type="text" placeholder="Enter option" />
+              <button type="button" class="btn-secondary" (click)="removeOption(i, j)" *ngIf="getOptions(i).controls.length > 2">
+                Remove
+              </button>
+            </div>
+            <button type="button" class="btn-secondary" (click)="addOption(i)">Add Option</button>
+          </div>
+          <div class="form-group">
+            <label>Correct Answer:</label>
+            <input formControlName="correctAnswer" type="text" placeholder="Enter correct answer" />
+          </div>
+        </div>
+  
+        <!-- For Direct Questions -->
+        <div *ngIf="question.get('questionType')?.value === 'direct'">
+          <div class="form-group">
+            <label>Answer:</label>
+            <input formControlName="answer" type="text" placeholder="Enter answer" />
+          </div>
+        </div>
+  
+        <button type="button" class="btn-secondary" (click)="removeQuestion(i)">Remove Question</button>
+        <hr />
+      </div>
+    </div>
+  
+    <button type="button" class="btn-secondary" (click)="addQuestion()">Add Question</button>
+    <br /><br />
+    <!-- Instead of form submission, use a click event to trigger the confirmation dialog -->
+    <button type="button" class="btn-primary" (click)="confirmQuizCreation()">Create Quiz</button>
+  </form>
+  

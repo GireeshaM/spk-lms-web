@@ -1,58 +1,81 @@
 <div class="courses-container">
   <!-- Enrolled Courses Section -->
-  <div class="heading">
-    <h1 id="enr">Enrolled Courses</h1>
-  </div>
-  <div class="course-list enrolled-courses">
-    <div *ngFor="let course of enrolledCourses" class="course-card">
-      <div class="image-wrapper">
-        <img [src]="course.image" alt="{{ course.name }}" class="course-image">
-      </div>
-      <div class="course-content">
-        <h2 class="course-title">{{ course.name }}</h2>
-        <p class="course-description">{{ course.description }}</p>
-        <div class="progress">
-          <div class="progress-bar" [style.width.%]="course.progress">{{ course.progress }}%</div>
+  <div class="container mt-4">
+    <h3 class="section-title">{{ courseType | titlecase }} Courses</h3>
+    <div class="course-list enrolled" *ngIf="displayedCourses.length > 0; else noCourses">
+      <div *ngFor="let course of displayedCourses" class="course-card enrcourse">
+        <img [src]="course.image" class="course-icon" alt="Course Icon">
+        <div class="course-content">
+          <h5 class="course-title">
+            {{ course.name }}
+            <span *ngIf="course.progress === 100" class="badge bg-success ms-2">🏆 Completed</span>
+          </h5>
+          <p class="course-instructor">👨‍🏫 Instructor: {{ course.instructor }}</p>
+          <p class="course-meta">
+            📚 Enrolled: {{ course.enrolled }} |
+            👀 Views: {{ course.views }} |
+            ✅ Completed: {{ course.completed }} |
+            ⭐ Ratings: {{ course.rating }}
+          </p>
+          <a *ngIf="course.progress < 100" class="progress-text" [routerLink]="['/Instructor/course-marketing/promotions-page']">
+            <strong>Resume your course</strong>
+          </a>
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="course.progress"></div>
+          </div>
+          <!-- Download Certificate & Badge for Completed Courses -->
+          <div *ngIf="course.progress === 100" class="download-certificate">
+            <button class="btn btn-primary" (click)="downloadCertificate(course)">
+              <i class="fas fa-download"></i> Download Certificate
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+    
+  <ng-template #noCourses>
+    <p class="text-center mt-4">No enrolled courses found.</p>
+  </ng-template>
   <!-- Popular Courses Section -->
   <div class="heading">
     <h1>Popular Courses</h1>
   </div>
-  <div class="course-list popular-courses">
+  <div class="course-list  popular-courses" id="popular-courses" #popularCourses>
     <div *ngFor="let course of courses" class="course-card popular">
       <div class="image-wrapper">
         <img [src]="course.image" alt="Course Image" class="course-image" />
         <div class="popular-badge" *ngIf="course.isPopular">Popular</div>
       </div>
-      
       <div class="course-content">
         <div class="course-title-wrapper">
           <h2 class="course-title">{{ course.title }}</h2>
-          <div class="wishlist" (click)="toggleWishlist(course)">
-            <i [ngClass]="course.isWishlisted ? 'fas fa-heart wishlist-selected' : 'far fa-heart'"></i>
-          </div>
+          
         </div>
-
         <p class="course-description">{{ course.description }}</p>
         <div class="course-rating">
           <span class="rating-stars">{{ course.rating }} ★</span>
           <span class="rating-count">({{ course.reviews }})</span>
+          <div class="wishlist" (click)="toggleWishlist(course)">
+            <i [ngClass]="course.isWishlisted ? 'fas fa-heart wishlist-selected' : 'far fa-heart'"></i>
+          </div>
         </div>
         <p class="course-details">{{ course.details }}</p>
-        <div class="course-price">
-          <span class="current-price">₹{{ course.price }}</span>
-          <span class="original-price">₹{{ course.originalPrice }}</span>
-        </div>
         <div class="footer">
           <div class="add-to-cart" (click)="addToCart(course)">
-            <i class="fas fa-shopping-cart"></i> Add to Cart
+             Enroll
           </div>
-          <div class="badge" *ngIf="course.isBestseller">Bestseller</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trending Topics Section -->
+  <div class="trending-container">
+    <h2 class="trending-title">Trending Topics</h2>
+    <div class="trending-list">
+      <div *ngFor="let topic of trendingTopics" class="trending-item">
+        <i class="fas fa-fire icon"></i>
+        <span class="trending-text">{{ topic }}</span>
       </div>
     </div>
   </div>

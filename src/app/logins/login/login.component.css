@@ -45,7 +45,7 @@ input {
 }
 
 input:focus {
-  border-color: #007bff;
+  border-color: #ff723a;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
@@ -64,12 +64,12 @@ button {
 }
 
 .login-btn {
-  background: #007bff;
+  background: #ff723a;
   color: white;
 }
 
 .login-btn:hover {
-  background: #0056b3;
+  background: #ff723a;
 }
 
 .close-btn {

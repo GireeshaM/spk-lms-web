@@ -1,0 +1,239 @@
+<div class="container">
+  <div class="sidebar">
+    <app-hnav></app-hnav>
+  </div>
+</div>
+<div class="learning-paths-container">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="header-content">
+        <h1>Learning paths</h1>
+        <p>Share your knowledge by creating a path with a clear goal. Enroll yourself in a path that will help you reach your objectives and close knowledge gaps.</p>
+      </div>
+      <img src="images/learningpath.png" alt="Learning Paths" class="header-image">
+    </div>
+  
+    
+   <!-- Navigation Tabs -->
+  <div class="tabs">
+    <span [class.active]="selectedTab === 'all'" (click)="setTab('all')">All paths</span>
+    <span [class.active]="selectedTab === 'edited'" (click)="setTab('edited')">My edited paths</span>
+    <span [class.active]="selectedTab === 'enrolled'" (click)="setTab('enrolled')">Enrolled paths</span> 
+  </div>
+  
+    <!-- Search & Filter -->
+    <div class="search-container">
+      <input type="text" placeholder="Search learning paths" [(ngModel)]="searchQuery" (input)="filterPaths()">
+      <button class="search-btn"><i class="fa fa-search"></i></button>
+      <select [(ngModel)]="sortBy" (change)="sortPaths()">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+      </select>
+    </div>
+  
+    
+    <!-- Create Path Button -->
+  <div class="create-btn-container">
+    <button class="create-btn" (click)="createPath()">Create Path</button>
+    <button class="create-btn" (click)="showEnrolledCourses()">Show Enrolled Courses</button> <!-- Add this line -->
+  </div>
+  
+    <!-- Modal Overlay for Path Creation -->
+    <div class="modal-overlay" *ngIf="isCreatingPath">
+      <div class="modal-container">
+        <h2 class="modal-title">{{ isEditingPath ? 'Edit Learning Path' : 'Create a New Learning Path' }}</h2>
+  
+        <!-- Error Message -->
+        <div *ngIf="showError" class="error-message">Please fill in all required fields.</div>
+  
+        <!-- Editable Title -->
+        <input type="text" [(ngModel)]="Title" class="editable-title" placeholder="Enter Path Title..." (input)="onEdit()"/>
+  
+        <!-- Editable Description -->
+        <textarea [(ngModel)]="description" placeholder="Enter description..." (input)="onEdit()"></textarea>
+  
+        <!-- Editor Info -->
+        <div class="path-meta">
+          <span><strong>Editor:</strong> {{ editorName }}</span>
+          <span><strong>Duration:</strong> {{ duration }} minutes</span>
+          <span>
+            <strong>Privacy:</strong>
+            <select [(ngModel)]="privacySetting" (change)="onEdit()">
+              <option value="Private">Private</option>
+              <option value="Public">Public</option>
+            </select>
+          </span>
+        </div>
+  
+        <!-- Add Content Section -->
+        <div class="add-content-container">
+          <button class="add-content-btn" (click)="toggleContentMenu()">+ Add content</button>
+  
+          <!-- Dropdown Content Menu -->
+          <div class="content-menu" *ngIf="isContentMenuOpen">
+            <div class="content-item" (click)="addSectionHeading()">+ Section heading</div>
+            <div class="content-item" (click)="openSlmsModal()">+ SLMS course</div>
+            <div class="content-item" (click)="addRecommendedCourses()">+ Recommended courses</div>
+            <div class="content-item" (click)="addLink()">+ Link</div>
+          </div>
+        </div>
+  
+        <!-- Display Sections -->
+        <div class="sections-container">
+          <div class="section" *ngFor="let section of sections; let i = index">
+            <div class="section-header">
+              <div class="section-number">{{ i + 1 }}</div>
+              <div class="section-content">
+                <input type="text" [(ngModel)]="section.title" placeholder="Untitled section" class="section-title" (input)="onEdit()"/>
+                <input type="text" [(ngModel)]="section.description" placeholder="Add description" class="section-description" (input)="onEdit()"/>
+                <div class="section-meta">
+                  <span>{{ section.items.length }} items</span>
+                  <span>{{ section.duration }} min</span>
+                </div>
+              </div>
+  
+              <!-- Section Actions -->
+              <div class="section-actions">
+                <button class="menu-btn" (click)="toggleSectionMenu(i)">⋮</button>
+                <div class="section-menu" *ngIf="activeSectionMenu === i">
+                  <div class="section-menu-item" (click)="deleteSection(i)">🗑 Delete</div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Show SLMS Courses in the Section -->
+            <div *ngIf="section.items.length > 0">
+              <div *ngFor="let course of section.items" class="slms-course-item">
+                <img [src]="course.image" class="course-image" alt="Course Image">
+                <div class="course-info">
+                  <h4>{{ course.title }}</h4>
+                  <p>{{ course.description }}</p>
+                  <div class="course-meta">
+                    <span>{{ course.duration }} min</span>
+                    <button (click)="removeSlmsCourse(course, i)">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Done & Cancel Buttons -->
+        <div class="actions">
+          <button class="primary" *ngIf="!isEditingPath" (click)="savePath()">Create Path</button>
+          <button class="primary" *ngIf="isEditingPath && hasChanges" (click)="handleSave()">Save Changes</button>
+          <button class="cancel-btn" (click)="cancelPathCreation()">Close</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Learning Paths List (OUTSIDE OVERLAY) -->
+    <div class="paths-list" *ngIf="!isCreatingPath">
+      <div *ngIf="filteredPaths.length === 0" class="no-results">
+        No learning paths found.
+      </div>
+  
+      <!-- Learning Path Cards -->
+      <div *ngFor="let path of filteredPaths" class="path-card">
+        <div class="icon">
+          <img src="images/Untitled design (2).png" alt="Path Icon">
+        </div>
+        <div class="details" (click)="openPathDetail(path)">
+          <h3>{{ path.title }}</h3>
+          <p>{{ path.author }}</p>
+          <span class="tag">Learning path</span>
+          <span class="tag">{{ path.duration }} min</span>
+          <span class="tag">{{ path.enrollments }} enrollments</span>
+        </div>
+        <button class="enroll-btn" (click)="enrollInPath(path, $event)" [disabled]="path.enrolled">
+          {{ path.enrolled ? 'Enrolled' : 'Enroll' }}
+        </button>
+        <button class="menu-btn" (click)="togglePathMenu(path)">⋮</button>
+        <div class="path-menu" *ngIf="activePathMenu === path">
+          <div class="path-menu-item" (click)="enrollInPath(path, $event)">✓ Enroll</div>
+          <div class="path-menu-item" (click)="editPath(path)">✎ Edit</div>
+          <div class="path-menu-item" (click)="addEditors(path)">👤 Add editors</div>
+          <div class="path-menu-item" (click)="duplicatePath(path)">📖 Duplicate</div>
+          <div class="path-menu-item" (click)="deletepath(path)">🗑 Delete</div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Path Detail View -->
+    <div class="modal-overlay" *ngIf="selectedPath">
+      <div class="path-detail-container">
+        <button (click)="closePathDetail()" class="close-btn">×</button>
+        <h2>{{ selectedPath.title }}</h2>
+        <p>{{ selectedPath.description }}</p>
+        <div class="meta-info">
+          <strong>Editor:</strong> <span>{{ selectedPath.author }}</span>
+          <strong>Duration:</strong> <span>{{ selectedPath.duration }} min</span>
+          <strong>Enrollments:</strong> <span>{{ selectedPath.enrollments }}</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="calculateProgress(selectedPath)"></div>
+        </div>
+        <button class="edit-btn" *ngIf="selectedTab === 'edited'" (click)="editPath(selectedPath)">Edit</button>
+        <button class="enroll-btn" (click)="enrollInPath(selectedPath, $event)" [disabled]="selectedPath.enrolled">
+          {{ selectedPath.enrolled ? 'Enrolled' : 'Enroll' }}
+        </button>
+  
+        <!-- Display Sections -->
+        <div class="sections-container">
+          <div class="section" *ngFor="let section of selectedPath.sections; let i = index">
+            <div class="section-header">
+              <div class="section-number">{{ i + 1 }}</div>
+              <div class="section-content">
+                <h4>{{ section.title }}</h4>
+                <p>{{ section.description }}</p>
+                <div class="section-meta">
+                  <span>{{ section.items.length }} items</span>
+                  <span>{{ section.duration }} min</span>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Show Slms Courses in the Section -->
+            <div *ngIf="section.items.length > 0">
+              <div *ngFor="let course of section.items" class="Slms-course-item">
+                <img [src]="course.image" class="course-image" alt="Course Image">
+                <div class="course-info">
+                  <h4>{{ course.title }}</h4>
+                  <p>{{ course.description }}</p>
+                  <div class="course-meta">
+                    <span>{{ course.duration }} min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Close Button at Bottom -->
+        <div class="actions">
+          <button class="cancel-btn" (click)="closePathDetail()">Close</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- SLMS Course Modal -->
+    <div class="modal-overlay" *ngIf="isSlmsModalOpen">
+      <div class="modal-container">
+        <button (click)="closeSlmsModal()" class="close-btn">×</button>
+        <h2>Search Slms Courses</h2>
+        <input type="text" [(ngModel)]="searchQuerySlms" placeholder="Search for Slms courses..." (input)="searchSlmsCourses()">
+        <div class="slms-search-results">
+          <div *ngFor="let course of SlmsSearchResults" class="slms-course-item" (click)="addSlmsCourseToPath(course)">
+            <img [src]="course.image" class="course-image" alt="Course Image">
+            <div class="course-info">
+              <h4>{{ course.title }}</h4>
+              <p>{{ course.description }}</p>
+              <div class="course-meta">
+                <span>{{ course.duration }} min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

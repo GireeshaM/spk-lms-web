@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Chart } from 'chart.js';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { CourseService } from '../../services/course.service'; // Import the shared service
-import { StudentService } from '../../services/student.service';
-
-interface Course {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  progress: number;
-  category: string;
-  difficulty: string;
-}
+import { Student, StudentService } from '../../services/student.service';
+import { Course } from '../../services/student.service';
+import { HnavComponent } from "../../hnav/hnav.component";
 interface ActivityBreakdown {
   studyPercent: number;
   examPercent: number;
+}
+interface Reminder {
+  title: string;
+  date: string;
+  category: 'urgent' | 'upcoming' | 'general';
+  icon: string;
 }
 interface Grade {
   type: 'study' | 'exam';
@@ -28,82 +26,100 @@ interface Grade {
 @Component({
   selector: 'app-student-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, HnavComponent],
   templateUrl: './student-dashboard.component.html',
   styleUrls: ['./student-dashboard.component.css']
 })
 export class StudentDashboardComponent implements OnInit {
-  activityBreakdown: ActivityBreakdown = { studyPercent: 0, examPercent: 0 };
-  achievement: any; // Should be properly typed
-  examAverage: number = 80;
-nextAchievement: any;
-achievementProgress = 0;
-overallScore = 90;
-studyPercentage = 100;
-totalStudyHours = 6;
-completedExams = 0;
-hasData = false;
-selectedTimeRange: 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth' = 'thisWeek';
+  selectedDomain: string = 'Web Development';
 
-  weeklyChart: any;
+  loading = true;
+  roadmap: any[] = [];
+  availableDomains = ['Web Development', 'Data Science', 'Cybersecurity', 'AI & ML'];
+  nextMilestoneIndex: number = 5;
+  activityBreakdown: ActivityBreakdown = { studyPercent: 0, examPercent: 0 };
+  achievement: any; 
+  examAverage: number = 80;
+  studentData:any  ;
+nextAchievement: any;
+achievementProgress = 60;
+overallScore = 90;
+studyPercentage = 60;
+totalStudyHours = 6;
+completedExams = 2;
+hasData = false;
+showSidebar: boolean = false;
 studyTargetHours = 10;
+overallPerformance: number = 75; 
+engagementScore: number = 8; 
+ //active courses
+ chunkedActiveCourses: any[][] = [];
+ chunkedEnrolledCourses: any[][] = [];
+ sortOption: string = 'name';
+ sortOptions = [
+  { label: 'Name (A-Z)', value: 'name' },
+  { label: 'Progress (High to Low)', value: 'progress-desc' },
+  { label: 'Progress (Low to High)', value: 'progress-asc' }
+];
+getProficiencyLevel(score: number): string {
+  if (score >= 80) {
+    return 'Advanced';
+  } else if (score >= 60) {
+    return 'Intermediate';
+  } else {
+    return 'Beginner';
+  }
+}
   student = {
     name: 'John Doe',
     email: 'johndoe@example.com',
     profilePhoto: 'images/student.jpg',
     grades: [
-      { type: 'study', hours: 15 },
-      { type: 'exam', score: 85 },  // Exam with score
       { type: 'study', hours: 10 },
+      { type: 'exam', score: 85 },  
+      { type: 'study', hours: 6 },
       { type: 'exam', score: 92 }
     ] as Grade[],
-    completedCourses: [
-      { 
-        id: 1, 
-        name: 'Angular Basics', 
-        image: 'images/angular.png', 
-        description: 'Learn the basics of Angular', 
-        progress: 100, 
-        category: 'Web Development', 
-        difficulty: 'Beginner' 
-      }
-    ] as Course[],
-    activeCourses: [
-      { 
-        id: 2,
-        name: 'Advanced TypeScript', 
-        image: 'images/advjs.jpg',
-        description: 'Deep dive into TypeScript', 
-        progress: 60,
-        category: 'Programming', 
-        difficulty: 'Advanced' 
-      }
-    ] as Course[],
+    completedCourses: [{}] as Course[],
+    activeCourses: [{}] as Course[],
     interests: [
-      { 
+       { 
         id: 7,
         name: 'Machine Learning', 
-        image: 'images/machine-learning.jpg',
-        description: 'AI & ML fundamentals', 
+        image: 'images/machine-learning.jpg', 
         progress: 0, 
         category: 'AI', 
-        difficulty: 'Intermediate' 
+        difficulty: 'Intermediate',
       }
     ] as Course[],
-    enrolledCourses: [] as Course[],  // Moved to proper position
+    enrolledCourses: [] as Course[],  
     recommendedCourses: [] as Course[]
   };
+  navigateToCourses(type: string)
+  {
+    this.router.navigate(['/coursesp'], { queryParams: { filter: type } });
+  }
+  loadCourses(): void {
+    const courses = this.courseService.getEnrolledCourses();
+    this.student.enrolledCourses = courses; // Include all courses
+    this.cdRef.detectChanges();
+  }
   private loadStudentData() {
     this.studentService.getStudentData().subscribe(data => {
-      // Merge service data with local data
       this.student = { 
         ...this.student,
         ...data,
-        enrolledCourses: [...this.student.enrolledCourses, ...(data.enrolledCourses || [])]
+        enrolledCourses: [...this.student.enrolledCourses, ...(data.enrolledCourses || [])],
       };
       this.calculateActivityBreakdown();
+
+      this.loadCourses();
     });
   }
+  viewEnrolledCourses() {
+    this.setView('courses', 'Enrolled Courses', this.student.enrolledCourses);
+  }
+
   calculateExamMetrics() {
     const exams = this.student.grades.filter(g => g.type === 'exam');
     this.completedExams = exams.length;
@@ -111,13 +127,12 @@ studyTargetHours = 10;
     if (this.completedExams > 0) {
       const totalScores = exams.reduce((sum, exam) => sum + (exam.score || 0), 0);
       this.examAverage = Math.round(totalScores / this.completedExams);
-      this.overallScore = this.examAverage; // Set overall score to exam average
+      this.overallScore = this.examAverage; 
     } else {
       this.examAverage = 0;
       this.overallScore = 0;
     }
   }
-  
   // Moved enrollInCourse to component level
   enrollInCourse(course: Course) {
     this.studentService.addEnrolledCourse(course);
@@ -149,113 +164,61 @@ studyTargetHours = 10;
 // Call this method when grades data is available (maybe in ngOnInit or after data fetch)
   displayedCourses: Course[] = [];
   selectedCategoryTitle: string = 'Active Courses';
-  currentView: string = 'dashboard';
- 
-
+  currentView = 'dashboard';
   calendarEvents = [
     { time: '10:00 AM', event: 'AI in Education' },
     { time: '11:00 AM', event: 'Web Design Trends' },
     { time: '2:00 PM', event: 'JavaScript Features' },
-    { time: '4:30 PM', event: 'Exam (JavaScript)' }
-  ];
+    { time: '4:30 PM', event: 'Exam (JavaScript)' }];
 
-  constructor(private router: Router, private courseService: CourseService,private studentService: StudentService) {}
-
+  constructor(private router: Router, private courseService: CourseService,private studentService: StudentService,private cdRef: ChangeDetectorRef) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+          this.showSidebar = ['/dashboard', '/courses', '/learning-path'].includes(event.urlAfterRedirects);
+      }
+  });
+  }
   ngOnInit() {
-    this.loadStudentData();
-    this.generateRecommendedCourses();
-    this.setView('dashboard', 'Active Courses', this.student.activeCourses);
-    
+    this.initChart();
     // Initialize charts after data load
-    this.studentService.getStudentData().subscribe(() => {
+    this.studentService.getStudentData().subscribe((data) => {
+      this.studentData=data;
+      this.loading = false;
       setTimeout(() => {
-        this.loadChart();
-        this.initChart();
       }, 100);
     });
+    this.loadStudentData();
+    this.loadCourses();
+    this.generateRecommendedCourses();
+    this.setView('dashboard', 'Active Courses', this.student.activeCourses);
+    this.chunkedActiveCourses = this.chunkArray(this.getSortedCourses(this.student.activeCourses), 2);
+  this.chunkedEnrolledCourses = this.chunkArray(this.student.enrolledCourses, 2);  
   }
-
+  //active courses
+  getSortedCourses(courses: Course[]): Course[] {
+    return courses.slice().sort((a, b) => {
+      switch (this.sortOption) {
+        case 'name':
+          return a.name.localeCompare(b.name);
+        case 'progress-desc':
+          return b.progress - a.progress;
+        case 'progress-asc':
+          return a.progress - b.progress;
+        default:
+          return 0;
+      }
+    });
+  }
   setView(view: string, title: string, courses: Course[] = []) {
     this.currentView = view;
     this.selectedCategoryTitle = title;
     this.displayedCourses = courses;
-    setTimeout(() => this.loadChart(), 100); // Refresh chart when switching views
+    // setTimeout(() => this.loadChart(), 100); // Refresh chart when switching views
   }
- // After View Init to access DOM elements
-ngAfterViewInit() {
-  
-    this.initChart();
-  
-}
-
-
-initChart(): void {
-  const ctx = document.getElementById('weeklyChart') as HTMLCanvasElement;
-  
-  if (!ctx) {
-    console.error('Canvas element not found: weeklyChart');
-    return;
-  }
-
-  if (this.weeklyChart) {
-    this.weeklyChart.destroy(); // Destroy old chart before creating a new one
-  }
-
-  this.weeklyChart = new Chart(ctx, {
-    type: 'bar',
-    data: this.getChartData(this.selectedTimeRange),
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false }
-      }
-    }
-  });
-}
-
-updateChart(): void {
-  if (this.weeklyChart) {
-    this.weeklyChart.destroy();
-  }
-  setTimeout(() => this.initChart(), 100);
-}
- labels = {
-  thisWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-  lastWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-  thisMonth: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-  lastMonth: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
-};
-
- dataValues = {
-  thisWeek: [2, 3, 4, 1, 5, 6, 2],
-  lastWeek: [1, 4, 3, 5, 2, 4, 3],
-  thisMonth: [15, 20, 25, 30],
-  lastMonth: [10, 18, 22, 28]
-};
-getChartData(timeRange: 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth') {
-  if (!this.labels[timeRange] || !this.dataValues[timeRange]) {
-    console.error('Invalid timeRange:', timeRange);
-    return { labels: [], datasets: [] };
-  }
-
-  return {
-    labels: this.labels[timeRange],  
-    datasets: [{
-      label: 'Study Hours',
-      data: this.dataValues[timeRange],  
-      backgroundColor: 'rgba(54, 162, 235, 0.6)',
-      borderColor: 'rgba(54, 162, 235, 1)',
-      borderWidth: 1
-    }]
-  };
-}
-
-
-
+ 
   viewDashboard() {
     this.setView('dashboard', 'Dashboard');
   }
-
   viewActiveCourses() {
     this.setView('dashboard', 'Active Courses', this.student.activeCourses);
   }
@@ -263,53 +226,35 @@ getChartData(timeRange: 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth') {
   viewCompletedCourses() {
     this.setView('dashboard', 'Completed Courses', this.student.completedCourses);
   }
-
-  viewEnrolledCourses() {
-    this.setView('courses', 'Enrolled Courses', this.student.enrolledCourses);
-  }
-
   viewInterests() {
     this.setView('interests', 'My Interests', this.student.interests);
   }
-
   viewGrades() {
     this.setView('grades', 'Grades');
   }
-
   viewSettings() {
     this.setView('settings', 'Settings');
   }
-
-  viewCourses() {
-    this.courseService.setEnrolledCourses(this.student.enrolledCourses);
-    this.router.navigate(['/coursesp']);
-  }
-
-  loadChart() {
-    const canvas = document.getElementById('weeklyChart') as HTMLCanvasElement;
-    if (!canvas) return;
-
-    if (this.weeklyChart) {
-      this.weeklyChart.destroy(); // Destroy previous instance before creating a new one
-    }
-
-    this.weeklyChart = new Chart(canvas, {
-      type: 'bar',
-      data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{
-          label: 'Hours Studied',
-          data: [1, 2, 4, 3, 5, 2, 1],
-          backgroundColor: '#FF6384'
-        }]
-      }
-    });
-  }
-
   generateRecommendedCourses() {
     const allCourses: Course[] = [
-      {id:9, name: 'Advanced Python', image: 'https://via.placeholder.com/150', description: 'Deep dive into Python advanced topics', progress: 0, category: 'Programming', difficulty: 'Advanced' },
-      { id:10,name: 'Machine Learning with TensorFlow', image: 'https://via.placeholder.com/150', description: 'An introduction to machine learning with TensorFlow', progress: 0, category: 'AI', difficulty: 'Intermediate' },
+      {
+        id: 9, name: 'Advanced Python', image: 'https://via.placeholder.com/150', description: 'Deep dive into Python advanced topics', progress: 0, category: 'Programming', difficulty: 'Advanced',
+        rating: 3.5,
+        reviews: 250,
+        duration: '50',
+        lectures: '100',
+        level: 'intermediate',
+        instructor: 'Ram'
+      },
+      {
+        id: 10, name: 'Machine Learning with TensorFlow', image: 'https://via.placeholder.com/150', description: 'An introduction to machine learning with TensorFlow', progress: 0, category: 'AI', difficulty: 'Intermediate',
+        rating: 90,
+        reviews: 3.8,
+        duration: '45',
+        lectures: '150',
+        level: 'advanced',
+        instructor: 'dev'
+      },
       // Add more courses as needed
     ];
 
@@ -323,6 +268,252 @@ getChartData(timeRange: 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth') {
     });
 
     this.student.recommendedCourses = recommendations;
+  }
+  lastViewedCourses = [
+    {
+        id: 1,
+        title: 'Advanced JavaScript',
+        thumbnail: 'path/to/image.jpg',
+        progress: 65,
+        lastAccessed: '2025-02-12T14:30:00'
+    },
+    // ... other courses
+]
+// formatLastViewed(timestamp: string | Date): string {
+//   const date = typeof timestamp === 'string' ? new Date(timestamp) : timestamp;
+//   const now = new Date();
+//   const diffMs = now.getTime() - date.getTime();
+
+//   // Calculate time differences
+//   const diffSeconds = Math.floor(diffMs / 1000);
+//   const diffMinutes = Math.floor(diffSeconds / 60);
+//   const diffHours = Math.floor(diffMinutes / 60);
+//   const diffDays = Math.floor(diffHours / 24);
+//   const diffWeeks = Math.floor(diffDays / 7);
+//   const diffMonths = Math.floor(diffDays / 30);
+//   const diffYears = Math.floor(diffMonths / 12);
+
+//   if (diffYears > 0) {
+//     return `${diffYears}y ago`;
+//   } else if (diffMonths > 0) {
+//     return `${diffMonths}mo ago`;
+//   } else if (diffWeeks > 0) {
+//     return `${diffWeeks}w ago`;
+//   } else if (diffDays > 0) {
+//     return `${diffDays}d ago`;
+//   } else if (diffHours > 0) {
+//     return `${diffHours}h ago`;
+//   } else if (diffMinutes > 0) {
+//     return `${diffMinutes}m ago`;
+//   } else if (diffSeconds > 10) {
+//     return `${diffSeconds}s ago`;
+//   } else {
+//     return 'Just now';
+//   }
+// }
+// REMAINDER
+activeTab: string = 'weekly';
+weeklyReminders = [
+  { title: 'SubmitAssignment', date: 'Mon, Apr 3', progress: 60, icon: '📄' },
+  { title: 'TeamMeeting', date: 'Wed, Apr 5', progress: 80, icon: '📅' },
+  { title: 'PrepareforQuiz', date: 'Fri, Apr 7', progress: 40, icon: '📝' }
+];
+
+monthlyReminders = [
+  { title: 'ProjectSubmission', date: 'Apr 20', progress: 75, icon: '🚀' },
+  { title: 'CourseReview', date: 'Apr 25', progress: 50, icon: '📖' },
+  { title: 'FinalExam', date: 'Apr 30', progress: 90, icon: '🎓' }
+];
+progressPath = '';
+
+  //  ROADMAP
+private roadmapData: any = {
+  'Web Development': [
+    { title: 'HTML & CSS Basics', icon: 'fas fa-code', completed: true},
+    { title: 'JavaScript & ES6', icon: 'fab fa-js',completed: true },
+    { title: 'React & Angular', icon: 'fab fa-react', completed: true },
+    { title: 'Backend Development', icon: 'fas fa-server', completed: false},
+    { title: 'Full-Stack Projects', icon: 'fas fa-project-diagram',completed: false}
+  ],
+  'Data Science': [
+    { title: 'Python Basics', icon: 'fab fa-python',completed: true },
+    { title: 'Data Analysis with Pandas', icon: 'fas fa-chart-bar', completed: true },
+    { title: 'Machine Learning Basics', icon: 'fas fa-robot', completed: true},
+    { title: 'Deep Learning & AI', icon: 'fas fa-brain',completed: false },
+    { title: 'Real-world Data Projects', icon: 'fas fa-database', completed: false}
+  ],
+  'Cybersecurity': [
+    { title: 'Network Security Basics', icon: 'fas fa-network-wired', completed: true },
+    { title: 'Ethical Hacking', icon: 'fas fa-user-secret', completed: true },
+    { title: 'Threat Analysis', icon: 'fas fa-shield-alt',completed: true },
+    { title: 'Penetration Testing', icon: 'fas fa-bug',completed: false },
+    { title: 'Cyber Defense Strategies', icon: 'fas fa-lock',completed: false }
+  ],
+  'AI & ML': [
+    { title: 'Python & AI Basics', icon: 'fab fa-python', completed: true},
+    { title: 'Neural Networks', icon: 'fas fa-network-wired',completed: true },
+    { title: 'Deep Learning', icon: 'fas fa-brain',completed: true },
+    { title: 'NLP & AI Applications', icon: 'fas fa-microchip',completed: false },
+    { title: 'AI & ML Projects', icon: 'fas fa-robot',completed: false }
+  ]
+};
+generateRoadmap() {
+  if (this.selectedDomain) {
+    this.roadmap = this.roadmapData[this.selectedDomain] || [];
+    this.startAnimation();
+  }
+}
+// generateCurvedPath() {
+//   let path = 'M10,50 '; // Starting point
+
+//   for (let i = 1; i < this.roadmap.length; i++) {
+//     const x = i % 2 === 0 ? 50 : 90; // Alternating left & right positions
+//     const y = i * 100 + 50;
+//     path += ` Q ${x},${y - 50} ${x},${y} `;
+//   }
+
+//   this.progressPath = path;
+// }
+startAnimation() {
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index < this.roadmap.length) {
+      this.nextMilestoneIndex = index;
+      index++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 2000);
+}
+
+
+streakDays = 5; // Number of active streak days
+  streakDaysArray = [
+    { label: 'M', active: true, isToday: false },
+    { label: 'T', active: true, isToday: false },
+    { label: 'W', active: false, isToday: false },
+    { label: 'T', active: false, isToday: false },
+    { label: 'F', active: true, isToday: false },
+    { label: 'S', active: true, isToday: true }, // Highlight Saturday
+    { label: 'S', active: false, isToday: false }
+  ];
+  
+  selectedTimeRange: 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth' = 'thisWeek';
+  weeklyChart: any;
+
+  labels = {
+    thisWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    lastWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    thisMonth: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    lastMonth: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+  };
+
+  dataValues = {
+    thisWeek: [2, 3, 4, 1, 5, 6, 2],
+    lastWeek: [1, 4, 3, 5, 2, 4, 3],
+    thisMonth: [15, 20, 25, 30],
+    lastMonth: [10, 18, 22, 28]
+  };
+
+ 
+
+  initChart(): void {
+    const ctx = document.getElementById('weeklyChart') as HTMLCanvasElement;
+    if (!ctx) {
+      console.error('Canvas element not found: weeklyChart');
+      return;
+    }
+    if (this.weeklyChart) {
+      this.weeklyChart.destroy();
+    }
+
+    const gradient = ctx.getContext('2d')!.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, 'rgba(144, 238, 144, 1)');
+    gradient.addColorStop(1, 'rgba(240, 255, 240, 0.5)');
+
+    this.weeklyChart = new Chart(ctx, {
+      type: 'line',
+      data: this.getChartData(this.selectedTimeRange),
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const value = context.raw as number;
+                const hours = Math.floor(value);
+                const minutes = Math.round((value - hours) * 60);
+                return `${hours}h ${minutes}m`;
+              }
+            }
+          }
+        },
+        animation: {
+          duration: 500,
+          easing: 'easeOutQuad'
+        },
+        elements: {
+          line: {
+            tension: 0.4,
+            backgroundColor: gradient,
+            borderColor: 'rgba(34, 139, 34, 1)',
+            borderWidth: 2,
+            fill: true
+          },
+          point: {
+            radius: 2,
+            backgroundColor: 'rgba(34, 139, 34, 1)',
+            hoverRadius: 4
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(200, 200, 200, 0.2)' }
+          }
+        }
+      }
+    });
+  }
+
+  updateChart(): void {
+    if (this.weeklyChart) {
+      this.weeklyChart.destroy();
+    }
+    setTimeout(() => this.initChart(), 100);
+  }
+
+  getChartData(timeRange: 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth') {
+    if (!this.labels[timeRange] || !this.dataValues[timeRange]) {
+      console.error('Invalid timeRange:', timeRange);
+      return { labels: [], datasets: [] };
+    }
+
+    return {
+      labels: this.labels[timeRange],
+      datasets: [
+        {
+          label: 'Study Hours',
+          data: this.dataValues[timeRange],
+          backgroundColor: 'rgba(144, 238, 144, 0.5)',
+          borderColor: 'rgba(34, 139, 34, 1)',
+          fill: true,
+          borderWidth: 2
+        }
+      ]
+    };
+  }
+
+  chunkArray(arr: any[], size: number): any[][] {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
   }
   
 }

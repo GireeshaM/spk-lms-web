@@ -1,0 +1,451 @@
+body {
+    background-color: #ffffff; /* Set background color to white */
+}
+
+/* Course Container Styling */
+.course-container {
+    max-width: 1200px; /* Increased max-width for more space */
+    margin: auto;
+    padding: 30px;
+    background: #ffffff; /* Set background color to white */
+    border-radius: 8px;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: row; /* Change to row to place image on the left */
+    border: 1px solid #e0e0e0;
+    border-radius: 15px; /* Larger radius for a modern look */
+    padding: 20px;
+    margin: 20px 0;
+    background: #ffffff; /* Set background color to white */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    height: 370px; /* Increased card height by 20px */
+}
+
+.course-card:hover {
+    transform: translateY(-10px); /* Slightly lift card on hover */
+}
+
+.course-image {
+    width: 450px; /* Increased image width */
+    height: 350px; /* Keep image height unchanged */
+    border-radius: 10px;
+    margin-right: 20px; /* Space between image and text */
+}
+
+.course-info {
+    padding: 15px;
+    width: calc(100% - 470px); /* Adjust width to account for the image width and margins */
+}
+
+.course-info h3 {
+    margin: 0;
+    color: #333;
+    font-size: 20px; /* Larger font size for course name */
+    font-weight: 600;
+}
+
+.course-info p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.view-btn {
+    background: #007bff;
+    color: white;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: white;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.review-btn {
+    background: #28a745;
+    color: white;
+}
+/* Reviews Section Styling */
+.reviews-section {
+    margin-top: 0; /* Remove top margin to touch the card */
+    padding: 20px;
+    background: #ffffff; /* Set background color to white */
+    border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
+    border: 1px solid #ddd;
+    border-top: none; /* Remove top border to touch the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    max-height: 350px; /* Increased height by 100px */
+    overflow-y: auto;
+    width: calc(100% + 100px); /* Increased width by 100px */
+    margin-left: 50px; /* Center the increased width */
+    margin-right: 0px; /* Move 50px to the right */
+}
+
+.review-card {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+    background: #f9f9f9; /* Lighter background for individual reviews */
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.review-card:hover {
+    background: #f1f1f1; /* Subtle hover effect on review cards */
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.review-details {
+    flex: 1;
+}
+
+.review-details h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-details p {
+    font-size: 14px;
+    color: #666;
+}
+
+.reply-btn {
+    background: #007bff;
+    color: white;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.close-btn {
+    background: #6c757d;
+    color: white;
+    margin-top: 12px;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+/* Styling for course-info container */
+.course-info {
+    padding: 20px; /* Adds padding around the text */
+    background: #ffffff; /* Set background color to white */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow around the container */
+    margin-top: 15px; /* Space above the course info */
+    border: 1px solid #e0e0e0; /* Light border */
+    font-family: Arial, sans-serif; /* Clean and readable font */
+}
+
+/* Styling for course name (h3) */
+.course-info h3 {
+    color: #333; /* Dark color for the heading */
+    font-size: 22px; /* Slightly larger font for the course name */
+    font-weight: 600; /* Bold font for emphasis */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+/* Styling for course description paragraph */
+.course-info p {
+    color: #555; /* Lighter color for text */
+    font-size: 16px; /* Standard font size for description */
+    line-height: 1.6; /* Adds space between lines for better readability */
+    margin-bottom: 10px; /* Space below each paragraph */
+}
+
+/* Styling for labels (Category, Duration, Price, etc.) */
+.course-info p strong {
+    color: #333; /* Darker color for labels */
+    font-weight: 700; /* Bold font for labels */
+}
+
+/* Styling for the price */
+.course-info p strong + p {
+    color: #4CAF50; /* Green color for price to make it stand out */
+    font-size: 18px; /* Larger font size for the price */
+    margin-top: 5px; /* Space above the price */
+}
+
+/* Styling for ratings (stars) */
+.course-info p:last-child {
+    font-size: 16px; /* Standard font size for ratings */
+    color: #FFA500; /* Orange color for ratings */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+    .course-info {
+        padding: 15px; /* Less padding on smaller screens */
+    }
+
+    .course-info h3 {
+        font-size: 18px; /* Smaller course name font on smaller screens */
+    }
+
+    .course-info p {
+        font-size: 14px; /* Smaller font size for paragraph text */
+    }
+}
+/* Positioning the course counter on the top right */
+.course-counter {
+    position: fixed;
+    top: 70px; /* Moved down by 50px from the original 20px */
+    right: 20px;
+    background-color: rgba(7, 125, 48, 0.8); /* semi-transparent black background */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s ease-in-out;
+    z-index: 9999; /* Ensure it's always on top */
+}
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%); /* Starts off the screen */
+    }
+    to {
+      transform: translateX(0); /* Ends at its final position */
+    }
+  }
+  
+
+/* Animation for fading in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Bounce up */
+    }
+}
+
+/* Styling for the label ("Total Courses Uploaded") */
+.counter-info .counter-label {
+    font-size: 18px; /* Slightly larger font for label */
+    font-weight: 500; /* Normal weight for the label */
+    margin-right: 10px; /* Space between label and number */
+}
+
+/* Styling for the number (total courses) */
+.counter-info .counter-number {
+    font-size: 24px; /* Larger font size for the number */
+    font-weight: 700; /* Bold weight for the number */
+    color: #FFF; /* White color for the number */
+    letter-spacing: 1px; /* Slight letter spacing for a modern look */
+    animation: scaleUp 1s ease-out forwards; /* Animation for scaling */
+}
+
+/* Scale-up animation for the number */
+@keyframes scaleUp {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 600px) {
+    .course-counter {
+        top: 10px; /* Less space on smaller screens */
+        right: 10px;
+        padding: 10px 20px; /* Smaller padding */
+    }
+
+    .counter-info .counter-label {
+        font-size: 16px; /* Smaller font size for label */
+    }
+
+    .counter-info .counter-number {
+        font-size: 20px; /* Smaller font size for the number */
+    }
+}
+
+/* Visualization Section Styling */
+.visualization-section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.stats-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #ffffff; /* Set background color to white */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
+}
+
+.stat-card h4 {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.charts-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.charts-container .chart-card {
+    max-width: 45%;
+    margin: 20px 0;
+    background: #ffffff; /* Set background color to white */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .stat-card {
+    background: #ffffff; /* Set background color to white */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-card h4 {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .chart-card {
+    background: #ffffff; /* Set background color to white */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 300px;
+  }
+
+/* Trending Courses Section Styling */
+.trending-courses-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.trending-courses {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.trending-card {
+    background: #ffffff; /* Set background color to white */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 10px;
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trending-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.trending-info {
+    text-align: left;
+    width: 100%;
+}
+
+/* Detailed Analytics Section Styling */
+.detailed-analytics-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.calendar-container {
+    margin-bottom: 20px;
+}
+
+.analytics-details {
+    background: #ffffff; /* Set background color to white */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+    margin: auto;
+    max-width: 600px;
+}

@@ -1,0 +1,83 @@
+.container {
+    max-width: 800px;
+    background-color: #f7f7f7; /* Set the background color of the component */
+    padding: 20px;
+    border-radius: 8px;
+    /* Remove box-shadow to blend with the background */
+  }
+  
+  .filters {
+    display: flex;
+    align-items: center;
+  }
+  
+  .total {
+    background-color: #f7f7f7;
+  }
+  
+  .filters .btn {
+    margin-left: 10px;
+  }
+  
+  .list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Reduced padding to decrease height */
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .list-group-item img {
+    border-radius: 50%;
+  }
+  
+  .list-group-item .fw-bold {
+    font-weight: bold;
+  }
+  
+  .list-group-item .text-muted {
+    color: #6c757d;
+  }
+  
+  .list-group-item .btn {
+    padding: 5px 10px;
+  }
+  
+  .list-group-item.read {
+    background-color: #f8f9fa;
+  }
+  
+  /* Additional styles */
+  .list-group-item .form-check-input {
+    margin-right: 10px;
+  }
+  
+  .list-group-item .rounded-circle {
+    margin-right: 15px;
+  }
+  
+  .list-group-item .ms-auto {
+    display: flex;
+    align-items: center;
+  }
+  
+  .list-group-item .btn i {
+    margin-right: 5px;
+  }
+  
+  .expanded-content {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-top: none;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+  }
+  
+  .list-group {
+    max-height: 700px; /* Increased height by 300px */
+    overflow-y: auto;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+  }

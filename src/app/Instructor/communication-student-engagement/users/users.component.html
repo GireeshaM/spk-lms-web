@@ -1,0 +1,119 @@
+<div class="students-dashboard">
+    <h1>Students</h1>
+  
+    <!-- Search & Status Filter -->
+    <div class="search-filter">
+      <input type="text" placeholder="Search by name" [(ngModel)]="searchTerm" (input)="applyFilter()" />
+      <button class="status-btn" (click)="toggleFilter()">Status ⌄</button>
+      <div *ngIf="filterOpen" class="filter-dropdown">
+        <button *ngFor="let status of statusOptions" (click)="filterByStatus(status)">
+          {{ status }}
+        </button>
+      </div>
+      <button class="add-btn">+ Add</button>
+    </div>
+  
+    <div *ngIf="selectedStatus" class="filtered-student-list">
+      <h3>Showing Students with Status: {{ selectedStatus }}</h3>
+      <ul>
+        <li *ngFor="let student of filteredStudents">
+          <strong>{{ student.name }}</strong> - {{ student.course }} ({{ student.status }})
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Student Table -->
+    <mat-card class="students-table">
+      <table mat-table [dataSource]="filteredStudents" class="mat-elevation-z8">
+        
+        <!-- User Column -->
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef>User</th>
+          <td mat-cell *matCellDef="let student" (click)="openDetails(student)">
+            <div class="user-info">
+              <div class="avatar" [style.background]="student.color">
+                {{ student.initials }}
+              </div>
+              <div>
+                <strong>{{ student.name }}</strong>
+                <p>{{ student.email }}</p>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+  
+        <!-- Enrolled Courses -->
+        <ng-container matColumnDef="course">
+          <th mat-header-cell *matHeaderCellDef>Enrolled Courses</th>
+          <td mat-cell *matCellDef="let student">
+            {{ student.course }} 
+            <a href="/Instructor/communication-student-engagement/" (click)="openDetails(student, $event)">View More</a>
+          </td>
+        </ng-container>
+  
+        <!-- Phone -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <td mat-cell *matCellDef="let student">{{ student.phone }}</td>
+        </ng-container>
+  
+        <!-- Country -->
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef>Country</th>
+          <td mat-cell *matCellDef="let student">{{ student.country }}</td>
+        </ng-container>
+  
+        <!-- Payment -->
+        <ng-container matColumnDef="payment">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let student">
+            <span [class.paid]="student.payment === 'Paid'"
+              [class.due]="student.payment === 'Due'"
+              [class.cancelled]="student.payment === 'Cancelled'"></span>
+           
+          </td>
+        </ng-container>
+  
+        <!-- Status with Action Menu -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let student">
+            <div class="status-container" (click)="toggleActionMenu(student, $event)">
+              <span [ngClass]="{
+                'active': student.status === 'Active',
+                'inactive': student.status === 'Inactive',
+                'suspended': student.status === 'Suspended'
+              }" class="status-label">
+                {{ student.status }}
+              </span>
+              <div *ngIf="selectedActionStudent === student" class="action-menu">
+                <button (click)="sendMessage(student)">
+                  📩 
+                </button>
+                <button (click)="suspendStudent(student)">
+                  ⛔ 
+                </button>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card>
+  </div>
+  
+  <!-- Modal for Student Details -->
+  <div *ngIf="selectedStudent" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>{{ selectedStudent.name }}</h2>
+      <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
+      <p><strong>Course:</strong> {{ selectedStudent.course }}</p>
+      <p><strong>Phone:</strong> {{ selectedStudent.phone }}</p>
+      <p><strong>Country:</strong> {{ selectedStudent.country }}</p>
+      <p><strong>Payment:</strong> {{ selectedStudent.payment }}</p>
+      <p><strong>Status:</strong> {{ selectedStudent.status }}</p>
+      <button class="close-btn" (click)="closeModal()">Close</button>
+    </div>
+  </div>

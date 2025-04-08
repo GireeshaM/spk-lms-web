@@ -1,0 +1,35 @@
+
+<div class="navbar-container bg-pastel">
+    <nav class="navbar">
+      <!-- Logo Section -->
+      <div class="navbar-brand">
+        <h4 class="logo">🎓 Academy LMS</h4>
+      </div>
+  
+      <!-- Navigation Menu -->
+      <ul class="nav-links">
+        <li class="nav-item"><a class="nav-link" routerLink="/coursesp">📚 Courses</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/interests" (click)="viewInterests()">📌 Interests</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/grades">📈 Grades</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/assignments">📖 Assignments</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/learning-path">🛤 Path</a></li>
+      </ul>
+  
+      <!-- Right Section: Search + Profile -->
+      <div class="right-section">
+        <!-- Search Bar -->
+        <!-- <div class="search-container">
+          <input type="text" placeholder="Search..." class="search-input" />
+          <span class="search-icon">🔍</span>
+        </div> -->
+  
+        <!-- Profile -->
+        <div class="profile-section">
+          <a [routerLink]="['/student-profile']" class="profile-link">
+            <img src="images/student.jpg" class="profile-img" alt="Profile" />
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  

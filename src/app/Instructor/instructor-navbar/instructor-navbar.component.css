@@ -1,0 +1,78 @@
+.pastel-navbar {
+    background-color: #f8f5fc !important; /* Light pastel purple */
+    font-size: 0.85rem; /* Small font */
+  }
+  
+  /* Navbar Brand */
+  .small-brand {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #6d597a !important;
+  }
+  
+  /* Navbar Items */
+  .navbar-nav .nav-link {
+    color: #6d597a !important; /* Soft purple */
+    padding: 5px 10px;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: #e0c3fc !important; /* Light pastel hover */
+    border-radius: 5px;
+  }
+  
+  /* Dropdown Styling */
+  .dropdown-menu {
+    background-color: #f4efff; /* Light pastel background */
+    border: none;
+  }
+  
+  .dropdown-item {
+    font-size: 0.8rem;
+    color: #6d597a;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #e0c3fc !important;
+  }
+  
+  /* Profile Image */
+  .navbar-nav .rounded-circle {
+    border: 2px solid #d3b5fc;
+  }
+  
+  /* Small Navbar */
+  .small-navbar {
+    padding: 5px 10px !important;
+  }
+  
+  ::ng-deep app-admin-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    padding-top: 70px; /* Adjust this value to match your navbar height */
+  }
+  
+  
+  .d-flex.align-items-center {
+    gap: 10px;  /* Space between logo and navbar */
+  }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+  }
+
+  .logo-img {
+    height: 80px;  /* Keep the navbar height unchanged */
+    width: auto;   /* Adjust width proportionally */
+    max-width: 200px;  /* Increase width */
+    object-fit: contain;  /* Prevent stretching */
+  }

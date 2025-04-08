@@ -1,6 +1,65 @@
 <div class="container">
-  <h2>One door, infinite possibilities-unlock your potential</h2>
-  <p>Skills that shape you, knowledge that drives you—start learning today.</p>
+  <div class="contact-page">
+    <div class="info-container">
+      <h2 class="left-aligned" style="color: #ff7900; margin-bottom: 10px;">
+        Learn from 350+ top universities trainers
+      </h2>
+      <div class="logo-container">
+          <img src="images\logo.jpg" alt="Logo" width="1300" />
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- Include Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!--invest in your career-->
+<div style="background-color: #fff7ed; padding: 20px; text-align: center; border-radius:3px;;">
+    <h2 style="color: #ff7900;">Invest in Your Career</h2>
+    <table >
+        <tr>
+            <td style="padding: 15px; text-align: center;">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'">
+                    
+                    <!-- Icon for Explore New Skills -->
+                    <i class="fa-solid fa-lightbulb" style="font-size: 40px; color: #ff7900; margin-bottom: 10px;"></i>
+                    <h3>Explore New Skills</h3>
+                    <p>Access 10,000+ courses in AI, business, technology, and more.</p>
+                </div>
+            </td>
+            <td style="padding: 15px; text-align: center;">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'">
+
+                    <!-- Icon for Earn Valuable Credentials -->
+                    <i class="fa-solid fa-certificate" style="font-size: 40px; color: #007bff; margin-bottom: 10px;"></i>
+                    <h3>Earn Valuable Credentials</h3>
+                    <p>Get certificates for every course you finish and boost your chances of getting hired after your trial ends at no additional cost.</p>
+                </div>
+            </td>
+            <td style="padding: 15px; text-align: center;">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'">
+
+                    <!-- Icon for Learn from the Best -->
+                    <i class="fa-solid fa-chalkboard-teacher" style="font-size: 40px; color: #28a745; margin-bottom: 10px;"></i>
+                    <h3>Learn from the Best</h3>
+                    <p>Take your skills to the next level with expert-led courses and Coursera Coach, your AI-powered guide.</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+ 
+  
+  
+<div class="container">
+   <h2 style="color: #ff7900;"> Lets look at the different courses</h2> 
+  <p>Skills that shape you, knowledge that drives you—start learning today.</p> 
+  
 
   <!-- Tabs for Filtering -->
   <div class="tabs">
@@ -17,11 +76,11 @@
       
       <p>{{ course.instructor }}</p>
       <p class="rating">⭐ {{ course.rating }} ({{ course.reviews }} reviews)</p>
-      <p class="price">₹{{ course.price }}</p>
       <button class="premium">Premium</button>
     </div>
   </div>
 
+
   <!-- Read More Button -->
-  <button *ngIf="visibleCourses < filteredCourses.length" (click)="showMore()" class="read-more">Load More</button>
+  <button *ngIf="visibleCourses < filteredCourses.length" (click)="showMore()" class="read-more" style="background-color: #ff7900;">Load More</button>
 </div>

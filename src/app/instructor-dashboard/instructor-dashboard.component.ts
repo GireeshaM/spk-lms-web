@@ -3,123 +3,82 @@ import { Component } from '@angular/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule } from '@angular/forms';
+import { Chart, registerables } from 'chart.js';
+import { DashboardComponent } from "../Instructor/dashboard/dashboard.component";
+import { Router } from '@angular/router';
+import { InstructorNavbarComponent } from "../Instructor/instructor-navbar/instructor-navbar.component";
 
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-instructor-dashboard',
-  imports: [CommonModule,BsDatepickerModule,NgxChartsModule,FormsModule],
+  imports: [CommonModule, BsDatepickerModule, NgxChartsModule, FormsModule, DashboardComponent],
   templateUrl: './instructor-dashboard.component.html',
   styleUrl: './instructor-dashboard.component.css'
 })
 export class InstructorDashboardComponent {
-  selectedDate: Date = new Date(); 
-  totalCourses: number = 5;
-  totalStudents: number = 120;
-  avgPerformance: number = 87;
 
-  
-  // Course Completion Chart Data
-  barChartData = [
-    { name: "Course A", value: 80 },
-    { name: "Course B", value: 65 },
-    { name: "Course C", value: 90 },
-    { name: "Course D", value: 75 }
+  courses = [
+    { title: 'Angular Fundamentals', category: 'Web Development', instructor: 'John Doe', students: 120, active: true, updated: false, views: 5000, completed: 300, ratings: 4.5, image: 'https://5mins.org/wp-content/uploads/2020/09/Why-are-more-and-more-developers-learning-AngularJS.jpg', showMenu: false },
+    { title: 'React for Beginners', category: 'Web Development', instructor: 'Jane Smith', students: 90, active: false, updated: true, views: 4000, completed: 250, ratings: 4.7, image: 'https://www.tatvasoft.com/blog/wp-content/uploads/2022/07/Why-Use-React.jpg', showMenu: false },
+    { title: 'Vue.js Mastery', category: 'Web Development', instructor: 'Mark Wilson', students: 75, active: true, updated: true, views: 3000, completed: 200, ratings: 4.6, image: 'https://codingmart.com/wp-content/uploads/2024/01/image_2024-01-24_142224335.png', showMenu: false },
+    { title: 'Node.js & Express', category: 'Backend Development', instructor: 'Emily Brown', students: 110, active: false, updated: true, views: 6000, completed: 350, ratings: 4.8, image: 'https://railsware.com/blog/wp-content/uploads/2018/09/2400%D1%851260-rw-blog-node-js.png', showMenu: false },
+    { title: 'Data Science with Python', category: 'Data Science', instructor: 'Michael Johnson', students: 150, active: true, updated: false, views: 7000, completed: 500, ratings: 4.9, image: 'https://www.datasciencecentral.com/wp-content/uploads/2021/10/9430449274.png', showMenu: false }
   ];
 
-  // Student Engagement Pie Chart Data
-  pieChartData = [
-    { name: "Active", value: 60 },
-    { name: "Inactive", value: 40 }
-  ];
+  constructor(private router: Router) {}
 
-  // Student Ratings (Mock Data)
-  studentRatings = [
-    { name: "John Doe", rating: 5, comment: "Great instructor! Really helpful." },
-    { name: "Alice Smith", rating: 4, comment: "Good explanations but a bit fast-paced." },
-    { name: "Robert Brown", rating: 5, comment: "Very engaging sessions!" }
-  ];
-
-  // Messages from Students
-  messages = [
-    { sender: "Emma Watson", message: "Can we have an extra class on grammar?" },
-    { sender: "David Lee", message: "Will the final exam be online?" }
-  ];
-
-  unreadMessages: number = this.messages.length;
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  // Function to calculate star ratings
-  getStars(rating: number): string {
-    return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  ngOnInit() {
+    this.renderCourseProgressChart();
+    this.renderEngagementChart();
   }
 
-  // Function to mark all messages as read
-  markMessagesAsRead(): void {
-    this.unreadMessages = 0;
-  }
- 
-  chatMessages = [
-    { sender: 'Student1', text: 'Hello, when is our next class?', timestamp: this.getCurrentTime() },
-    { sender: 'Instructor', text: 'It’s on Monday at 10 AM.', timestamp: this.getCurrentTime() }
-  ];
-  newMessage = '';
-  isTyping = false;
-
-  // Send Message
-  sendMessage() {
-    if (this.newMessage.trim()) {
-      this.chatMessages.push({
-        sender: 'Instructor',
-        text: this.newMessage,
-        timestamp: this.getCurrentTime()
-      });
-      this.newMessage = '';
-      this.isTyping = false;
-
-      // Simulated Student Response
-      setTimeout(() => {
-        this.chatMessages.push({
-          sender: 'Student1',
-          text: 'Okay, thank you!',
-          timestamp: this.getCurrentTime()
-        });
-      }, 2000);
-    }
+  navigateHome() {
+    this.router.navigate(['/']);
   }
 
-  // Detect Typing
-  detectTyping(event: KeyboardEvent) {
-    this.isTyping = true;
-    setTimeout(() => (this.isTyping = false), 2000);
+  filteredCourses = [...this.courses];
+
+  renderCourseProgressChart() {
+    new Chart("courseProgressChart", {
+      type: 'bar',
+      data: {
+        labels: ["Python", "Angular", "ML", "React", "NodeJS"],
+        datasets: [{
+          label: "Completion %",
+          data: [85, 60, 75, 50, 90],
+          backgroundColor: ['#74b9ff', '#55efc4', '#fdcb6e', '#e17055', '#6c5ce7']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
   }
 
-  // Get Current Time
-  getCurrentTime(): string {
-    const now = new Date();
-    return now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-  }
-  createCourse() {
-    alert("Redirecting to course creation...");
-    // Implement navigation logic here
-}
+  renderEngagementChart() {
+    new Chart("engagementChart", {
+      type: 'pie',
+      data: {
+        labels: ["Quizzes", "Notes", "Assignments", "Videos"],
+        datasets: [{
+          data: [30, 20, 25, 25],
+          backgroundColor: ['#a29bfe', '#00cec9', '#fab1a0', '#81ecec']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
 
-uploadCourse() {
-    alert("Opening file upload...");
-    // Implement upload logic
-}
-//QUICK ACTIONSS
-selectedData: string | null = null;
-
-  showData(type: string) {
-    if (type === 'reports') {
-      this.selectedData = "📊 Reports Data: Here are your latest reports...";
-    } else if (type === 'assignments') {
-      this.selectedData = "📑 Assignment Data: Manage your pending assignments...";
-    } else if (type === 'notifications') {
-      this.selectedData = "🔔 Notifications: You have 3 new alerts...";
-    }
+   
   }
 }

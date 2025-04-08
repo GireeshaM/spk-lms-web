@@ -1,0 +1,34 @@
+<div class="course-container">
+    <!-- Left: Video/Document Player -->
+    <div class="content-player">
+      <ng-container *ngIf="selectedContent?.type === 'video'">
+        <video #videoPlayer controls width="100%">
+          <source [src]="selectedContent?.url" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </ng-container>
+  
+      <ng-container *ngIf="selectedContent?.type === 'document'">
+        <iframe [src]="selectedContent?.url" width="100%" height="500px"></iframe>
+      </ng-container>
+    </div>
+  
+    <!-- Right: Course Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>Course Content</h3>
+        <button class="close-btn" (click)="toggleSidebar()">✖</button>
+      </div>
+  
+      <div *ngFor="let section of courseSections">
+        <h4 (click)="toggleSection(section)">{{ section.title }} ({{ section.length }})</h4>
+        <ul *ngIf="section.expanded">
+          <li *ngFor="let lecture of section.lectures" (click)="selectContent(lecture)">
+            {{ lecture }}
+          </li>
+          <li class="quiz-link" (click)="goToQuiz()">📌 Take Quiz</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

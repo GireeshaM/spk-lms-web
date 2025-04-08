@@ -1,0 +1,237 @@
+/* Import fonts (optional) */
+/* @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans:500,700&display=swap'); */
+
+/* Reset styles */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+/* Body styling */
+body {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+  margin:  0;
+  background: linear-gradient(to left top, #FAFFD1 0%, #A1FFCE 100%);
+}
+
+/* Split card container */
+.split-card {
+  position: relative; /* Position relative for absolute children */
+  height: 500px; /* Adjusted height */
+  width: 500px; /* Adjusted width */
+  display:flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: 0 auto; /* Center the split card in the viewport */
+}
+.cards{
+  border: 2px solid blue; /* Border for the cards */
+}
+/* /my edit class/ */
+.my-edit {
+  display: block; /* Ensures the image behaves like a block element */
+  width: 60%; /* Makes the image span the full width */
+  height: 60%; /* Maintains the aspect ratio */
+  margin: 20px 0 0 0; /* Moves the image down and aligns it to the left */
+  position: relative; /* Allows further positioning if needed */
+}
+
+
+/* Individual cards */
+.split-card .cards {
+  position: absolute;
+  height: 70%; /* Ensure cards fit within the container */
+  width: 60%; /* Ensure cards fit within the container */
+  overflow: hidden; 
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.12);
+}
+
+.split-card .cards img {
+  height: 100%; /* Ensure images fit within the card */
+  width: 100%; /* Ensure images fit within the card */
+  object-fit: cover; /* Maintain aspect ratio */
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.split-card.animate .card-1 {
+  transform: translateX(-115%) translateY(-50%) rotateZ(0deg); /* Move left and up */
+}
+
+.split-card.animate .card-2 {
+  transform: translateX(115%) translateY(-50%) rotateZ(0deg); /* Move right and up */
+}
+
+.split-card.animate .card-3 {
+  transform: translateX(0%) translateY(-50%) rotateZ(0deg); /* Move up */
+}
+
+.split-card.animate .card-4 {
+  transform: translateX(-150%) rotateZ(0deg); /* No vertical movement */
+}
+
+.split-card.animate .card-5 {
+  transform: translateX(150%) rotateZ(0deg); /* No vertical movement */
+}
+
+/* When the animate class is removed, cards return to their original positions */
+.split-card .card-1,
+.split-card .card-2,
+.split-card .card-3,
+.split-card .card-4,
+.split-card .card-5 {
+  transform: translateX(0) translateY(0) rotateZ(0);
+}
+/* .split-card .card-6 {
+  z-index: -2;
+  transform: rotateZ(-15deg);
+  transition-delay: 0.25s;
+} */
+
+/* Animation when checkbox is checked */
+/* Animation when checkbox is checked */
+input:checked ~ .split-card .card-1 {
+  transform: translateX(-115%) translateY(-50%) rotateZ(0deg); /* Move left and up */
+}
+
+input:checked ~ .split-card .card-2 {
+  transform: translateX(115%) translateY(-50%) rotateZ(0deg); /* Move right and up */
+}
+
+input:checked ~ .split-card .card-3 {
+  transform: translateX(0%) translateY(-50%) rotateZ(0deg); /* Move up */
+}
+
+input:checked ~ .split-card .card-4 {
+  transform: translateX(-150%) rotateZ(0deg); /* No vertical movement */
+}
+
+input:checked ~ .split-card .card-5 {
+  transform: translateX(150%) rotateZ(0deg); /* No vertical movement */
+}
+/* Hover effect for images */
+input:checked ~ .split-card img:hover {
+  transform: scale(1.2);
+}
+/* Container for the entire section */
+.cta-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: #ffffff; /* White background */
+}
+
+/* Inner container for image and text */
+.cta-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  gap: 40px; /* Space between image and text */
+}
+
+/* Left Section: Image */
+.cta-image {
+  flex: 1;
+  position: relative;
+}
+
+.cta-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: transparent;
+  object-fit: cover;
+}
+
+/* Right Section: Text */
+.cta-text {
+  flex: 1;
+
+}
+
+.cta-text h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1b437b; /* Dark gray */
+  margin-bottom: 20px;
+}
+
+.cta-text p {
+  font-size: 16px;
+  color: #6b7280; /* Softer gray */
+  margin-bottom: 30px;
+}
+
+/* Button */
+.cta-button {
+  background-color: #1d4ed8; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #2563eb; /* Lighter blue on hover */
+}
+
+.ai-tools-full-wrapper {
+  width: 100%;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  padding: 20px 0;
+  background-color: #f1f1f1;
+}
+
+.ai-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.tool-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px; /* 🔼 Increased height */
+  border-radius: 10px;
+  border: 2px solid black;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+
+.tool-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.light-box {
+  background-color: #d4ebf2;
+}
+
+.white-box {
+  background-color: #ffffff;
+}
+
+.tool-logo {
+  max-width: 70%;
+  max-height: 60px;
+  object-fit: contain;
+}

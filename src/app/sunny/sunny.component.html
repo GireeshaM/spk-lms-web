@@ -1,0 +1,275 @@
+<br>
+<br>
+<br>
+<div class="dashboard-container">
+    <!-- Background image section -->
+    <div class="background"></div>
+
+    <!-- Profile card: Positioned at the top left of the background -->
+    <div class="profile-card-container">
+        <div class="progress-card">
+            <!-- Profile Section with Image -->
+            <div class="profile-image">
+                <img src="https://m.media-amazon.com/images/I/61CG8tD+GFL.AC_UF1000,1000_QL80.jpg"
+                    alt="Profile Image">
+            </div>
+            <div class="greeting">Hey, Prof. Shushanth!</div>
+
+            <!-- Progress Bar with Badges -->
+            <div class="progress-section">
+                <div class="badge1 left-badge">Beginner</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div> <!-- Dynamic width for progress -->
+                    </div>
+                </div>
+                <div class="badge1 right-badge">Expert</div>
+            </div>
+
+            <!-- Completed Courses Section -->
+            <div class="completed-courses">
+                <h2>You have completed 5 courses</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mycards">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0.5 ml-90">
+            <!-- Row 1 - Card 1 -->
+            <div class="bg-[#4CAF50] p-4 rounded-lg shadow-md border-l-4 border-green-500 max-w-sm w-full">
+                <h3 class="text-sm text-black">Users Enrolled</h3>
+                <p class="text-xl font-bold text-black">750+</p>
+                <p class="text-yellow-500">40% increase from last month</p>
+            </div>
+
+            <!-- Row 1 - Card 2 -->
+            <div class="ram">
+                <div class="bg-[#FF9800] p-4 rounded-lg shadow-md border-l-4 border-yellow-500 max-w-sm w-full">
+                    <h3 class="text-sm text-black">Total Courses </h3>
+                    <p class="text-xl font-bold text-black">10</p>
+                    <p class="text-green-500">20% increase from last month</p>
+                </div>
+            </div>
+
+            <div class="row2">
+                <!-- Row 2 - Card 1 -->
+                <div class="bg-[#2196F3] p-4 rounded-lg shadow-md border-l-4 border-blue-500 max-w-sm w-full">
+                    <h3 class="text-sm text-black">Overall Coures Ratings</h3>
+                    <p class="text-xl font-bold text-black">3.8/5</p>
+                    <p class="text-pink-500">15% increase this week</p>
+                </div>
+            </div>
+            <div class="row2">
+                <!-- Row 2 - Card 2 -->
+                <div class="ram">
+                    <div class="bg-[#9C27B0] p-4 rounded-lg shadow-md border-l-4 border-purple-500 max-w-sm w-full">
+                        <h3 class="text-sm text-black">Instructor Rating</h3>
+                        <p class="text-xl font-bold text-black">4.7/5</p>
+                        <p class="text-orange-500">Top-rated Instructors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="getstart">
+    <div class="section-container">
+        <div class="content">
+            <h2 class="title">Create an Engaging Course</h2>
+            <p class="description">
+                Whether you've been teaching for years or are teaching for the first
+                time, you can make an engaging course. We've compiled resources and
+                best practices to help you get to the next level, no matter where you're
+                starting.
+            </p>
+            <a href="#" class="button">Get Started</a>
+        </div>
+        <div class="image-container">
+            <img src="https://s.udemycdn.com/instructor/dashboard/engaging-course-2x.jpg" alt="Engaging Course" />
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="scroll">
+        <div class="ai-container">
+            <div class="header1">
+                <h2>AI Suggestions</h2>
+            </div>
+            <div class="scroll-container" #scrollContainer>
+                <div class="scroll-content">
+                    <div class="suggestion-item glow" *ngFor="let suggestion of aiSuggestions">
+                        <p class="description">{{ suggestion }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Top 7 Courses Enrolled</h2>
+        <ngx-charts-bar-horizontal [results]="courseData" [view]="view" [scheme]="colorScheme" [xAxis]="true"
+            [yAxis]="true" [gradient]="true" [animations]="true" [showXAxisLabel]="true" [showYAxisLabel]="true"
+            xAxisLabel="Number of Users" yAxisLabel="Courses" [barPadding]="0.1" [roundEdges]="true"
+            [showDataLabel]="true" (select)="onSelect($event)">
+        </ngx-charts-bar-horizontal>
+    </div>
+</div>
+
+<!-- <div class="mycourses">
+    <h1 class="course-title">Course Status</h1>
+
+    <div class="search-filter">
+        <input type="text" id="searchBar" placeholder="Search course..." (keyup)="searchCourse($event)">
+        <select id="filterStatus" (change)="filterCourses($event)">
+            <option value="all">All Courses</option>
+            <option value="completed">Completed Courses</option>
+            <option value="progress">In Progress Courses</option>
+            <option value="active">Active Courses</option>
+        </select>
+    </div> -->
+
+    <!-- <div class="course-list">
+        <div class="course-item" *ngFor="let course of paginatedCourses" [attr.data-status]="course.status">
+            <div class="course-icon">
+                <img src="assets/icons/course-icon.svg" alt="Course Icon">
+            </div>
+            <div class="course-details">
+                <h4>{{ course.title }}</h4>
+
+                <p class="course-status"><strong>{{ course.status.toUpperCase() }}</strong> • Public</p>
+                <button class="status-btn" [class.active]="course.isActive" [class.inactive]="!course.isActive"
+                    (click)="toggleStatus(course)">
+                    {{ course.isActive ? 'Active' : 'Inactive' }}
+                </button>
+
+                <p class="progress-text"><strong>{{ course.status === 'completed' ? 'Course Completed' : 'Finish your
+                        course' }}</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill" [style.width.%]="course.progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   Pagination Controls -->
+    <!-- <div class="pagination">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+
+</div>  -->
+<div class="badge-container">
+    <div class="badge total">
+      <div class="count">{{ displayStats.total }}</div>
+      <div class="label">Total Courses</div>
+    </div>
+  
+    <div class="badge active">
+      <div class="count">{{ displayStats.active }}</div>
+      <div class="label">Active Courses</div>
+    </div>
+  
+    <div class="badge completed">
+      <div class="count">{{ displayStats.completed }}</div>
+      <div class="label">Completed Courses</div>
+    </div>
+  
+    <div class="badge in-progress">
+      <div class="count">{{ displayStats.inProgress }}</div>
+      <div class="label">In Progress</div>
+    </div>
+  </div>
+  <div class="course-progress-section">
+    <h3>📚 Courses to be Uploaded</h3>
+    <div class="course-progress-wrapper">
+       
+        
+        <div class="course-progress-container" id="courseContainer">
+            
+            <div class="course">
+                <a href="#">
+                    <div class="progress-container">
+                        <div class="progress-ring progress-65"></div>
+                        <div class="progress-disc"><span>65%</span></div>
+                    </div>
+                    <p>Angular</p>
+                </a>
+            </div>
+        
+            <div class="course">
+                <a href="#">
+                    <div class="progress-container">
+                        <div class="progress-ring progress-45"></div>
+                        <div class="progress-disc"><span>45%</span></div>
+                    </div>
+                    <p>Python</p>
+                </a>
+            </div>
+        
+            <div class="course">
+                <a href="#">
+                    <div class="progress-container">
+                        <div class="progress-ring progress-33"></div>
+                        <div class="progress-disc"><span>33%</span></div>
+                    </div>
+                    <p>JavaScript</p>
+                </a>
+            </div>
+
+            <div class="course">
+                <a href="#">
+                    <div class="progress-container">
+                        <div class="progress-ring progress-25"></div>
+                        <div class="progress-disc"><span>25%</span></div>
+                    </div>
+                    <p>C</p>
+                </a>
+            </div>
+            <button id="next-btn" class="nav-btn" onclick="scrollCourses(1)">&#8250;</button> <!-- Right Button -->
+            <!-- Add more courses if needed -->
+            
+        </div>
+
+    </div>
+</div>
+<div class="notifications-box" id="notificationBox">
+    <button class="close-btn" onclick="closeNotificationBox()">×</button>
+    <h3>Notifications</h3>
+    <div class="notifications-list">
+      <ul>
+        <li>Hey John Doe, you have successfully created Java course!</li>
+        <li>You are very near to getting the next badge 🔥</li>
+        <li>You have crossed 1K followers 🎉</li>
+        <li>You have 10 more enrollments 📚</li>
+        <li>New feature unlocked! 🚀</li>
+        <li>Hey John Doe, you have successfully created Java course!</li>
+        <li>You are very near to getting the next badge 🔥</li>
+        <li>You have crossed 1K followers 🎉</li>
+        <li>You have 10 more enrollments 📚</li>
+        <li>New feature unlocked! 🚀</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card chart-card p-3">
+        <h5>🔥 Top Courses</h5>
+        <div id="scrollContainer" class="animated-scroll">
+            <ul class="list-group mt-3">
+                <li *ngFor="let course of displayedCourses" class="list-group-item gradient-item">
+                    <i class="bi bi-book"></i>
+                    {{ course.title }}
+                    <span class="badge">{{ course.students }} Enrollments</span>
+                    <span class="badge badge-info">⭐ {{ course.rating }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="wishlist-container">
+    <!-- Wishlist Header -->
+    <div class="wishlist-header">
+      <h2>My Wishlist</h2>
+    </div>
+  
+    <!-- No Wishlist Items -->
+    <div *ngIf="wishlist.length === 0" class="empty-wishlist">
+      <p>Your wishlist is empty. Start adding courses now!</p>
+    </div>
+  
+    <!-- Wishlist Items -->
+    <div class="wishlist-list" *ngIf="wishlist.length > 0">
+      <div class="wishlist-item" *ngFor="let course of wishlist">
+        <img [src]="'images/react.png'" alt="Course Image" class="course-image" />
+        <div class="wishlist-details">
+          <h5 class="course-title">{{ course.title }}</h5>
+          <p class="course-instructor">👨‍🏫 {{ course.instructor }}</p>
+          <p class="course-rating">⭐ {{ course.rating }}</p>
+          <div class="wishlist-actions">
+            <button class="btn btn-primary btn-animated" (click)="goToCourse(course.id)" routerLink="/Instructor/course-marketing/promotions-page">
+              Go to Course
+            </button>
+            <button class="btn btn-outline-primary btn-animated" (click)="removeFromWishlist(course.id)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Suggested Courses Section -->
+    <h4 class="suggestions-title">You might also like</h4>
+    <div class="suggested-courses" [routerLink]="['/coursesp']" fragment="popular-courses">
+      <div class="suggested-course" *ngFor="let suggestion of suggestedCourses" >
+        <img [src]="suggestion.image" alt="Suggested Course" class="suggested-image" />
+        <h6>{{ suggestion.title }}</h6>
+      </div>
+    </div>
+  </div>

@@ -1,57 +1,48 @@
-<app-admin-nav ></app-admin-nav>
-<br>
-<br>
+<app-admin-nav></app-admin-nav>
 <br>
 <br>
 <div class="container">
-    <h2>All Courses</h2>
-    <div class="stats-container">
-      <div class="stat-card">
-        <h3>Total Courses</h3>
-        <p>{{ totalCourses }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>Active Courses</h3>
-        <p>{{ activeCourses }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>Updated Courses</h3>
-        <p>{{ updatedCourses }}</p>
-      </div>
+  <h2>All Courses</h2>
+  
+  <!-- Course Statistics -->
+  <div class="stats-container">
+    <div class="stat-card">
+      <h3>Total Courses</h3>
+      <p>{{ totalCourses }}</p>
     </div>
-    <br>
-    <!-- Category & Search Bar -->
-    <div class="controls">
-      <!-- Course Category Dropdown -->
-      <select (change)="filterByCategory($event)">
-        <option value="">All Categories</option>
-        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-      </select>
-  
-      <!-- Search Bar with Icon -->
-      <div class="search-container">
-        <input type="text" placeholder=" Search by Course or Instructor" (input)="searchCourses($event)" />
-      </div>
-  
-      <!-- Sorting Dropdown -->
-      <select (change)="sortCourses($event)">
-        <option value="">Sort by</option>
-        <option value="views">Most Viewed</option>
-        <option value="completed">Most Completed</option>
-        <option value="ratings">Most Rated</option>
-      </select>
+    <div class="stat-card">
+      <h3>Active Courses</h3>
+      <p>{{ activeCourses }}</p>
     </div>
-  
-    <!-- Course Cards -->
-    <div class="course-grid">
-      <div *ngFor="let course of filteredCourses" class="course-card">
-        <img [src]="course.image" alt="{{ course.title }}">
-        <div class="course-info">
-          <h3>{{ course.title }}</h3>
-          <p class="instructor">Instructor: <strong>{{ course.instructor }}</strong></p>
-          <p>📚 Enrolled: {{ course.students }}</p>
-          <p>👀 Views: {{ course.views }} | ✅ Completed: {{ course.completed }} | ⭐ Ratings: {{ course.ratings }}</p>
+    <div class="stat-card">
+      <h3>Update Courses</h3>
+      <p>{{ updatedCourses }}</p>
+    </div>
+  </div>
+  <br>
+
+  <!-- Course Cards -->
+  <div class="course-grid">
+    <div *ngFor="let course of filteredCourses" class="course-card">
+      <img [src]="course.image" alt="{{ course.title }}">
+      <div class="course-info">
+        <h3>
+          {{ course.title }}
+          <span class="menu-icon" (click)="toggleMenu(course)">⋮</span>
+        </h3>
+        
+        <!-- Dropdown Menu -->
+        <div *ngIf="course.showMenu" class="dropdown-menu">
+          <button (click)="toggleActive(course)">
+            {{ course.active ? 'Deactivate' : 'Activate' }} Course
+          </button>
+          <button (click)="deleteCourse(course)">Delete Course</button>
         </div>
+
+        <p class="instructor">Instructor: <strong>{{ course.instructor }}</strong></p>
+        <p>📚 Enrolled: {{ course.students }}</p>
+        <p>👀 Views: {{ course.views }} | ✅ Completed: {{ course.completed }} | ⭐ Ratings: {{ course.ratings }}</p>
       </div>
     </div>
   </div>
+</div>

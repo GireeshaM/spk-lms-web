@@ -1,1 +1,134 @@
-<p>dashboard works!</p>
+<!-- Instructor Navbar -->
+<br>
+
+<!-- Sidebar & Profile Section -->
+<div class="d-flex">
+   <!-- Main Content -->
+   <div class="container mt-3">
+       <div class="instructor-dashboard">
+           <div class="row stats-row">
+             <div class="col-md-2">
+               <div class="card text-center p-2">
+                 <h4>👨‍🏫 150</h4>
+                 <p>Enrolled Students</p>
+               </div>
+             </div>
+             <div class="col-md-2">
+               <div class="card text-center p-2">
+                 <h4>📚 8</h4>
+                 <p>Ongoing Courses</p>
+               </div>
+             </div>
+             <div class="col-md-2">
+               <div class="card text-center p-2">
+                 <h4>📚 5</h4>
+                 <p>Active Courses</p>
+               </div>
+             </div>
+             <div class="col-md-2">
+               <div class="card text-center p-2">
+                 <h4>⭐ 4.8</h4>
+                 <p>Instructor Rating</p>
+               </div>
+             </div>
+             <div class="col-md-2">
+               <div class="card text-center p-2">
+                 <h4>📈 7</h4>
+                 <p>Course Progress</p>
+               </div>
+             </div>
+           </div>
+       <!-- Charts Section -->
+       <div class="row mt-4">
+           <div class="col-md-6">
+               <div class="card p-3 text-center">
+                   <h5>📈 Course Progress</h5>
+                   <canvas id="courseProgressChart"></canvas>
+               </div>
+           </div>
+           <div class="col-md-6">
+               <div class="card p-3 text-center">
+                   <h5>📊 Your Content</h5>
+                   <canvas id="engagementChart"></canvas>
+               </div>
+           </div>
+       </div>
+
+       
+
+       <div class="create-course-container">
+           <div class="create-course-content">
+               <h2>Create an Engaging Course</h2>
+               <p>Whether you've been teaching for years or are teaching for the first time, you can make an engaging course. We've compiled resources and best practices to help you get to the next level, no matter where you're starting.</p>
+               <a href="#">Get Started</a>
+           </div>
+           <div class="create-course-video">
+               <video autoplay loop muted playsinline>
+                   <source src="images/instructorcourse.mp4" type="video/mp4">
+                   Your browser does not support the video tag.
+               </video>
+           </div>
+       </div>
+       
+       <h3><b>In Progress Courses</b></h3>
+       <div class="course-drafts-container">
+           <!-- Search and Filter -->
+           <div class="course-controls">
+               <input type="text" class="search-bar" placeholder="Search your courses">
+               <button class="search-btn">🔍</button>
+               <select class="filter-dropdown">
+                   <option>Newest</option>
+                   <option>Oldest</option>
+                   <option>Most Progress</option>
+               </select>
+           </div>
+      
+           <!-- Course Drafts List -->
+           <div class="course-list">
+               <div class="course-item">
+                   <div class="course-icon">
+                       <img src="assets/icons/course-icon.svg" alt="Course Icon">
+                   </div>
+                   <div class="course-details">
+                       <h4>Learn .NET Core in 30 Days</h4>
+                       <p class="course-status"><strong>DRAFT</strong> • Public</p>
+                       <p class="progress-text"><strong>Finish your course</strong></p>
+                       <div class="progress-bar">
+                           <div class="progress-fill" style="width: 10%;"></div>
+                       </div>
+                   </div>
+               </div>
+       
+               <div class="course-item">
+                   <div class="course-icon">
+                       <img src="assets/icons/course-icon.svg" alt="Course Icon">
+                   </div>
+                   <div class="course-details">
+                       <h4>Learn .NET Core in 60 Days</h4>
+                       <p class="course-status"><strong>DRAFT</strong> • Public</p>
+                       <p class="progress-text"><strong>Finish your course</strong></p>
+                       <div class="progress-bar">
+                           <div class="progress-fill" style="width: 15%;"></div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <br>
+       <h3 ><b>Compeleted Courses</b></h3>
+       <br>
+       <div class="course-grid">
+           <div *ngFor="let course of filteredCourses" class="course-card">
+             <img [src]="course.image" alt="{{ course.title }}">
+             <div class="course-info">
+               <h3>
+                 {{ course.title }}
+               </h3>
+
+               <p>📚 Enrolled: {{ course.students }}</p>
+               <p>👀 Views: {{ course.views }} | ✅ Completed: {{ course.completed }} | ⭐ Ratings: {{ course.ratings }}</p>
+             </div>
+           </div>
+         </div>
+   </div>
+</div>

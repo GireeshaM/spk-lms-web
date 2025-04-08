@@ -1,0 +1,79 @@
+<title>AI LMS - Audience Growth</title>
+
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" [ngStyle]="cursorStyle"></div>
+  <div class="cursor-follower" [ngStyle]="followerStyle" [ngClass]="{'hover': cursorHover}"></div>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" [style.width]="scrollProgress + '%'"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" [ngClass]="{'scrolled': isScrolled}">
+    <div class="logo">AI LMS</div>
+    <ul class="nav-links" [ngClass]="{'active': menuActive}">
+      <li><a href="#features" (click)="scrollTo('features')">Features</a></li>
+      <li><a href="#form" (click)="scrollTo('form')">Get Started</a></li>
+      <li><a href="#footer" (click)="scrollTo('footer')">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+  </nav>
+
+  <!-- Header Section -->
+  <div class="header">
+    <div class="hero-animation">
+      <canvas #heroCanvas width="800" height="400"></canvas>
+    </div>
+    <h1>Ready to Grow Your Audience?</h1>
+    <div class="typewriter">{{ typewriterText }}</div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features" id="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card" *ngFor="let feature of features" [ngClass]="{'visible': feature.visible}" (click)="openVideoModal(feature)">
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+        <div *ngIf="feature.subFeatures" class="sub-features">
+          <div *ngFor="let sub of feature.subFeatures">
+            <h4>{{ sub.title }}</h4>
+            <p>{{ sub.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audience Analytics Dashboard -->
+
+
+  <!-- Form Section with Gamified Progress -->
+  <div class="form-section" id="form">
+    <h2>Get Started Today</h2>
+    <div class="form-container">
+      <form (ngSubmit)="submitForm()">
+        <input type="text" placeholder="Your Name" [(ngModel)]="formData.name" name="name" required>
+        <input type="email" placeholder="Your Email" [(ngModel)]="formData.email" name="email" required>
+        <button type="submit">Join the AI LMS Revolution</button>
+      </form>
+    </div>
+    <!-- Progress Circle -->
+   
+ 
+
+  <!-- Video Modal -->
+  <div class="modal" *ngIf="showModal" (click)="closeVideoModal($event)">
+    <div class="modal-content">
+      <span class="modal-close" (click)="closeVideoModal()">×</span>
+      <h2>{{ selectedFeature?.title }}</h2>
+      <video controls #videoPlayer width="100%">
+        <source [src]="selectedFeature?.video" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+

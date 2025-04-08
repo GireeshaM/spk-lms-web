@@ -1,0 +1,91 @@
+<div class="banner">
+    <div class="profile-img">
+      <img [src]="profilePic" alt="Instructor">
+    </div>
+  </div>
+  
+  <div class="profile-container">
+    <div class="left-section">
+      <h2>{{ instructorName }}</h2>
+      <p class="subtitle">Instructor</p>
+  
+      <div class="info">
+        <p><i class="fa fa-book"></i> {{ courses.length }} Courses Offered</p>
+        <p><i class="fa fa-graduation-cap"></i> {{ enrolledStudents }} Enrolled Students</p>
+      </div>
+      <button class="settings-button" (click)="openSettings()">Edit Profile</button>
+    </div>
+  
+    <div class="right-section">
+      <div class="tabs">
+        <span class="tab" [ngClass]="{'active': activeTab === 'intro'}" (click)="switchTab('intro')">INTRODUCTION</span>
+        <span class="tab" [ngClass]="{'active': activeTab === 'courses'}" (click)="switchTab('courses')">COURSES</span>
+        <span class="tab" [ngClass]="{'active': activeTab === 'reviews'}" (click)="switchTab('reviews')">RATINGS & REVIEWS</span>
+      </div>
+  
+      <div *ngIf="activeTab === 'intro'" class="tab-content">
+        <p class="intro">{{ bio }}</p>
+  
+        <div class="education">
+          <h3>Education</h3>
+          <div class="education-content">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+            <div>
+              <p>Masters in Computer Science</p>
+              <p>PhD in Computer Science and Engineering</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="achievements">
+          <h3>Achievements</h3>
+          <div class="achievements-content">
+            <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png">
+            <ul>
+              <li>Microsoft Certified Solution Developer</li>
+              <li>Oakridge University - Assisted Faculty</li>
+              <li>Guest Lecturer at Stanford University</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Courses Tab -->
+      <div *ngIf="activeTab === 'courses'" class="tab-content">
+        <div class="course-card" *ngFor="let course of courses">
+          <img [src]="course.image" alt="Course Image">
+          <div class="course-info">
+            <h4>{{ course.title }}</h4>
+            <p>{{ course.description }}</p>
+            <span class="course-meta">Duration: {{ course.duration }}</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Ratings & Reviews Tab -->
+      <div *ngIf="activeTab === 'reviews'" class="tab-content">
+        <div class="review-card" *ngFor="let review of reviews">
+          <div class="review-header">
+            <strong>{{ review.name }}</strong>
+            <span>
+              <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+                <i class="fa" [ngClass]="{'fa-star': i < review.rating, 'fa-star-o': i >= review.rating}"></i>
+              </ng-container>
+            </span>
+          </div>
+          <p>{{ review.comment }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Edit Profile Modal -->
+  <div class="modal" id="settingsModal" style="display: none;">
+    <div class="modal-content">
+      <h3>Edit Profile</h3>
+      <input type="text" placeholder="Update Name" [(ngModel)]="instructorName">
+      <input type="text" placeholder="Update Bio" [(ngModel)]="bio">
+      <input type="file" (change)="onFileSelected($event)">
+      <button (click)="saveSettings()">Save</button>
+    </div>
+  </div>

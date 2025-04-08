@@ -13,7 +13,7 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, FormsModule, CommonModule, RouterLinkActive],
+  imports: [RouterLink, FormsModule, CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
@@ -21,6 +21,11 @@ export class NavBarComponent {
 
   isExpanded = false;
   searchQuery: string = '';
+ notifications = [
+    { profilePhoto: 'assets/images/photo1.jpg', sender: 'Student A', subject: 'Comment on your post' },
+    { profilePhoto: 'assets/images/photo2.jpg', sender: 'Admin', subject: 'Meeting at 3 PM' },
+    { profilePhoto: 'assets/images/photo3.jpg', sender: 'Student B', subject: 'Question about assignment' }
+  ];
 
   modules = [
     {
@@ -53,8 +58,9 @@ export class NavBarComponent {
       url: '',
       icon: '<svg class="bi" width="24" height="24"><use xlink:href="#megaphone"></use></svg>',
       aspNetMenuItems: [
-        { menuItemName: 'Course Landing Page', url: '/Instructor/course-marketing/course-landing-page' },
-        { menuItemName: 'Bulk Upload', url: '/Instructor/course-marketing/course-message' },
+        { menuItemName: 'My Courses', url: '/Instructor/course-marketing/pricing-page' },
+        { menuItemName: 'Promotions Page', url: '/Instructor/course-marketing/promotions-page' },
+        { menuItemName: 'Send Course for Review', url: '/Instructor/course-marketing/send-course-for-review' }
       ]
     },
     {
@@ -73,7 +79,7 @@ export class NavBarComponent {
       icon: '<svg class="bi" width="24" height="24"><use xlink:href="#bar-chart"></use></svg>',
       aspNetMenuItems: [
         { menuItemName: 'Track Course Engagement', url: '/Instructor/engagement-traffic-analysis/track-course-engagement' },
-        { menuItemName: 'View Marketplace Insights', url: '/Instructor/engagement-traffic-analysis/view-marketplace-insights' },
+        // { menuItemName: 'View Marketplace Insights', url: '/Instructor/engagement-traffic-analysis/view-marketplace-insights' },
         { menuItemName: 'View Traffic', url: '/Instructor/engagement-traffic-analysis/view-traffic' }
       ]
     },

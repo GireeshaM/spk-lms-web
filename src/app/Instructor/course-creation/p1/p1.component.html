@@ -1,0 +1,20 @@
+<div class="nav-header">
+    <span class="back-arrow" (click)="navigateToDashboard()">
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </span>
+    <h2 class="title">Define Your Course Type</h2>
+  </div>
+  <div class="options">
+    <div class="card" (click)="navigateToCourse()" [class.selected]="selectedType === 'course'">
+      <span class="icon">📚</span>
+      <h3>Course</h3>
+      <p>Create immersive learning journeys with videos, quizzes, and coding challenges.</p>
+    </div>
+    <div class="card" (click)="navigateToPracticeTest()" [class.selected]="selectedType === 'test'">
+      <span class="icon">📝</span>
+      <h3>Practice Test</h3>
+      <p>Equip students for success with expertly crafted exam simulations.</p>
+    </div>
+  </div>

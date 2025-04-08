@@ -1,0 +1,50 @@
+<div class="total">
+    <div class="container mt-4">
+      <h2>Notifications</h2>
+      <div class="filters mb-3">
+        <input type="checkbox" class="form-check-input me-2" (change)="selectAll($event)">
+        <span>Select All</span>
+        <span class="mx-2">|</span>
+        <span>No Notification Selected</span>
+        <button class="btn btn-outline-secondary btn-sm ms-3" (click)="markAllAsUnread()">Mark as Unread</button>
+        <button class="btn btn-outline-secondary btn-sm ms-2" (click)="markAllAsRead()">Mark as Read</button>
+        <button class="btn btn-outline-danger btn-sm ms-2" (click)="deleteSelected()">Delete</button>
+        <div class="dropdown ms-auto">
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+            <li><a class="dropdown-item" (click)="filterNotifications('all')">All</a></li>
+            <li><a class="dropdown-item" (click)="filterNotifications('read')">Read</a></li>
+            <li><a class="dropdown-item" (click)="filterNotifications('unread')">Unread</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>You have {{ unreadCount }} unread notifications.</p>
+      <div class="list-group" style="max-height: 400px; overflow-y: auto;">
+        <div *ngFor="let notification of notifications; let i = index">
+          <div class="list-group-item list-group-item-action d-flex align-items-center" [class.read]="notification.read" (click)="toggleExpand(i)">
+            <input type="checkbox" class="form-check-input me-2" [(ngModel)]="notification.selected" (click)="$event.stopPropagation()">
+            <img [src]="notification.profilePhoto" alt="Profile Photo" class="rounded-circle me-3" width="40" height="40">
+            <div>
+              <div class="fw-bold">{{ notification.sender }}</div>
+              <div class="text-muted">{{ notification.subject }}</div>
+              <div class="text-muted">{{ notification.date }}</div>
+            </div>
+            <div class="ms-auto">
+              <button *ngIf="!notification.expanded && !notification.read" class="btn btn-outline-secondary btn-sm me-2" (click)="markAsRead(i); $event.stopPropagation()"><i class="fa fa-envelope"></i></button>
+              <button *ngIf="notification.expanded || notification.read" class="btn btn-outline-secondary btn-sm me-2" (click)="markAsUnread(i); $event.stopPropagation()"><i class="fa fa-envelope-open"></i></button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteNotification(i); $event.stopPropagation()"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+          <div *ngIf="notification.expanded" class="expanded-content">
+            <p *ngIf="notification.type === 'comment'">Course: {{ notification.course }}</p>
+            <p *ngIf="notification.type === 'comment'">Comment: {{ notification.comment }}</p>
+            <textarea *ngIf="notification.type === 'comment'" class="form-control" placeholder="Reply to comment" #replyBox></textarea>
+            <button *ngIf="notification.type === 'comment'" class="btn btn-primary mt-2" (click)="replyToComment(i)">Reply</button>
+            <p *ngIf="notification.type === 'meeting'">Details about the meeting...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>

@@ -1,0 +1,52 @@
+<div class="split-card">
+  <label class="cards card-1" (click)="toggleCards()">
+    <img src="images\a1.png" alt="Card 1">
+  </label>
+  <label class="cards card-2" (click)="toggleCards()">
+    <img src="images\a2.png" alt="Card 2">
+  </label>
+  <label class="cards card-3" (click)="toggleCards()">
+    <img src="images\a3.png" alt="Card 3">
+  </label>
+  <label class="cards card-4" (click)="toggleCards()">
+    <img src="images\a4.png" alt="Card 4">
+  </label>
+  <label class="cards card-5" (click)="toggleCards()">
+    <img src="images\a5.png" alt="Card 5">
+  </label>
+</div>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin-top: -50px;">
+  <h1 style="font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: bold; color: #1f2937;">
+    Enter the new era of AI
+  </h1>
+  <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; color: #6b7280;">
+    Here’s a little known fact. 87% of the top 1 million websites use AI.
+  </h4>
+  <div class="ai-tools-full-wrapper">
+    <div class="ai-tools-grid">
+      <div
+        *ngFor="let tool of tools; let i = index"
+        [ngClass]="['tool-box', getBoxClass(i)]"
+      >
+        <img [src]="tool.img" [alt]="tool.name" class="tool-logo" />
+      </div>
+    </div>
+  </div>
+  
+</div>
+<div class="cta-section">
+  <div class="cta-container">
+    <!-- Left Section: Image -->
+    <div class="cta-image">
+      <img src="images\me3.png" alt="Professional Woman" />
+    </div>
+    <!-- Right Section: Text -->
+    <div class="cta-text">
+      <h1>Take the next step toward your personal and professional goals with SLMS.</h1>
+      <p>Join now to receive personalized recommendations from the full SLMS catalog.</p>
+      <button class="cta-button">Join for Free</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,227 @@
+<div class="container">
+    <!-- Left Section -->
+    <div class="left-section">
+      <p class="course-label">
+        <span class="dot"></span> Course
+      </p>
+      <h1 class="title">AI & Generative AI Explained</h1>
+      <p class="description">
+        Artificial Intelligence (AI) is everywhere—but the fundamentals are often misunderstood. 
+        In this fast-paced introduction, quickly ramp up on the current state of AI, including Generative AI tools like ChatGPT.
+      </p>
+      <div class="instructor">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYqymb61Nn6D_WrmUoXH82i48ITDaG1cxKMA&s" class="instructor-img" alt="Instructor">
+        <span class="instructor-name">by Kunal Kumar</span>
+      </div>
+      <button class="get-started" (click)="openTermsModal()">Get started</button>
+    </div>
+  
+    <!-- Right Section -->
+    <div class="right-section">
+      <h2 class="right-title">Try this course for free</h2>
+      <p class="right-description">
+        Access this course and other top-rated tech content with a free trial.
+      </p>
+      <button class="trial-button individual" (click)="openTermsModal()">Free individual trial</button>
+      <button class="trial-button team" >Free team trial</button>
+      <hr class="divider">
+      <h3 class="questions-title">Have questions?</h3>
+      <p class="questions-description">Get them answered now.</p>
+      <a href="#" class="live-chat">Start a live chat →</a>
+    </div>
+  </div>
+  
+  
+  
+  <div>  
+      <div class="course-details">
+        <div class="detail-box"><strong>4 modules</strong><br />Gain insight into a topic and learn the fundamentals.</div>
+        <div class="detail-box"><strong>4.6 ★</strong><br />(6,125 reviews)</div>
+        <div class="detail-box"><strong>Beginner level</strong><br />No prior experience required</div>
+        <div class="detail-box"><strong>Flexible schedule</strong><br />Approx. 8 hours</div>
+        <div class="detail-box"><strong>👍 97%</strong><br />Most learners liked this course</div>
+      </div>
+    
+    <!-- Pre-requirements Section -->
+  <!-- Pre-requirements Section -->
+  <div class="pre-requirements">
+    <h2>Pre-requirements</h2>
+    <ul class="requirements-list">
+      <li>Basic understanding of Machine Learning concepts</li>
+      <li>Familiarity with Python programming</li>
+      <li>Fundamental knowledge of Deep Learning frameworks like TensorFlow or PyTorch</li>
+      <li>Interest in AI model training and data processing</li>
+      <li>Willingness to explore prompt engineering and AI ethics</li>
+    </ul>
+  </div>
+  
+    
+      <!-- Skills Section -->
+      <div class="skills-section">
+        <h2>Skills you'll gain</h2>
+        <div class="skills" [ngClass]="{ 'expanded': showMore }">
+          <span *ngFor="let skill of (showMore ? skills : skills.slice(0, 5))">{{ skill }}</span>
+        </div>
+        <button class="view-more-btn" (click)="showMore = !showMore">
+          {{ showMore ? 'Show Less' : 'View More' }}
+        </button>
+      </div>
+    </div>
+  
+    <div class="learn-section">
+      <h2 class="learn-title">What You Will Learn</h2>
+      <ul class="learn-list">
+        <li>Understand the fundamentals of Artificial Intelligence (AI).</li>
+        <li>Explore the key concepts behind Generative AI.</li>
+        <li>Learn how AI tools like ChatGPT work.</li>
+        <li>Discover real-world applications of AI and its impact.</li>
+        <li>Get hands-on experience with AI-powered tools.</li>
+      </ul>
+    </div>
+  <br>
+  <br>
+  
+  
+    <div class="career-certificate">
+      <div class="certificate-text">
+        <h2>Earn a career certificate</h2>
+        <p>Add this credential to your LinkedIn profile, resume, or CV</p>
+        <p>Share it on social media and in your performance review</p>
+      </div>
+      <div class="certificate-badge">
+        <img src="images/certificate.jpg" alt="Certificate">
+      </div>
+    </div>
+    
+    <br>
+    <br>
+  
+    <!-- course content -->
+    <div class="section course-content">
+      <h2>Course content</h2>
+      <div class="content-header">
+        <p>
+          {{ courseSections.length }} sections •
+          {{ totalLectures }} lectures •
+          {{ totalLength }} total length
+        </p>
+        <button (click)="expandAllSections()">
+          {{ expandAll ? 'Collapse all sections' : 'Expand all sections' }}
+        </button>
+      </div>
+    
+      <div class="accordion">
+        <div
+          class="accordion-item"
+          *ngFor="let section of courseSections; let i = index"
+        >
+          <div class="accordion-title" (click)="toggleSection(i)">
+            <div class="section-header">
+              <strong>{{ section.title }}</strong>
+              <span class="lecture-info">
+                {{ section.lectures.length }} lectures • {{ section.length }}
+              </span>
+            </div>
+            <span class="toggle-icon">
+              {{ openSections[i] ? '▲' : '▼' }}
+            </span>
+          </div>
+    
+          <div
+            class="accordion-content"
+            [class.open]="openSections[i]"
+          >
+            <ul>
+              <li *ngFor="let lecture of section.lectures">{{ lecture }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Course Overview Section -->
+  <div class="course-overview">
+    <!-- Left: Video -->
+    <div class="video-container">
+      <video controls>
+        <source src="https://www.youtube.com/watch?v=2IK3DFHRFfw" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  
+    <!-- Right: Course Description -->
+    <div class="course-description">
+      <h2>Course Overview</h2>
+      <p>
+        This course introduces you to the fundamentals of Generative AI, 
+        covering topics such as AI-driven content creation, deep learning models, 
+        and ethical considerations in AI development.  
+      </p>
+      <ul>
+        <li>🔹 Understand the core concepts of Generative AI.</li>
+        <li>🔹 Learn how AI models generate text, images, and music.</li>
+        <li>🔹 Explore deep learning techniques like GANs and transformers.</li>
+        <li>🔹 Hands-on projects to apply AI model training.</li>
+        <li>🔹 Ethical AI practices and real-world applications.</li>
+      </ul>
+      <button class="enroll-btn" (click)="openTermsModal()">Enroll Now</button>
+    </div>
+  </div>
+  
+  <!-- Terms & Conditions Modal -->
+  <!-- Terms & Conditions Modal -->
+  <div class="modal-overlay" *ngIf="showModal">
+    <div class="modal-content">
+      <h2>Terms & Conditions</h2>
+      <p>Please read and accept the terms before proceeding:</p>
+      
+      <div class="terms-list">
+        <ul>
+          <li>📌 You must complete all course modules to receive certification.</li>
+          <li>📌 Access to course content is for personal learning only.</li>
+          <li>📌 Unauthorized distribution of course materials is prohibited.</li>
+          <li>📌 You agree to participate in quizzes and assignments fairly.</li>
+          <li>📌 Refunds are not available once the course is accessed.</li>
+          <li>📌 AI-generated content should be used ethically and responsibly.</li>
+        </ul>
+      </div>
+  
+      <label class="terms-checkbox">
+        <input type="checkbox" [(ngModel)]="isAccepted" />
+        I accept the Terms & Conditions
+      </label>
+  
+      <div class="modal-buttons">
+        <button class="proceed-btn" [disabled]="!isAccepted" (click)="proceedToCourse()">Proceed</button>
+        <button class="close-btn" (click)="closeTermsModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  
+   <!-- Reviews Section -->
+  <!-- Reviews Section -->
+  <div class="reviews-section">
+    <h2>Student Reviews</h2>
+    <div class="reviews-container">
+      <div class="review-card" *ngFor="let review of reviews">
+        <div class="review-header">
+          <img [src]="review.profilePic" alt="Profile Picture" class="profile-pic" />
+          <div>
+            <strong>{{ review.name }}</strong>
+            <div class="stars">
+              <span *ngFor="let star of [].constructor(review.rating)">★</span>
+            </div>
+          </div>
+        </div>
+        <p class="review-message">"{{ review.message }}"</p>
+        <div class="review-footer">
+          <span class="date">{{ review.date }}</span>
+          <button (click)="likeReview(review)" class="like-btn">
+            ❤️ {{ review.likes }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

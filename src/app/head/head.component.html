@@ -1,14 +1,109 @@
-<br>
-<br>
-<section>
-  <div class="container-fluid p-0">
-    <!-- Full width video without controls -->
-    <video autoplay loop muted class="d-block w-100">
-      <source src="images\Get Start with us...!.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" (slide.bs.carousel)="onSlide($event)">
+  <header class="horizontal-header">
+    <a href="#">
+      <img src="images/sushma.png" alt="SLMS Logo" class="logo">
+    </a>
+    <div class="search-bar-container">
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search for anything">
+        <button class="search-btn">🔍</button>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="/student-dashboard" style="color: black;">Student</a>
+      <a href="/instructor-dashboard" style="color: black;">Instructor</a>
+      <a href="/admin-dashboard" style="color: black;">Admin</a>
+      <a href="/create-path" style="color: black;">Mandatory Courses</a>
+    </nav>
+    <button class="login-btn" (click)="openLoginModal()">Login</button>
+  </header>
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-</section>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <video class="d-block w-100" autoplay muted loop>
+        <source src="images/video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="dynamic-text">
+        <h2 class="title">{{ dynamicText.title }}</h2>
+        <p class="description">{{ dynamicText.description }}</p>
+        <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <video class="d-block w-100" autoplay muted loop>
+        <source src="images/video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="dynamic-text">
+        <h2 class="title">{{ dynamicText.title }}</h2>
+        <p class="description">{{ dynamicText.description }}</p>
+        <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <video class="d-block w-100" autoplay muted loop>
+        <source src="images/video3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="dynamic-text">
+        <h2 class="title">{{ dynamicText.title }}</h2>
+        <p class="description">{{ dynamicText.description }}</p>
+        <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content login-modal-content">
+    <button class="close-modal-btn" (click)="closeLoginModal()">×</button>
+    <div class="modal-body">
+      <!-- Left Column: Image -->
+      <div class="login-image">
+        <img src="images\l.png" alt="Login Illustration">
+      </div>
+      <!-- Right Column: Login Form -->
+      <div class="login-form">
+        <div class="login-header">
+          <button class="login-tab active">Sign In</button>
+          <button class="login-tab">Sign Up</button>
+        </div>
+        <h2>Sign In</h2>
+        <form (submit)="onLoginSubmit($event)">
+          <div class="form-group">
+            <input type="text" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Password" required>
+          </div>
+          <a href="#" class="forgot-password">Forgot Password?</a>
+          <button type="submit" class="login-submit-btn">Sign In →</button>
+        </form>
+        <div class="social-login">
+          <a href="#"><i class="fab fa-google"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h1 class="skills-heading">All the skills you need in one place</h1>
+<h5 class="skills-subheading">From critical skills to technical topics, SLMS supports your professional development</h5>
 
-<app-carousel></app-carousel>
+<!-- <app-carousel></app-carousel> -->
 <app-course-list></app-course-list>

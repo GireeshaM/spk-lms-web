@@ -1,244 +1,257 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import * as bs from 'bootstrap';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.css'],
-  imports:[CommonModule]
+  imports:[CommonModule,FormsModule]
 })
-export class CourseDetailsComponent implements OnInit {
-  showAll = false; 
-  showAllSections = false; 
-  maxSections = 6; 
-  expanded=false;
-  courseRating = 4.4;
-  totalRatings = '37K';
-  sections = [
-    {
-      title: 'Introduction',
-      lectures: [
-        { title: 'Welcome to Class!', duration: '12:12', type: 'video' },
-        { title: 'Class Organization', duration: '05:52', type: 'video' },
-        { title: 'Fundamentals of a Program', duration: '17:53', type: 'video' },
-        { title: 'Overview', duration: '13:40', type: 'notes' },
-        { title: 'Language Features', duration: '12:08', type: 'video' },
-        { title: 'Creating a C Program', duration: '16:27', type: 'video' },
-        { title: 'Quiz 1', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Variables and Data Types',
-      lectures: [
-        { title: 'Variables and Data Types', duration: '14:47', type: 'video' },
-        { title: 'Examples of Variables', duration: '9:35', type: 'video' },
-        { title: 'Notes on Variables', duration: '2:00', type: 'notes' },
-        { title: 'Data Types', duration: '1:35', type: 'video' },
-        { title: 'Types of Data Types', duration: '19:35', type: 'video' },
-        { title: 'Examples of Data Types', duration: '9:35', type: 'video' },
-        { title: 'Notes on Data Types', duration: '2:00', type: 'notes' },
-        { title: 'Quiz 2', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Operators and Expressions',
-      lectures: [
-        { title: 'Introduction to Operators', duration: '10:15', type: 'video' },
-        { title: 'Arithmetic Operators', duration: '12:30', type: 'video' },
-        { title: 'Logical Operators', duration: '11:45', type: 'video' },
-        { title: 'Bitwise Operators', duration: '13:20', type: 'video' },
-        { title: 'Conditional and Assignment Operators', duration: '10:50', type: 'video' },
-        { title: 'Operator Precedence', duration: '14:10', type: 'video' },
-        { title: 'Quiz 3', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Control Flow',
-      lectures: [
-        { title: 'Decision Making', duration: '12:40', type: 'video' },
-        { title: 'If-Else Statements', duration: '14:05', type: 'video' },
-        { title: 'Switch Case', duration: '10:30', type: 'video' },
-        { title: 'Loops in C', duration: '15:20', type: 'video' },
-        { title: 'Break and Continue', duration: '8:55', type: 'video' },
-        { title: 'Quiz 4', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Functions',
-      lectures: [
-        { title: 'Introduction to Functions', duration: '10:10', type: 'video' },
-        { title: 'Function Declaration and Definition', duration: '11:45', type: 'video' },
-        { title: 'Passing Parameters', duration: '13:25', type: 'video' },
-        { title: 'Recursion', duration: '12:40', type: 'video' },
-        { title: 'Inline Functions', duration: '9:30', type: 'video' },
-        { title: 'Quiz 5', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Arrays and Strings',
-      lectures: [
-        { title: 'Introduction to Arrays', duration: '12:35', type: 'video' },
-        { title: 'Multidimensional Arrays', duration: '13:40', type: 'video' },
-        { title: 'String Handling', duration: '15:10', type: 'video' },
-        { title: 'String Manipulation Functions', duration: '14:50', type: 'video' },
-        { title: 'Quiz 6', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Pointers',
-      lectures: [
-        { title: 'Understanding Pointers', duration: '16:20', type: 'video' },
-        { title: 'Pointer Arithmetic', duration: '14:45', type: 'video' },
-        { title: 'Pointers and Functions', duration: '13:55', type: 'video' },
-        { title: 'Pointers and Arrays', duration: '12:30', type: 'video' },
-        { title: 'Quiz 7', duration: '', type: 'quiz' }
-      ]
-    },
-    {
-      title: 'Structures and Unions',
-      lectures: [
-        { title: 'Introduction to Structures', duration: '12:30', type: 'video' },
-        { title: 'Nested Structures', duration: '13:40', type: 'video' },
-        { title: 'Introduction to Unions', duration: '11:25', type: 'video' },
-        { title: 'Differences Between Structures and Unions', duration: '10:55', type: 'video' },
-        { title: 'Quiz 8', duration: '', type: 'quiz' }
-      ]
-    }
-  ];
+export class CourseDetailsComponent {
+
   
+  // Hero / Top Section Data
+  ratingValue = 4.5;
+  ratingCount = 3546;
+  studentsCount = 41194;
+ studentFeedback = 4.7;
+  courseTitle = 'Algorithmic Trading with Python and AWS';
+  courseSubtitle = 'Build your own automated trading bot in Python with AWS';
+  courseImage = 'assets/course.jpg';
+  coursePrice = 99.99;
+  discountPrice = 9.99;
+  discountPercentage = 90;
+  courseRating = 4.5;
+  courseReviews = 3546;
+  courseStudents = 41194;
+  courseFeedback = 4.7;
+  courseLevel = 'Intermediate';
+  courseLanguage = 'English';
+  courseVideo = 'assets/video.mp4';
+  courseDuration = '9.5 hours';
+  courseLectures = 42;    
+  courseArticles = 59;
+  courseResources = 45;   
+  courseTests = 2;
+  courseExercises = 42;
+  courseCertificate = true;
+  courseMobile = true;
+  courseAccess = 'Lifetime access';
+  courseUpdates = 'Lifetime updates';
+  courseSupport = '24/7 support';
+  courseInstructor = 'Alexander Hagmann';
+  courseLastUpdated = '2/2025';
+  courseLanguages = 'English [Auto], Korean [Auto], 4 more';
+  instructorName = 'Alexander Hagmann';
+  lastUpdated = '2/2025';
+  languages = 'English [Auto], Korean [Auto], 4 more';
 
-  get displayedSections() {
-    return this.showAllSections
-      ? this.sections
-      : this.sections.slice(0, this.maxSections);
+  showTerms = false;
+  isChecked = false;
+
+  constructor(private router: Router) {}
+
+  openTermsDialog() {
+    this.showTerms = true;
   }
 
-  toggleSections() {
-    this.showAllSections = !this.showAllSections;
+  closeDialog() {
+    this.showTerms = false;
   }
 
-  getIconClass(type: string): string {
-    switch (type) {
-      case 'video':
-        return 'icon-video';
-      case 'quiz':
-        return 'icon-quiz';
-      case 'notes':
-        return 'icon-notes';
-      default:
-        return '';
+  proceed() {
+    if (this.isChecked) {
+      this.showTerms = false;
+      this.router.navigate(['/Instructor/course-marketing/promotions-page']);
     }
   }
-  // Define C Programming course data
-  course = {
-    title: 'C Programming for Beginners',
-    description:
-      'Learn the fundamentals of C programming, from basic syntax to advanced concepts.',
-    ratings: 4.7,
-    enrolled: 15400,
-    language: 'English',
-    price: 999,
-    instructor: {
-      name: 'Jane Smith',
-      bio: 'Experienced software developer with a passion for teaching C programming.',
-      photo: 'jane-smith.jpg', // Replace with the path to the instructor's photo
-    },
-  }
 
-  constructor() {}
 
-  ngOnInit(): void {
-    
-  }
-  features = [
-    { iconClass: 'icon-video', text: '25.5 hours on-demand video' },
-    { iconClass: 'icon-article', text: '2 articles' },
-    { iconClass: 'icon-download', text: '24 downloadable resources' },
-    { iconClass: 'icon-mobile', text: 'Access on mobile and TV' },
-    { iconClass: 'icon-certificate', text: 'Certificate of completion' },
+  // "This course includes" items
+  courseIncludes = [
+    '📺 44 hours on-demand video',
+    '📄 59 articles',
+    '📥 45 downloadable resources',
+    '📝 2 practice tests',
+    '💻 42 coding exercises',
+    '📱 Access on mobile',
+    '🎓Certificate of completion'
   ];
-  instructor = {
-    name: 'Jason Fedin',
-    title: 'Instructor / Software Developer',
-    imageUrl: 'https://img-c.udemycdn.com/user/200_H/30647118_d596.jpg', // Replace with the actual path
-    rating: 4.4,
-    reviews: '44,694',
-    students: '252,062',
-    courses: 5,
-    bio: `I have been teaching students for over 12 years via online classes at over 10 different online Universities. 
-      I have created many different class curriculums, ranging from mobile programming to bash scripting to Object-Oriented Design.
-      I have also instructed over 20 different Computer Science related classes. I have been developing software for over 
-      16 years in the real world at various companies, specializing in Object-Oriented Development and Mobile Applications.
-      I have been programming Android Applications since 2010. I love teaching classes at Udemy and other online universities. 
-      In addition to teaching, I also currently have a full-time job as a Software Developer at a Fortune 500 company.`,
+  reviewer = {
+    name: 'Surya A.',
+    courses: 56,
+    reviews: 1,
+    time: '4 years ago',
+    comment:
+      'This course is very concise and constructive. I like the way the topics were organized by the instructor and the fact that there is no time wasted in writing every code snippet from scratch every time. The legacy concepts like native JDBC and vanilla Hibernate usages are briefly explained first, followed by a deep-dive into Hibernate with JPA usage. Recommended!',
   };
 
-  toggleBio() {
-    this.expanded = !this.expanded;
+  likeReview() {
+    alert('You liked the review!');
   }
-  reviews = [
-    {
-      name: 'Maria O.',
-      time: 'a week ago',
-      rating: 5,
-      comment: 'It was good, easy in the beginning since I have a background in C++ and then it got harder and it was good to learn more about pointers.',
-      expanded: false,
-      liked: false,
-      disliked: false,
-    },
-    {
-      name: 'Rohit S.',
-      time: 'a week ago',
-      rating: 4,
-      comment: 'I find the course content to be good and well structured and instructor well informed, lots of code examples and demos help a lot.',
-      expanded: false,
-      liked: false,
-      disliked: false,
-    },
-    {
-      name: 'Sidharth B.',
-      time: '3 weeks ago',
-      rating: 5,
-      comment: 'This course is great for grasping the basics of the C programming language. I will recommend this course to anyone who has no idea on how to C program. The course takes you through basic topics until pointers and beyond.',
-      expanded: false,
-      liked: false,
-      disliked: false,
-    },
-    {
-      name: 'Michael N.',
-      time: 'a month ago',
-      rating: 3,
-      comment: 'It covers all the basics of the language, but even if it is advertised as a beginner\'s course, I still would\'ve liked to see some more complex examples and exercises with actual real-world use-cases.',
-      expanded: false,
-      liked: false,
-      disliked: false,
-    },
+
+  dislikeReview() {
+    alert('You disliked the review.');
+  }
+
+
+  // "What you’ll learn"
+  whatYouWillLearn = [
+    'Build automated Trading Bots with Python and AWS',
+    'Rigorous Testing of Strategies: Backtesting, Forward Testing, Live Testing',
+    'Create powerful and unique Trading Strategies using ML',
+    'Fully automate and schedule your Trades in the AWS Cloud'
   ];
 
-  getStars(rating: number): number[] {
-    return Array.from({ length: rating }, (_, i) => i + 1);
+  // "Requirements"
+  requirements = [
+    'Basic Python knowledge is helpful but not mandatory',
+    'AWS account for deployment (free tier possible)',
+    'Curiosity for Algorithmic Trading & Data-Driven Strategies'
+  ];
+
+  // Description (short & full)
+  shortDescription = `This course will teach you how to build your own algorithmic trading bot using Python, Machine Learning, and AWS. You'll learn how to test and deploy your trading strategies.`;
+  fullDescription = `This course will teach you how to build your own algorithmic trading bot using Python, Machine Learning, and AWS. You'll learn how to test and deploy your trading strategies with a thorough understanding of backtesting, forward testing, and live deployment. We will also cover advanced strategies to automate your workflow in the AWS Cloud. By the end of this course, you will have a fully functional and automated trading bot capable of handling real-world market conditions. 
+  \n\nYou’ll also gain valuable experience in applying machine learning techniques to identify profitable trades, mitigate risks, and handle large-scale data in a cloud environment. Whether you’re a beginner looking to get into algorithmic trading or an experienced trader seeking to automate your strategies, this course is designed to provide a comprehensive, hands-on learning experience.`;
+
+  showFullDescription = false;
+
+  toggleDescription() {
+    this.showFullDescription = !this.showFullDescription;
   }
 
-  toggleReview(review: any): void {
-    review.expanded = !review.expanded;
-  }
-
-  toggleLikeDislike(review: any, action: 'like' | 'dislike'): void {
-    if (action === 'like') {
-      review.liked = !review.liked;
-      if (review.liked) {
-        review.disliked = false;
-      }
-    } else {
-      review.disliked = !review.disliked;
-      if (review.disliked) {
-        review.liked = false;
-      }
+  // COURSE CONTENT
+  courseSections = [
+    {
+      title: 'Introduction',
+      length: '30m',
+      lectures: [
+        'Welcome to the Course',
+        'How to use this Course',
+        'Tools and Resources Overview'
+      ]
+    },
+    {
+      title: 'Python Basics & Setup',
+      length: '1h 15m',
+      lectures: [
+        'Installing Python and Required Libraries',
+        'Python Basics for Trading',
+        'Data Structures and APIs',
+        'Project Setup'
+      ]
+    },
+    {
+      title: 'Algorithmic Trading Fundamentals',
+      length: '2h 30m',
+      lectures: [
+        'What is Algorithmic Trading?',
+        'Backtesting Basics',
+        'Forward Testing and Live Testing',
+        'Common Pitfalls and How to Avoid Them'
+      ]
+    },
+    {
+      title: 'Machine Learning for Trading',
+      length: '3h',
+      lectures: [
+        'Introduction to ML in Finance',
+        'Feature Engineering',
+        'Building Predictive Models',
+        'Evaluating Model Performance'
+      ]
+    },
+    {
+      title: 'AWS Cloud Deployment',
+      length: '2h',
+      lectures: [
+        'AWS Account Setup',
+        'Deploying Your Bot to EC2',
+        'Scheduling Trades with AWS Lambda',
+        'Monitoring and Logging'
+      ]
     }
+  ];
+
+  // Track which sections are open
+  openSections: boolean[] = this.courseSections.map(() => false);
+  expandAll = false;
+
+  get totalLectures(): number {
+    return this.courseSections.reduce((acc, section) => acc + section.lectures.length, 0);
   }
 
-  getInitials(name: string): string {
-    const names = name.split(' ');
-    return names.map((n) => n[0]).join('').toUpperCase();
+  get totalLength(): string {
+    // Just a placeholder – in a real scenario, you'd sum up the times
+    return '~9h 15m';
   }
+
+  toggleSection(index: number) {
+    this.openSections[index] = !this.openSections[index];
+  }
+
+  expandAllSections() {
+    this.expandAll = !this.expandAll;
+    this.openSections = this.openSections.map(() => this.expandAll);
+  }
+
+  // INSTRUCTOR
+  instructorTitle = 'PhD, Financial Economist & Data Scientist';
+  instructorBio = `Alexander is passionate about bridging the gap between academic research
+    and real-world applications in finance. With a PhD in Finance and years of experience 
+    in data science, he specializes in quantitative trading and machine learning.`;
+
+  instructorImage = 'assets/instructor.png';
+
+  // REVIEWS (OPTIONAL)
+  reviews = [
+    {
+      name: 'John Doe',
+      comment:  `Excellent course! Learned so much about AWS and how to backtest strategies.`
+    },
+    {
+      name: 'Jane Smith',
+      comment: `Great content and hands-on examples. Instructor's explanations are crystal clear.`
+    }
+  ];
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
+  @ViewChild('videoModal') videoModalElement!: ElementRef;
+  modalInstance!: bootstrap.Modal;
+
+  ngAfterViewInit() {
+    // Initialize Bootstrap Modal instance
+    this.modalInstance = new bootstrap.Modal(this.videoModalElement.nativeElement);
+  }
+
+  // Open the modal and play the video
+  openVideoModal() {
+    this.modalInstance.show();
+    this.videoPlayer.nativeElement.play();
+  }
+
+  // Close the modal and pause the video
+  closeVideoModal() {
+    this.videoPlayer.nativeElement.pause();
+    this.modalInstance.hide();
+  }
+  leftColumnPoints = [
+    "By the end of this course, you'll have a strong foundation on Java Persistence with Hibernate",
+    "The fundamentals of First & Second Level Caching, N+1 Selects Problem & Batch Fetching, Optimistic Locking & Versioning",
+    "The fundamentals of Querying database using JPQL and Criteria API (JPA)",
+    "The fundamentals of Database Isolation Rules, some of the Best Practices of Java Persistence with Hibernate"
+  ];
+
+  rightColumnPoints = [
+    "The fundamentals and some of the advanced JPA features for Object/Relational Mapping, Querying, Caching, Performance and Concurrency",
+    "The fundamentals of Entity Relationships, Inheritance Mapping & Polymorphic Queries",
+    "The fundamentals of Handling Long Conversations with Merging Detached Object and Extended Persistence Context",
+    "Some of the Best Practices of Java Persistence with Hibernate"
+  ];
 }

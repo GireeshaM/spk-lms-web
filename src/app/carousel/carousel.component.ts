@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -9,12 +10,44 @@ import { Component } from '@angular/core';
   styleUrl: './carousel.component.css'
 })
 export class CarouselComponent {
+instructorImage: any;
+instructorTitle: any;
+instructorName: any;
+reviewer: any;
+showFullDescription: any;
+fullDescription: any;
+shortDescription: any;
+toggleDescription: any;
+requirements: any;
+openSections: any;
+toggleSection: any;
+courseSections: any;
+expandAll: any;
+expandAllSections: any;
+totalLength: any;
+totalLectures: any;
+leftColumnPoints: any;
+closeVideoModal: any;
+courseIncludes: any;
+openVideoModal: any;
+languages: any;
+lastUpdated: any;
+studentsCount: any;
+ratingCount: any;
+ratingValue: any;
+likeReview: any;
+dislikeReview: any;
+instructorBio: any;
+
+  constructor(private router: Router) {}
+  
   tabs = ['All', 'Web Development', 'JavaScript', 'React JS', 'Angular', 'Java', 'CSS', 'HTML'];
   selectedTab = this.tabs[0];
   visibleCourses = 8;
   courses = [
     // 🌐 Web Development Courses
     {
+      id:1,
       title: 'The Complete Web Developer Course 3.0',
       instructor: 'Rob Percival',
       rating: 4.2,
@@ -24,6 +57,7 @@ export class CarouselComponent {
       category: 'Web Development'
     },
     {
+      id:2,
       title: 'Internet and Web Development Fundamentals',
       instructor: 'YouAccel Training',
       rating: 4.3,

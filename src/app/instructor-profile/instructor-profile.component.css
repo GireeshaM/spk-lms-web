@@ -1,0 +1,636 @@
+.instructor-banner {
+    background-color: #1364e0;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    position: absolute;
+    bottom: -60px;
+    background-color: #fff;
+  }
+  
+  .instructor-details {
+    text-align: center;
+    padding-top: 80px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h2 {
+    margin: 10px 0 5px 0;
+  }
+  
+  .subtitle {
+    color: gray;
+    margin-bottom: 15px;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .stats i {
+    margin-right: 8px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .tabs span {
+    cursor: pointer;
+    padding: 8px 15px;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+  }
+  
+  .tabs .active {
+    color: #000;
+    border-color: #1364e0;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+  }
+  
+  .description {
+    max-width: 800px;
+    margin: auto;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .section {
+    text-align: left;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .section h3 {
+    margin-bottom: 15px;
+  }
+  
+  .education-item, .achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .education-item img,
+  .achievement-item img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Banner with profile image */
+.banner {
+    background-color: #1364e0;
+    height: 200px;
+    position: relative;
+  }
+  
+  .profile-img {
+    position: absolute;
+    bottom: -60px;
+    left: 50px;
+  }
+  
+  .profile-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+  }
+  
+  /* Container holding left and right sections */
+  .profile-container {
+    display: flex;
+    margin: 80px 50px 50px 50px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Left section */
+  .left-section {
+    width: 25%;
+    padding-right: 50px;
+  }
+  
+  .left-section h2 {
+    margin-bottom: 5px;
+  }
+  
+  .subtitle {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .info p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  /* Right section */
+  .right-section {
+    width: 75%;
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .tabs span {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .tabs .active {
+    background-color: #f5f5f5;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .intro {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Education Section */
+  .education {
+    margin-bottom: 30px;
+  }
+  
+  .education h3 {
+    margin-bottom: 15px;
+  }
+  
+  .education-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .education-content img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+  }
+  
+  .education-content p {
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  /* Achievements Section */
+  .achievements h3 {
+    margin-bottom: 15px;
+  }
+  
+  .achievements-content {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .achievements-content img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+  }
+  
+  .achievements-content ul {
+    padding-left: 20px;
+  }
+  
+  .achievements-content li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+/* Banner & Profile */
+.banner {
+    background-color: #1364e0;
+    height: 200px;
+    position: relative;
+  }
+  .profile-img {
+    position: absolute;
+    bottom: -60px;
+    left: 50px;
+  }
+  .profile-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+  }
+  
+  /* Profile Container */
+  .profile-container {
+    display: flex;
+    margin: 80px 50px 50px 50px;
+    font-family: Arial, sans-serif;
+  }
+  .left-section {
+    width: 25%;
+    padding-right: 50px;
+  }
+  .left-section h2 {
+    margin-bottom: 5px;
+  }
+  .subtitle {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .info p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .right-section {
+    width: 75%;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  .tabs .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .tabs .active {
+    background-color: #f5f5f5;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 3px solid #1364e0;
+  }
+  
+  /* Tab Content */
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active-tab {
+    display: block;
+  }
+  .intro {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Education Section */
+  .education {
+    margin-bottom: 30px;
+  }
+  .education h3 {
+    margin-bottom: 15px;
+  }
+  .education-content {
+    display: flex;
+    align-items: center;
+  }
+  .education-content img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+  }
+  .education-content p {
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  /* Achievements */
+  .achievements h3 {
+    margin-bottom: 15px;
+  }
+  .achievements-content {
+    display: flex;
+    align-items: flex-start;
+  }
+  .achievements-content img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+  }
+  .achievements-content ul {
+    padding-left: 20px;
+  }
+  .achievements-content li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Course Card */
+  .course-card {
+    display: flex;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+  }
+  .course-card img {
+    width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+  .course-info h4 {
+    margin: 0;
+    color: #333;
+  }
+  .course-info p {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+  }
+  .course-meta {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  /* Review Card */
+  .review-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 15px;
+  }
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .review-header strong {
+    color: #333;
+  }
+  .review-card p {
+    font-size: 14px;
+    color: #555;
+  }
+
+.banner {
+  background-color: #004aad;
+  height: 250px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right: 50px;
+}
+
+.profile-img {
+  left:300;
+  position: absolute;
+  bottom: -70px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.profile-container {
+  margin: 100px auto 50px;
+  max-width: 1200px;
+  display: flex;
+  gap: 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+.left-section {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.left-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.info p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.info p i {
+  margin-right: 8px;
+  color: #004aad;
+}
+
+.settings-button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #004aad;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.settings-button:hover {
+  background-color: #003580;
+}
+
+
+.right-section {
+  flex: 2;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.tabs .tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 3px solid transparent;
+}
+
+.tabs .active {
+  color: #004aad;
+  border-bottom: 3px solid #004aad;
+}
+
+.tab-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.intro {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.education, .achievements {
+  margin-bottom: 30px;
+}
+
+.education h3, .achievements h3 {
+  font-size: 18px;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.education-content, .achievements-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.education-content img, .achievements-content img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.education-content p, .achievements-content ul {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+.achievements-content ul {
+  padding-left: 20px;
+}
+
+.achievements-content li {
+  margin-bottom: 10px;
+}
+
+
+.course-card {
+  display: flex;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.course-card img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.course-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.course-info p {
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.course-meta {
+  font-size: 12px;
+  color: #777;
+}
+
+
+.review-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-header strong {
+  color: #333;
+}
+
+.review-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.todays-first-look {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.todays-first-look h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.todays-first-look p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}

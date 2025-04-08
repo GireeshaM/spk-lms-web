@@ -1,1 +1,143 @@
-<p>pricing-page works!</p>
+<div class="course-container" style="background-color: white;">
+    <div class="course-counter">
+        <div class="counter-info">
+            <span class="counter-label">Total Courses Uploaded:</span>
+            <span class="counter-number">{{ totalCourses }}</span>
+        </div>
+    </div>
+    
+    <!-- Visualization Section -->
+    <div class="visualization-section">
+        <div class="dashboard-container p-6 bg-white rounded-lg">
+            <h2 class="text-2xl font-bold mb-4">📊 Course Performance Overview</h2>
+          
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h4>Total Students</h4>
+                    <p class="stat-value">{{ totalStudents }}</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Course Reach</h4>
+                    <p class="stat-value">{{ courseReach }}</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Avg Rating</h4>
+                    <p class="stat-value">⭐ {{ avgRating }}</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Completion Rate</h4>
+                    <p class="stat-value">{{ completionRate }}%</p>
+                </div>
+            </div>
+          
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <canvas id="enrollmentChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <canvas id="reachChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <canvas id="reviewChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trending Courses Section -->
+    <div class="trending-courses-section">
+        <h2>Trending Courses</h2>
+        <div class="trending-courses">
+            <div class="trending-card" *ngFor="let course of trendingCourses">
+                <img [src]="course.imageUrl" alt="{{ course.name }}" class="trending-image">
+                <div class="trending-info">
+                    <h3>{{ course.name }}</h3>
+                    <p>Students Enrolled: {{ course.studentsPurchased }}</p>
+                    <p>Average Rating: ⭐ {{ course.averageRating }}/5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Analytics Section -->
+    <div class="detailed-analytics-section">
+        <h2>Detailed Analytics</h2>
+        <div class="calendar-container">
+            <input type="date" [(ngModel)]="selectedDate" (change)="fetchAnalytics()">
+        </div>
+        <div class="analytics-details">
+            <h3>Analytics for {{ selectedDate | date }}</h3>
+            <p>Total Students: {{ analytics.totalStudents }}</p>
+            <p>Total Revenue: ₹{{ analytics.totalRevenue }}</p>
+            <p>Average Rating: ⭐ {{ analytics.avgRating }}/5</p>
+        </div>
+    </div>
+
+    <h2>My Courses</h2>
+
+    <div *ngFor="let course of courses" class="course-card">
+        <img [src]="course.imageUrl" alt="{{ course.name }}" class="course-image">
+
+        <div class="course-info">
+            <h3>{{ course.name }}</h3>
+            <p>{{ course.description }}</p>
+            <p><strong>Category:</strong> {{ course.category }}</p>
+            <p><strong>Duration:</strong> {{ course.duration }} Hours</p>
+            <p><strong>Price:</strong> ₹{{ course.price }}</p>
+            <p><strong>Students Enrolled:</strong> {{ course.studentsPurchased }}</p>
+            <p><strong>Average Rating:</strong> ⭐ {{ course.averageRating }}/5</p>
+
+            <div class="action-buttons">
+                <button (click)="toggleSection(course.id, 'view')" class="view-btn">View Course</button>
+                <button (click)="toggleSection(course.id, 'edit')" class="edit-btn">Edit</button>
+                <button (click)="toggleSection(course.id, 'delete')" class="delete-btn">Delete</button>
+                <button (click)="toggleSection(course.id, 'reviews')" class="review-btn">View Reviews</button>
+            </div>
+        </div>
+
+        <!-- Expanded Sections -->
+        <div *ngIf="expandedSection === 'view' && expandedCourseId === course.id" class="expanded-section">
+            <h5>Viewing Course: {{ course.name }}</h5>
+            <!-- Add content for viewing the course -->
+        </div>
+
+        <div *ngIf="expandedSection === 'edit' && expandedCourseId === course.id" class="expanded-section">
+            <h5>Editing Course: {{ course.name }}</h5>
+            <!-- Add content for editing the course -->
+        </div>
+
+        <div *ngIf="expandedSection === 'delete' && expandedCourseId === course.id" class="expanded-section">
+            <h5>Deleting Course: {{ course.name }}</h5>
+            <!-- Add content for deleting the course -->
+        </div>
+
+        <div *ngIf="expandedSection === 'reviews' && expandedCourseId === course.id" class="reviews-section">
+            <h5>Reviews for {{ course.name }}</h5>
+
+            <div *ngFor="let review of course.reviews | slice: 0:currentReviewLimit" class="review-card">
+                <img [src]="review.profileImage" alt="Profile Image" class="profile-img">
+
+                <div class="review-details">
+                    <h6>{{ review.studentName }}</h6>
+                    <p>⭐ Rating: {{ review.rating }}</p>
+                    <p>{{ review.comment }}</p>
+
+                    <button (click)="replyToReview(review)" class="reply-btn">Reply</button>
+
+                    <div *ngIf="selectedReview === review">
+                        <input [(ngModel)]="replyText" placeholder="Type your reply..." />
+                        <button (click)="submitReply()">Submit</button>
+                    </div>
+
+                    <p *ngIf="review.reply"><strong>Instructor Reply:</strong> {{ review.reply }}</p>
+                </div>
+            </div>
+
+            <button *ngIf="currentReviewLimit < course.reviews.length" (click)="loadMoreReviews()" class="load-more-btn">View More Reviews</button>
+
+            <button (click)="closeReviews()" class="close-btn">Close</button>
+        </div>
+    </div>
+</div>

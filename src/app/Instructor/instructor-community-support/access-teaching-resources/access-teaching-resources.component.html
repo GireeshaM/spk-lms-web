@@ -1,1 +1,16 @@
-<p>access-teaching-resources works!</p>
+<app-instructor-navbar></app-instructor-navbar>
+<div class="page">
+    
+    <header class="page-header">
+      <h1>Access Teaching Resources</h1>
+    </header>
+    <main class="page-main">
+      <div class="cards-container">
+        <div class="card" *ngFor="let card of cards" (click)="navigateTo(card.route)">
+          <h3>{{ card.title }}</h3>
+          <p>Click to proceed</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  

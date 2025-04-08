@@ -1,0 +1,159 @@
+.container {
+    max-width: 900px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top:90px;
+  }
+  
+  h3 {
+    text-align: center;
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    color: #495057;
+  }
+  
+  .form-select,
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .form-select:focus,
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .faq-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  textarea {
+    height: 80px;
+    resize: none;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-danger:hover {
+    background-color: #a71d2a;
+  }
+  
+  .btn-success {
+    width: 50%;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  /* Modal Styling */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-header h4 {
+    margin: 0;
+  }
+  
+  .close {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .checkmark-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: #28a745; /* Green Background */
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .checkmark {
+    font-size: 24px;
+    color: green;
+    margin-right: 5px;
+  }
+  
+  .modal-footer {
+    text-align: center;
+  }
+  
+  .modal-footer button {
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+  }

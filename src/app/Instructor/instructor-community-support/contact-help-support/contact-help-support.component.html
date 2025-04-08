@@ -1,1 +1,26 @@
-<p>contact-help-support works!</p>
+<app-instructor-navbar></app-instructor-navbar>
+<div class="container">
+    <h2 class="text-center">Course Feedback</h2>
+  
+    <div class="form-group">
+      <label for="courseSelect">Select Course:</label>
+      <select id="courseSelect" class="form-control" [(ngModel)]="feedbackForm.controls['courseId'].value" (change)="onCourseChange()">
+        <option value="" disabled>Select a course</option>
+        <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+      </select>
+    </div>
+  
+    <div *ngIf="filteredFeedbacks.length > 0">
+      <h3 class="mt-4">Feedbacks:</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let feedback of filteredFeedbacks">
+          <strong>{{ feedback.user }}:</strong> {{ feedback.comment }} 
+          <span class="rating">⭐ {{ feedback.rating }}/5</span>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="filteredFeedbacks.length === 0 && feedbackForm.value.courseId">
+      <p class="text-muted mt-3">No feedback available for this course.</p>
+    </div>
+  </div>

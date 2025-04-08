@@ -1,0 +1,95 @@
+<div class="container">
+<div class="sidebar">
+    <app-hnav></app-hnav>
+  </div>
+</div>
+<!-- assignments.component.html -->
+<div class="assignments-container">
+  <!-- Header Section -->
+  <div class="header-section glass-card mb-4 p-4">
+      <h2 class="mb-3 text-primary">
+          <fa-icon [icon]="faListCheck"></fa-icon> Your Assignment Dashboard
+      </h2>
+
+      <div class="stats-grid">
+          <div class="stat-card glass-card">
+              <div class="stat-icon bg-primary">
+                  <fa-icon [icon]="faFileCircleCheck"></fa-icon>
+              </div>
+              <div class="stat-content">
+                  <h3>{{ assignments.length }}</h3>
+                  <p>Total Assignments</p>
+              </div>
+          </div>
+
+          <div class="stat-card glass-card">
+              <div class="stat-icon bg-success">
+                  <fa-icon [icon]="faHourglassHalf"></fa-icon>
+              </div>
+              <div class="stat-content">
+                  <h3>{{ activeAssignments }}</h3>
+                  <p>Ongoing Assignments</p>
+              </div>
+          </div>
+
+          <div class="stat-card glass-card">
+              <div class="stat-icon bg-warning">
+                  <fa-icon [icon]="faClock"></fa-icon>
+              </div>
+              <div class="stat-content">
+                  <h3>{{ pendingAssignments }}</h3>
+                  <p>Upcoming Deadlines</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Assignment List -->
+  <div class="filters mb-3">
+      <button 
+          *ngFor="let filter of filterOptions"
+          [class.active]="selectedFilter === filter"
+          (click)="selectedFilter = filter"
+          class="glass-filter-btn">
+          {{ filter | titlecase }}
+      </button>
+  </div>
+
+  <div class="assignment-list">
+      <h3 class="section-title text-secondary">📌 Assignment List</h3>
+
+      <div 
+          *ngFor="let assignment of filteredAssignments; trackBy: trackById"
+          class="assignment-card glass-card">
+          <div class="assignment-header">
+              <h4 class="text-dark">{{ assignment.title }}</h4>
+              <span class="status-badge" [ngClass]="assignment.status">
+                  {{ assignment.status | titlecase }}
+              </span>
+          </div>
+
+          <div class="assignment-details">
+            <div class="detail-item">
+                <span class="label">Course:</span>
+                <span class="value">{{ assignment.course }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Instructor:</span>
+                <span class="value">{{ assignment.instructor }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Due Date:</span>
+                <span class="value">{{ assignment.dueDate | date: 'mediumDate' }}</span>
+            </div>
+        </div>
+        
+
+          <!-- Go to Assignments Button -->
+          <div class="text-center mt-3">
+              <a [routerLink]="['/assignments']" >
+                  Go to Assignments
+              </a>
+          </div>
+      </div>
+  </div>
+</div>

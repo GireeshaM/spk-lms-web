@@ -1,20 +1,1830 @@
-/* Carousel Custom Height */
-.carousel-inner {
-  height: 500px;
-  /* Adjust height as needed */
-  overflow: hidden;
-  margin-top: 0;
-  /* Removes any default margin */
+.carousel-item img {
+  width: 1285.6px;
+  height: 400px; /* Increased height */
+  object-fit: cover;
+}
+.carousel{
+  top:0px;
+}
+
+.carousel-indicators button {
+  background-color: #000;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #000;
+  border-radius: 50%;
+}
+.carousel-item img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  top:40px;
+}
+
+.carousel-item video {
+  width: 100%;
+  height: 600px; /* Existing height */
+  object-fit: cover;
+  opacity: 1;
+  background-color: #abdef5; /* Updated color */
+  transition: opacity 0.5s ease-in-out;
+  top: 50px;
+  clip-path: circle(0% at 0 50%); /* Start from the left */
+  animation: videoSemiCircleMotion 2s ease-in-out forwards; /* Updated animation */
 }
 
 .carousel-item {
-  height: 100%;
-  /* Ensures the item takes full height */
+  background-color: lightcyan; /* Ensure the remaining area matches the semi-circle color */
+}
+
+@keyframes videoSemiCircleMotion {
+  0% {
+    clip-path: circle(0% at 0 50%); /* Fully hidden at the left */
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%); /* Expands to a semi-circle covering the screen */
+  }
+}
+
+.dynamic-text-box {
+  position: absolute;
+  top: 110px; /* Increased top spacing by 10px */
+  left: 20%;
+  background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.dynamic-text-box h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dynamic-text-box p {
+  font-size: 16px;
+}
+
+.mandatory-courses-heading {
+  position: relative;
+  left: 50px; /* Decreased left padding */
+  top: 30px;
+  font-size: 32px; /* Increased font size */
+  font-weight: bold;
+  font-family: 'Arial', sans-serif; /* Professional font */
+  margin-bottom: 45px; /* Increased bottom margin to add space */
+}
+/* General Styles */
+.mandatory-courses-heading {
+font-size: 32px;
+font-weight: bold;
+text-align: center;
+margin: 40px 0;
+}
+
+/* Course Cards */
+.course-cards-container {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 20px;
+}
+
+.course-card {
+width: 300px;
+height: 400px;
+background-color: #fff;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+overflow: hidden;
+text-align: center;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+}
+
+.course-info {
+padding: 20px;
+}
+
+.course-info h3 {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.course-info p {
+font-size: 16px;
+color: #666;
+}
+
+.go-to-course-btn {
+background-color: #007bff;
+color: white;
+border: none;
+padding: 10px 15px;
+cursor: pointer;
+border-radius: 5px;
+width: 100%;
+margin-top: -15px;
+}
+
+.go-to-course-btn:hover {
+background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7);
+justify-content: center;
+align-items: center;
+}
+
+.modal-content {
+background-color: white;
+padding: 40px;
+width: 60%;
+max-width: 600px;
+text-align: center;
+border-radius: 10px;
+}
+
+.modal-content h2 {
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+.modal-content ul {
+text-align: left;
+font-size: 16px;
+color: #444;
+margin: 20px 0;
+}
+
+.checkbox-container {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+margin: 20px 0;
+}
+
+.checkbox-container label {
+font-size: 16px;
+color: #333;
+}
+
+.button-container {
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+
+.button-container button {
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+
+.button-container button:first-child {
+background-color: #dc3545;
+color: white;
+}
+
+.button-container button:first-child:hover {
+background-color: #a71d2a;
+}
+
+.button-container button:last-child {
+background-color: #28a745;
+color: white;
+}
+
+.button-container button:last-child:disabled {
+background-color: #ccc;
+cursor: not-allowed;
+}
+
+.button-container button:last-child:hover:not(:disabled) {
+background-color: #218838;
+}
+.carousel{
+  bottom: 50px;
+}body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.carousel {
+  margin: 0 auto; /* Center the carousel */
+  overflow: hidden; /* Ensure no overflow */
 }
 
 .carousel-item img {
-  height: 100%;
+    width: 1285.6px;
+    height: 500px; /* Increased height */
+    object-fit: cover;
+  }
+ 
+
+  
+  .carousel-indicators button {
+    background-color: #000;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+    border-radius: 50%;
+  }
+  
+  .carousel-item video {
+    width: 100%;
+    height: 600px; /* Existing height */
+    object-fit: cover;
+    opacity: 0.5;
+    background-color: #abdef5; /* Updated color */
+    transition: opacity 0.5s ease-in-out;
+    clip-path: circle(0% at 0 50%); /* Start from the left */
+    animation: videoSemiCircleMotion 2s ease-in-out forwards; /* Updated animation */
+  }
+
+  .carousel-item {
+    background-color: #caf1de; /* Ensure the remaining area matches the semi-circle color */
+  }
+
+  @keyframes videoSemiCircleMotion {
+    0% {
+      clip-path: circle(0% at 0 50%); /* Fully hidden at the left */
+    }
+    100% {
+      clip-path: circle(150% at 50% 50%); /* Expands to a semi-circle covering the screen */
+    }
+  }
+
+  /* .dynamic-text-box {
+    position: absolute;
+    top: 110px; 
+    left: 20%;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  .dynamic-text-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .dynamic-text-box p {
+    font-size: 16px;
+  } */
+  
+  .mandatory-courses-heading {
+    position: relative;
+    left: 50px; /* Decreased left padding */
+    top: 30px;
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Professional font */
+    margin-bottom: 45px; /* Increased bottom margin to add space */
+  }
+ /* General Styles */
+.mandatory-courses-heading {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Course Cards */
+.course-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-card {
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card img {
   width: 100%;
-  object-fit: fill;
-  /* Ensures the image stretches to fit */
+  height: 200px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 20px;
+}
+
+.course-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.course-info p {
+  font-size: 16px;
+  color: #666;
+}
+
+.go-to-course-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: -15px;
+}
+
+.go-to-course-btn:hover {
+  background-color: #0056b3;
+}
+.nav-links a {
+  color: black; /* Change the text color to black */
+  text-decoration: none; /* Optional: Remove underline */
+}
+
+.nav-links a:hover {
+  color: darkgray; /* Optional: Add a hover effect */
+}
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;;
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  border-radius:0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content ul {
+  text-align: left;
+  font-size: 16px;
+  color: #444;
+  margin: 20px 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.checkbox-container label {
+  font-size: 16px;
+  color: #333;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-container button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button-container button:first-child:hover {
+  background-color: #a71d2a;
+}
+
+.button-container button:last-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-container button:last-child:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button-container button:last-child:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.horizontal-header {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Separate logo and other elements */
+  align-items: center;
+  padding: 10px 20px;
+  background: transparent; /* Transparent to show video background */
+  z-index: 1000; /* Ensure it stays above the carousel */
+}
+
+.horizontal-header .logo {
+  height: 100px; /* Increased height */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.nav-links {
+  margin-left: auto; /* Push links to the right */
+  margin-right: 25px; /* Move links 5px to the left */
+  display: flex;
+  gap: 30px; /* Maintain spacing between links */
+  align-items: center; /* Vertically center the links */
+  margin-top: 0; /* Remove any extra top margin */
+  padding-top: 0; /* Remove any extra top padding */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between links and login button */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
+  align-items: right;
+}
+
+.nav-links a:hover {
+  color: #ffff00; /* Highlight color on hover */
+}
+
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-content.login-modal-content {
+  background: transparent; /* Fully transparent background */
+  padding: 40px;
+  width: 500px; /* Increased width for a professional look */
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Highlighted edges */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  position: relative; /* For positioning the close button */
+}
+
+.login-modal-content h2 {
+  color: white; /* Make the headings white */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal-btn:hover {
+  color: #ffcc00; /* Highlight on hover */
+}
+.login-form {
+  flex: 2; /* Take up 2/3 of the modal width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: white; /* Ensure text is visible on transparent background */
+}
+
+.login-tab {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.login-tab:not(.active):hover {
+  color: #ffcc00;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Add spacing between form fields */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px; /* Increased padding for better usability */
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted input border */
+  border-radius: 5px;
+  font-size: 16px;
+  background: transparent; /* Transparent input background */
+  color: white; /* Ensure text is visible */
+}
+
+.forgot-password {
+  display: block;
+  margin: 15px 0; /* Add spacing above and below */
+  font-size: 14px;
+  color: white; /* Changed to white */
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-submit-btn {
+  background-color: #ffcc00; /* Highlight button */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Increased padding for better usability */
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-submit-btn:hover {
+  background-color: #e6b800;
+}
+
+.social-login {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-login a {
+  font-size: 20px;
+  color: white; /* Changed to white */
+  transition: color 0.3s;
+}
+
+.social-login a:hover {
+  color: #ffcc00; /* Highlight social icons on hover */
+}
+.dynamic-text {
+  position: absolute;
+  top: 30%; /* Adjust vertical position */
+  left: 10%; /* Position text on the left side */
+  color: white; /* Ensure text is visible */
+  text-align: left;
+  z-index: 10; /* Ensure text is above the video */
+  max-width: 500px; /* Limit the width of the text block */
+  font-family: georgia,serif; /* Serif font for a professional look */
+ 
+}
+
+.dynamic-text .title {
+  font-size: 40px; /* Large font size for the title */
+  font-weight: bold;
+  font-style: italic; /* Make the title italic */
+  line-height: 1.2; /* Adjust line height for better readability */
+  margin: 0 0 20px 0;
+  color: #ffff00; /* Updated title color to bright yellow */
+}
+
+.dynamic-text .description {
+  font-size: 20px; /* Adjust font size for the description */
+  margin: 0 0 20px 0;
+  color: black; /* Ensure description color is black */
+  line-height: 1.5; /* Adjust line height for better readability */
+}
+
+.cta-button {
+  background-color: #00c853; /* Green button color */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #009624; /* Darker green on hover */
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 40px; /* Adjust to position below the logo */
+  left: 40%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 10; /* Ensure it stays above other elements */
+  color: black; /* Set text color to black */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px; /* Adjust width for better usability */
+  height: 40px; /* Allow the input to grow vertically */
+  background: transparent; /* Transparent input background */
+  color: white; /* Ensure text is visible */
+}
+
+.search-btn {
+  background-color: lightblue;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color:blue; /* Highlight on hover */
+  color:#ffcc00;
+}
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Semi-transparent placeholder text */
+}
+.modal-body {
+  display: flex;
+  flex-direction: row; /* Arrange image and form side by side */
+  gap: 20px;
+}
+.login-image {
+  flex: 1; /* Take up 1/3 of the modal width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-image img {
+  min-width: 161%; /* Ensure the image scales properly */
+  height: 180;
+  border-radius: 10px;
+  width: 168px !important;
+}
+/* css for courosel */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.carousel {
+  margin: 0 auto; /* Center the carousel */
+  overflow: hidden; /* Ensure no overflow */
+}
+
+.carousel-item img {
+    width: 1285.6px;
+    height: 500px; /* Increased height */
+    object-fit: cover;
+  }
+ 
+
+  
+  .carousel-indicators button {
+    background-color: #000;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+    border-radius: 50%;
+  }
+  
+  .carousel-item video {
+    width: 100%;
+    height: 600px; /* Existing height */
+    object-fit: cover;
+    opacity: 0.5;
+    background-color: #abdef5; /* Updated color */
+    transition: opacity 0.5s ease-in-out;
+    clip-path: circle(0% at 0 50%); /* Start from the left */
+    animation: videoSemiCircleMotion 2s ease-in-out forwards; /* Updated animation */
+  }
+
+  .carousel-item {
+    background-color: #caf1de; /* Ensure the remaining area matches the semi-circle color */
+  }
+
+  @keyframes videoSemiCircleMotion {
+    0% {
+      clip-path: circle(0% at 0 50%); /* Fully hidden at the left */
+    }
+    100% {
+      clip-path: circle(150% at 50% 50%); /* Expands to a semi-circle covering the screen */
+    }
+  }
+
+  /* .dynamic-text-box {
+    position: absolute;
+    top: 110px; 
+    left: 20%;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  .dynamic-text-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .dynamic-text-box p {
+    font-size: 16px;
+  } */
+  
+  .mandatory-courses-heading {
+    position: relative;
+    left: 50px; /* Decreased left padding */
+    top: 30px;
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Professional font */
+    margin-bottom: 45px; /* Increased bottom margin to add space */
+  }
+ /* General Styles */
+.mandatory-courses-heading {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Course Cards */
+.course-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-card {
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 20px;
+}
+
+.course-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.course-info p {
+  font-size: 16px;
+  color: #666;
+}
+
+.go-to-course-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: -15px;
+}
+
+.go-to-course-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;;
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  border-radius:0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content ul {
+  text-align: left;
+  font-size: 16px;
+  color: #444;
+  margin: 20px 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.checkbox-container label {
+  font-size: 16px;
+  color: #333;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-container button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button-container button:first-child:hover {
+  background-color: #a71d2a;
+}
+
+.button-container button:last-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-container button:last-child:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button-container button:last-child:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.horizontal-header {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Separate logo and other elements */
+  align-items: center;
+  padding: 10px 20px;
+  background: transparent; /* Transparent to show video background */
+  z-index: 1000; /* Ensure it stays above the carousel */
+}
+
+.horizontal-header .logo {
+  height: 100px; /* Increased height */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.nav-links {
+  margin-left: auto; /* Push links to the right */
+  margin-right: 25px; /* Move links 5px to the left */
+  display: flex;
+  gap: 30px; /* Maintain spacing between links */
+  align-items: center; /* Vertically center the links */
+  margin-top: 0; /* Remove any extra top margin */
+  padding-top: 0; /* Remove any extra top padding */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between links and login button */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
+  align-items: right;
+}
+
+.nav-links a:hover {
+  color: #ffff00; /* Highlight color on hover */
+}
+
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-content.login-modal-content {
+  background: transparent; /* Fully transparent background */
+  padding: 40px;
+  width: 500px; /* Increased width for a professional look */
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Highlighted edges */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  position: relative; /* For positioning the close button */
+}
+
+.login-modal-content h2 {
+  color: white; /* Make the headings white */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal-btn:hover {
+  color: #ffcc00; /* Highlight on hover */
+}
+.login-form {
+  flex: 2; /* Take up 2/3 of the modal width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: white; /* Ensure text is visible on transparent background */
+}
+
+.login-tab {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.login-tab:not(.active):hover {
+  color: #ffcc00;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Add spacing between form fields */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px; /* Increased padding for better usability */
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted input border */
+  border-radius: 5px;
+  font-size: 16px;
+  background: transparent; /* Transparent input background */
+  color: white; /* Ensure text is visible */
+}
+
+.forgot-password {
+  display: block;
+  margin: 15px 0; /* Add spacing above and below */
+  font-size: 14px;
+  color: white; /* Changed to white */
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-submit-btn {
+  background-color: #ffcc00; /* Highlight button */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Increased padding for better usability */
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-submit-btn:hover {
+  background-color: #e6b800;
+}
+
+.social-login {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-login a {
+  font-size: 20px;
+  color: white; /* Changed to white */
+  transition: color 0.3s;
+}
+
+.social-login a:hover {
+  color: #ffcc00; /* Highlight social icons on hover */
+}
+.dynamic-text {
+  position: absolute;
+  top: 30%; /* Adjust vertical position */
+  left: 10%; /* Position text on the left side */
+  color: white; /* Ensure text is visible */
+  text-align: left;
+  z-index: 10; /* Ensure text is above the video */
+  max-width: 500px; /* Limit the width of the text block */
+  font-family: georgia,serif; /* Serif font for a professional look */
+ 
+}
+
+.dynamic-text .title {
+  font-size: 40px; /* Large font size for the title */
+  font-weight: bold;
+  font-style: italic; /* Make the title italic */
+  line-height: 1.2; /* Adjust line height for better readability */
+  margin: 0 0 20px 0;
+  color: #ffff00; /* Updated title color to bright yellow */
+}
+
+.dynamic-text .description {
+  font-size: 20px; /* Adjust font size for the description */
+  margin: 0 0 20px 0;
+  color: black; /* Ensure description color is black */
+  line-height: 1.5; /* Adjust line height for better readability */
+}
+
+.cta-button {
+  background-color: #00c853; /* Green button color */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #009624; /* Darker green on hover */
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 40px; /* Adjust to position below the logo */
+  left: 40%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 10; /* Ensure it stays above other elements */
+  color: black; /* Set text color to black */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px; /* Adjust width for better usability */
+  height: 40px; /* Allow the input to grow vertically */
+  background: transparent; /* Transparent input background */
+  color: white; /* Ensure text is visible */
+}
+
+.search-btn {
+  background-color: lightblue;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color:blue; /* Highlight on hover */
+  color:#ffcc00;
+}
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Semi-transparent placeholder text */
+}
+.modal-body {
+  display: flex;
+  flex-direction: row; /* Arrange image and form side by side */
+  gap: 20px;
+}
+.login-image {
+  flex: 1; /* Take up 1/3 of the modal width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-image img {
+  min-width: 161%; /* Ensure the image scales properly */
+  height: 180;
+  border-radius: 10px;
+  width: 168px !important;
+}
+/* css for courosel */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.carousel {
+  margin: 0 auto; /* Center the carousel */
+  overflow: hidden; /* Ensure no overflow */
+}
+
+.carousel-item img {
+    width: 1285.6px;
+    height: 500px; /* Increased height */
+    object-fit: cover;
+  }
+ 
+
+  
+  .carousel-indicators button {
+    background-color: #000;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+    border-radius: 50%;
+  }
+  
+  .carousel-item video {
+    width: 100%;
+    height: 600px; /* Existing height */
+    object-fit: cover;
+    opacity: 0.5;
+    background-color: #abdef5; /* Updated color */
+    transition: opacity 0.5s ease-in-out;
+    clip-path: circle(0% at 0 50%); /* Start from the left */
+    animation: videoSemiCircleMotion 2s ease-in-out forwards; /* Updated animation */
+  }
+
+  .carousel-item {
+    background-color: #caf1de; /* Ensure the remaining area matches the semi-circle color */
+  }
+
+  @keyframes videoSemiCircleMotion {
+    0% {
+      clip-path: circle(0% at 0 50%); /* Fully hidden at the left */
+    }
+    100% {
+      clip-path: circle(150% at 50% 50%); /* Expands to a semi-circle covering the screen */
+    }
+  }
+
+  /* .dynamic-text-box {
+    position: absolute;
+    top: 110px; 
+    left: 20%;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  .dynamic-text-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .dynamic-text-box p {
+    font-size: 16px;
+  } */
+  
+  .mandatory-courses-heading {
+    position: relative;
+    left: 50px; /* Decreased left padding */
+    top: 30px;
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Professional font */
+    margin-bottom: 45px; /* Increased bottom margin to add space */
+  }
+ /* General Styles */
+.mandatory-courses-heading {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Course Cards */
+.course-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-card {
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 20px;
+}
+
+.course-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.course-info p {
+  font-size: 16px;
+  color: #666;
+}
+
+.go-to-course-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: -15px;
+}
+
+.go-to-course-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;;
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  border-radius:0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content ul {
+  text-align: left;
+  font-size: 16px;
+  color: #444;
+  margin: 20px 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.checkbox-container label {
+  font-size: 16px;
+  color: #333;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-container button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button-container button:first-child:hover {
+  background-color: #a71d2a;
+}
+
+.button-container button:last-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-container button:last-child:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button-container button:last-child:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.horizontal-header {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Separate logo and other elements */
+  align-items: center;
+  padding: 10px 20px;
+  background: transparent; /* Transparent to show video background */
+  z-index: 1000; /* Ensure it stays above the carousel */
+}
+
+.horizontal-header .logo {
+  height: 100px; /* Increased height */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.nav-links {
+  margin-left: auto; /* Push links to the right */
+  margin-right: 25px; /* Move links 5px to the left */
+  display: flex;
+  gap: 30px; /* Maintain spacing between links */
+  align-items: center; /* Vertically center the links */
+  margin-top: 0; /* Remove any extra top margin */
+  padding-top: 0; /* Remove any extra top padding */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between links and login button */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
+  align-items: right;
+}
+
+.nav-links a:hover {
+  color: #ffff00; /* Highlight color on hover */
+}
+
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-content.login-modal-content {
+  background: transparent; /* Fully transparent background */
+  padding: 40px;
+  width: 500px; /* Increased width for a professional look */
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Highlighted edges */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  position: relative; /* For positioning the close button */
+}
+
+.login-modal-content h2 {
+  color: white; /* Make the headings white */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal-btn:hover {
+  color: #ffcc00; /* Highlight on hover */
+}
+.login-form {
+  flex: 2; /* Take up 2/3 of the modal width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: white; /* Ensure text is visible on transparent background */
+}
+
+.login-tab {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.login-tab:not(.active):hover {
+  color: #ffcc00;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Add spacing between form fields */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px; /* Increased padding for better usability */
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted input border */
+  border-radius: 5px;
+  font-size: 16px;
+  background: transparent; /* Transparent input background */
+  color: white; /* Ensure text is visible */
+}
+
+.forgot-password {
+  display: block;
+  margin: 15px 0; /* Add spacing above and below */
+  font-size: 14px;
+  color: white; /* Changed to white */
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-submit-btn {
+  background-color: #ffcc00; /* Highlight button */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Increased padding for better usability */
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-submit-btn:hover {
+  background-color: #e6b800;
+}
+
+.social-login {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-login a {
+  font-size: 20px;
+  color: white; /* Changed to white */
+  transition: color 0.3s;
+}
+
+.social-login a:hover {
+  color: #ffcc00; /* Highlight social icons on hover */
+}
+.dynamic-text {
+  position: absolute;
+  top: 30%; /* Adjust vertical position */
+  left: 10%; /* Position text on the left side */
+  color: white; /* Ensure text is visible */
+  text-align: left;
+  z-index: 10; /* Ensure text is above the video */
+  max-width: 500px; /* Limit the width of the text block */
+  font-family: georgia,serif; /* Serif font for a professional look */
+ 
+}
+
+.dynamic-text .title {
+  font-size: 40px; /* Large font size for the title */
+  font-weight: bold;
+  font-style: italic; /* Make the title italic */
+  line-height: 1.2; /* Adjust line height for better readability */
+  margin: 0 0 20px 0;
+  color: #ffff00; /* Updated title color to bright yellow */
+}
+
+.dynamic-text .description {
+  font-size: 20px; /* Adjust font size for the description */
+  margin: 0 0 20px 0;
+  color: black; /* Ensure description color is black */
+  line-height: 1.5; /* Adjust line height for better readability */
+}
+
+.cta-button {
+  background-color: #00c853; /* Green button color */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #009624; /* Darker green on hover */
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 40px; /* Adjust to position below the logo */
+  left: 40%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 10; /* Ensure it stays above other elements */
+  color: black; /* Set text color to black */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px; /* Adjust width for better usability */
+  height: 40px; /* Allow the input to grow vertically */
+  background: transparent; /* Transparent input background */
+  color: white; /* Ensure text is visible */
+}
+
+.search-btn {
+  background-color: lightblue;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Highlighted border */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color:blue; /* Highlight on hover */
+  color:#ffcc00;
+}
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Semi-transparent placeholder text */
+}
+.modal-body {
+  display: flex;
+  flex-direction: row; /* Arrange image and form side by side */
+  gap: 20px;
+}
+.login-image {
+  flex: 1; /* Take up 1/3 of the modal width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-image img {
+  min-width: 161%; /* Ensure the image scales properly */
+  height: 180;
+  border-radius: 10px;
+  width: 168px !important;
+}
+
+.skills-heading {
+  font-family: 'Georgia', serif;
+  margin-bottom: -40px;
+  margin-top: 30px;
+  color: navyblue;
+  text-align: center; /* Align heading to the right */
+}
+
+.skills-subheading {
+  font-family: 'Arial', sans-serif;
+  color: rgb(146, 145, 145);
+  margin-top: 37px;
+  text-align: center; /* Align subheading to the right */
 }

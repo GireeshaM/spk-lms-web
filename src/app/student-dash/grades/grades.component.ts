@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { Mentor, MentorService, PeerMentor } from '../../services/mentor.service';
 import { FormsModule } from '@angular/forms';
+import { HnavComponent } from "../../hnav/hnav.component";
 
 interface Grade {
   courseName: string;
@@ -38,7 +39,7 @@ interface ChatSession {
 @Component({
   selector: 'app-student-summary',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, HnavComponent],
   templateUrl: './grades.component.html',
   styleUrl: './grades.component.css'
 })
@@ -368,4 +369,15 @@ getDomainsWithCounts(courses: any[]): {name: string, count: number}[] {
   goToCourseDetails() {
     this.router.navigate(['/coursedetails']);
   }
+  scrollToMentors(): void {
+    setTimeout(() => {
+      const mentorSection = document.getElementById('mentors-section');
+      if (mentorSection) {
+        mentorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        console.error("Mentors section not found!");
+      }
+    }, 100); // Delay ensures the element is loaded before scrolling
+  }
+  
 }

@@ -1,1 +1,252 @@
-<p>promotions-page works!</p>
+<br><br><br><br>
+
+<div class="container-fluid course-content-container" style="padding: 20px; background-color: white;">
+  <div class="row">
+    <div class="col-12 col-md-8 main-content-area">
+      <div class="lesson-display" *ngIf="selectedLesson" style="border: 1px solid #ddd; border-radius: 8px; padding: 10px;">
+        <div class="video-container" (mouseover)="showOverlay = true" (mouseleave)="showOverlay = false" style="width: calc(100% + 200px);">
+          <video *ngIf="selectedLesson.resourceType === 'video'" controls [src]="selectedLesson.resourceUrl" #videoPlayer controls class="video-player" style="width: calc(100% + 100px);">
+            <source [attr.src]="selectedLesson?.resourceUrl" type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+          <div class="video-overlay" *ngIf="showOverlay">
+            {{ selectedLesson.title }}
+          </div>
+        </div>
+        <div *ngIf=" selectedLesson.resourceType === 'pdf'">
+          <p>pdf resource</p>
+          <a [href]="selectedLesson.resourceUrl" download>Download PDF</a>
+        </div>
+        <div *ngIf="selectedLesson.resourceType === 'doc'">
+          <p>Document Resource</p>
+          <a [href]="selectedLesson.resourceUrl" download>Download Document</a>
+        </div>
+      </div>
+      <div class="tabs" style="margin-top: 20px;">
+        <ul>
+          <li [class.active]="activeTab === 'overview'" (click)="setActiveTab('overview')">Overview</li>
+          <li [class.active]="activeTab === 'notes'" (click)="setActiveTab('notes')">Notes</li>
+          <li [class.active]="activeTab === 'announcements'" (click)="setActiveTab('announcements')">Announcements</li>
+          <li [class.active]="activeTab === 'reviews'" (click)="setActiveTab('reviews')">Reviews</li>
+          <li [class.active]="activeTab === 'learningTools'" (click)="setActiveTab('learningTools')">Learning Tools</li>
+        </ul>
+      </div>
+      <div class="tab-content" style="background-color: white; padding: 15px; border-radius: 5px;">
+        <div *ngIf="activeTab === 'overview'">
+          <h3 class="section-title" style="font-weight: normal; font-size: 20px;">Course Overview</h3>
+          <div class="overview-intro">
+            <h2 class="course-title">{{ courseTitle }}</h2>
+            <p class="course-description">English language fluency with the most important English conversation topics, expressions, idioms and culture</p>
+            <div class="course-rating">
+              <span class="rating-value">4.5</span>
+              <span class="rating-stars">★</span>
+              <span class="rating-count">3,432 ratings</span>
+            </div>
+            <div class="course-stats">
+              <span class="students-count">25,130 Students</span>
+              <span class="course-duration">8 hours Total</span>
+            </div>
+            <div class="course-updated">
+              <i class="bi bi-clock"></i>
+              <span>Last updated May 2019</span>
+            </div>
+            <div class="course-languages">
+              <i class="bi bi-globe"></i>
+              <span>English</span>
+              <span>English [Auto], Arabic [Auto], <a href="#">3 more</a></span>
+            </div>
+          </div>
+          <!-- Add schedule learning time container -->
+          <div class="reminder-container">
+            <div class="reminder-header">
+              <img src="path/to/timer-icon.png" alt="Timer Icon" class="timer-icon">
+              <span>Schedule learning time</span>
+            </div>
+            <p>Learning a little each day adds up. Research shows that students who make learning a habit are more likely to reach their goals. Set time aside to learn and get reminders using your learning scheduler.</p>
+            <div class="reminder-actions">
+              <button class="get-started-btn" (click)="showLearningReminderModal()">Get started</button>
+              <button class="dismiss-btn">Dismiss</button>
+            </div>
+          </div>
+          <!-- Learning reminders modal -->
+          <div class="learning-reminder-modal" *ngIf="isLearningReminderModalVisible">
+            <div class="modal-content">
+              <span class="close-btn" (click)="hideLearningReminderModal()">✖</span>
+              <h2>Learning reminders</h2>
+              <p>Step 1 of 3</p>
+              <label for="reminder-name">Name</label>
+              <input id="reminder-name" type="text" placeholder="Learning reminder">
+              <p>Attach content (optional)</p>
+              <div class="content-options">
+                <label><input type="radio" name="content" value="course1"> Course: English Language Pro | Spoken English Conversation + Culture</label>
+                <label><input type="radio" name="content" value="course2"> Course: SELF-CONFIDENCE: Boost Your Confidence in Just 34 minutes!</label>
+                <label><input type="radio" name="content" value="course3"> Course: 300+ Phrasal Verbs | Spoken English Vocabulary 4 Conversation</label>
+                <label><input type="radio" name="content" value="none" checked> None</label>
+              </div>
+              <input type="text" placeholder="Search">
+              <button class="next-btn">Next</button>
+            </div>
+          </div>
+          <!-- Add additional containers -->
+          <div class="what-you-will-learn">
+            <h4>What you'll learn</h4>
+            <ul>
+              <li>Understand the basics of 3D design and modeling using Maya.</li>
+              <li>Learn to create realistic 3D models and animations.</li>
+              <li>Get familiar with Maya's interface, tools, and shortcuts.</li>
+              <li>Master rendering and exporting techniques for different platforms.</li>
+            </ul>
+          </div>
+          <div class="course-content">
+            <h4>Course content</h4>
+            <p>Expand all sections</p>
+            <div class="content-section">
+              <h5>Section 1: Getting Started</h5>
+              <ul>
+                <li>Introduction</li>
+                <li>Software Installation</li>
+                <li>Basic Quiz</li>
+              </ul>
+            </div>
+            <div class="content-section">
+              <h5>Section 2: Modeling</h5>
+              <ul>
+                <li>Basic Modeling Concepts</li>
+                <li>Modeling Tools Overview</li>
+                <li>Basic Quiz</li>
+              </ul>
+            </div>
+            <!-- Add more sections as needed -->
+          </div>
+          <div class="requirements">
+            <h4>Requirements</h4>
+            <ul>
+              <li>A basic understanding of computer graphics and design is recommended.</li>
+              <li>You should have access to a computer with Maya software installed (available for both Windows and Mac).</li>
+              <li>No prior experience with Maya is required, but enthusiasm to learn is essential!</li>
+            </ul>
+          </div>
+          <div class="description">
+            <h4>Description</h4>
+            <p>This course is divided into video tutorials, reading materials, and hands-on exercises. You will start with the basics and gradually move on to more advanced techniques, with lots of practical examples and real-life projects to help reinforce your learning.</p>
+          </div>
+          <div class="instructor">
+            <h4>Instructor</h4>
+            <div class="instructor-details">
+              <img src="{{ instructorImage }}" alt="Instructor Image" class="instructor-image">
+              <div class="instructor-text">
+                <p>{{ instructorName }}</p>
+                <p>{{ instructorBio }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="activeTab === 'notes'">
+          <div class="note-header">
+            <span class="timer">{{ timer }}</span>
+            <select [(ngModel)]="selectedStyle" (change)="applyStyle()">
+              <option value="normal">Styles</option>
+              <option value="bold">Bold</option>
+              <option value="italic">Italic</option>
+              <option value="underline">Underline</option>
+            </select>
+            <button class="save-note" (click)="saveNote()">Save note</button>
+          </div>
+          <textarea *ngIf="isEditing" [(ngModel)]="noteText" [ngStyle]="applyTextStyle()" placeholder="Write your notes here..."></textarea>
+          <div *ngIf="!isEditing" class="saved-note">
+            <p>{{ noteText }}</p>
+            <button class="edit-note" (click)="editNote()">Edit</button>
+            <button class="delete-note" (click)="deleteNote()">Delete</button>
+          </div>
+          <div class="note-footer">
+            <button class="all-lectures">All lectures</button>
+            <button class="sort-by">Sort by most recent</button>
+          </div>
+        </div>
+        <div *ngIf="activeTab === 'announcements'" class="announcement-section">
+          <div class="announcement-header">
+            <h2>Announcements</h2>
+            <button class="create-announcement" (click)="createAnnouncement()">Create Announcement</button>
+          </div>
+          <div *ngFor="let announcement of announcements" class="announcement-item">
+            <div class="announcement-info">
+              <img [src]="announcement.logo" alt="Logo" class="announcement-logo">
+              <div class="announcement-text">
+                <h3>{{ announcement.title }}</h3>
+                <p class="announcement-details">
+                  <span class="announcement-date">{{ announcement.date }}</span> · 
+                  <span class="announcement-author">{{ announcement.author }}</span>
+                </p>
+                <p>{{ announcement.content }}</p>
+              </div>
+            </div>
+            <div class="announcement-footer">
+              <button class="comments-btn" (click)="toggleComments(announcement)">
+                Show comments ({{ announcement.comments.length }})
+              </button>
+              <div *ngIf="announcement.showComments" class="comments-section">
+                <input type="text" placeholder="Enter your comment" (keyup.enter)="addComment(announcement)">
+                <div *ngFor="let comment of announcement.comments" class="comment">
+                  <span class="comment-author">{{ comment.author }}:</span> 
+                  <span class="comment-text">{{ comment.text }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="activeTab === 'reviews'" class="review-section">
+          <div class="review-header">
+            <h2>Reviews</h2>
+            <button class="add-review" (click)="addReview()">Add Review</button>
+          </div>
+          <div *ngFor="let review of reviews" class="review-item">
+            <div class="review-info">
+              <img [src]="review.userImage" alt="User" class="review-user-image">
+              <div class="review-text">
+                <h3>{{ review.username }}</h3>
+                <div class="review-rating">
+                  <span *ngFor="let star of getStars(review.rating)">&#9733;</span>
+                </div>
+                <p>{{ review.content }}</p>
+                <div class="review-footer">
+                  <span class="review-date">{{ review.date }}</span>
+                  <button class="reply-btn" (click)="replyToReview(review)">Reply</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="review.showReply" class="review-reply">
+              <input type="text" placeholder="Enter your reply" (keyup.enter)="submitReply(review)">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="activeTab === 'learningTools'">
+          <p>Learning tools content goes here.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 sidebar" *ngIf="isSidebarVisible" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-left: 100px; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h5>Course Content</h5>
+        <button class="close-btn" (click)="isSidebarVisible = false">X</button>
+      </div>
+      <div class="section" *ngFor="let section of sections">
+        <div class="section-header" (click)="toggleSection(section)">
+          <span class="section-title">{{ section.title }}</span>
+          <span class="toggle-icon">
+            <i class="bi" [ngClass]="section.isExpanded ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
+          </span>
+        </div>
+        <div class="section-lessons" *ngIf="section.isExpanded">
+          <div class="lesson" *ngFor="let lesson of section.lessons" (click)="selectLesson(lesson)">
+            <span *ngIf="lesson.resourceType === 'video'">▶</span>
+            <span *ngIf="lesson.resourceType === 'doc'">📄</span>
+            <span *ngIf="lesson.resourceType === 'quiz'">📝<a [routerLink]="['/assess']">{{ lesson.title }}</a></span>
+            <span>{{ lesson.title }}</span>
+            <span class="resource-badge">{{lesson.duration}}mins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="open-btn" *ngIf="!isSidebarVisible" (click)="isSidebarVisible = true" style="position: absolute; right: 20px;">Open Course Content</button>
+  </div>
+</div>

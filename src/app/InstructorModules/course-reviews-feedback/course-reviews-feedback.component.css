@@ -1,25 +1,140 @@
-.student-img {
+/* General Styles */
+.reviews-container {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+  background: #f5f5f5; /* Light pastel background */
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.header input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.filters label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filters select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Review Card */
+.review-card {
+  background: #fff; /* White background for each review */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative; /* To position the heart symbol at the top-right */
+}
+
+.student-info img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin-right: 15px;
 }
 
-.review-card {
-  transition: transform 0.3s, box-shadow 0.3s;
-  border-radius: 10px;
+.student-info .info {
+  flex: 1;
 }
 
-.review-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.student-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
 }
 
-.card-body {
-  position: relative;
+.student-info p {
+  color: #555;
 }
 
-textarea {
-  resize: none;
+.message {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* Heart Button */
+.heart-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #f00; /* Red color for the heart */
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  background-color: #f4c7d1; /* Light pastel button */
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.pagination button[disabled] {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  color: #555;
 }
 ::ng-deep app-admin-nav {
   position: fixed;

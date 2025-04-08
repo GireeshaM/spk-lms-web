@@ -1,0 +1,58 @@
+<div class="assessment-container">
+    <h1>Assessment</h1>
+  
+    <!-- Terms and Conditions -->
+    <div *ngIf="!proceedClicked">
+      <div>
+        <input type="checkbox" [(ngModel)]="termsAccepted" (change)="toggleTerms()">
+        <label for="terms">I accept the Terms and Conditions</label>
+      </div>
+      <button [disabled]="!termsAccepted" (click)="proceedToQuestions()">Proceed</button>
+    </div>
+  
+    <!-- Full-Screen Exam Mode: Questions Display -->
+    <div *ngIf="proceedClicked" class="fullscreen-exam">
+      <!-- Sidebar with question numbers -->
+      <div class="question-sidebar">
+        <div *ngFor="let question of questions; let i = index">
+          <button 
+            [class.selected]="currentQuestionIndex === i" 
+            class="question-number-box" 
+            (click)="goToQuestion(i)">
+            {{i + 1}}
+          </button>
+        </div>
+      </div>
+  
+      <!-- Question Content -->
+      <div class="question-container">
+        <div class="question">
+          <h3>{{ questions[currentQuestionIndex]?.question }}</h3>
+          <div *ngFor="let option of questions[currentQuestionIndex]?.options">
+            <input type="radio" 
+            name="question{{ questions[currentQuestionIndex].id }}" 
+            [value]="option" 
+            [(ngModel)]="questions[currentQuestionIndex].selectedAnswer">
+          
+
+            <label>{{ option }}</label>
+          </div>
+        </div>
+  
+        <!-- Navigation and Review Buttons -->
+        <div class="navigation-buttons">
+          <button (click)="previousQuestion()">Previous</button>
+          <button (click)="nextQuestion()">Next</button>
+          <button (click)="clearAnswer()">Clear</button>
+          <button (click)="submitAssessment()" [disabled]="!canSubmit">Submit</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Result Section -->
+    <div *ngIf="isAssessmentComplete" class="result-container">
+      <h2 *ngIf="userScore >= 7">Congratulations! You successfully qualified the exam!</h2>
+      <h2 *ngIf="userScore < 7">You did not qualify. Please try again after 24 hours.</h2>
+    </div>
+  </div>
+  

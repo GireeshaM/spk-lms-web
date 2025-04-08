@@ -1,0 +1,77 @@
+/* Container Layout */
+.course-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Video & Document Player */
+  .content-player {
+    flex: 3;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-left: 2px solid #eee;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Sidebar Header */
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sidebar h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Section Headers */
+  .sidebar h4 {
+    cursor: pointer;
+    font-size: 16px;
+    color: #d81b60;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 10px;
+  }
+  
+  .sidebar ul li {
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s ease;
+  }
+  
+  .sidebar ul li:hover {
+    background: #f0f0f0;
+  }
+  
+  /* Quiz Link */
+  .quiz-link {
+    color: #e91e63;
+    font-weight: bold;
+  }
+  
+  /* Close Button */
+  .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

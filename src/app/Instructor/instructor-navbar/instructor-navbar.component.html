@@ -1,0 +1,106 @@
+<br>
+<br>
+<nav class="navbar navbar-expand-lg pastel-navbar small-navbar fixed-top">
+    <div class="container-fluid">
+      <!-- Brand Name -->
+      <div class="navbar-logo me-3">
+        <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="navigateHome()">
+          <img src="images/sushma.png" alt="logo" class="logo-img" />        </a>
+      </div>
+      <!-- Navbar Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+          <!-- Course Creation -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="courseCreationDropdown" role="button" data-bs-toggle="dropdown">
+              📊 Course Creation
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Instructor/course-creation/create-course">Create Course</a></li>
+              <li><a class="dropdown-item" href="/Instructor/course-creation/define-course-learnings">Define Learnings</a></li>
+              <li><a class="dropdown-item" href="/Instructor/course-creation/list-requirements">List Requirements</a></li>
+            </ul>
+          </li>
+  
+          <!-- Course Content Flow -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="courseContentDropdown" role="button" data-bs-toggle="dropdown">
+              📚 Course Content Flow
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Instructor/instructor-community-support/access-teaching-resources">Course Content</a></li>
+              <li><a class="dropdown-item" href="/Instructor/course-contant-flow/add-accessibility">Add Accessibility</a></li>
+              <li><a class="dropdown-item" href="/Instructor/course-contant-flow/create-course-contant">Customize Create Content</a></li>
+            </ul>
+          </li>
+  
+          <!-- Course Marketing -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="courseMarketingDropdown" role="button" data-bs-toggle="dropdown">
+              📢My Course 
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Instructor/course-marketing/pricing-page">My Courses</a></li>
+              <li><a class="dropdown-item" href="/Instructor/course-marketing/promotions-page">Promotions</a></li>
+              <li><a class="dropdown-item" href="/Instructor/course-marketing/send-course-for-review">Send for Review</a></li>
+            </ul>
+          </li>
+  
+          <!-- Student Engagement -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="studentEngagementDropdown" role="button" data-bs-toggle="dropdown">
+              💬 User Engagement
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Instructor/communication-student-engagement/add-faqs">Add FAQs</a></li>
+              <li><a class="dropdown-item" href="/Instructor/communication-student-engagement/view-assignments-feedback">Assignment Feedback</a></li>
+              <li><a class="dropdown-item" href="/Instructor/communication-student-engagement/view-messages">Create Quiz</a></li>
+            </ul>
+          </li>
+  
+          <!-- Engagement & Traffic Analysis
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="trafficAnalysisDropdown" role="button" data-bs-toggle="dropdown">
+              📈 Engagement & Traffic
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Instructor/engagement-traffic-analysis/track-course-engagement">Track Engagement</a></li>
+              <li><a class="dropdown-item" href="/Instructor/engagement-traffic-analysis/view-marketplace-insights">Marketplace Insights</a></li> -->
+              <!-- <li><a class="dropdown-item" href="/Instructor/engagement-traffic-analysis/view-traffic">View Traffic</a></li>
+            </ul>
+          </li> -->
+  
+           <!-- Instructor Support -->
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="instructorSupportDropdown" role="button" data-bs-toggle="dropdown">
+              👥 Feedback
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Instructor/instructor-community-support/contact-help-support">User Feedback</a></li>
+              <!-- <li><a class="dropdown-item" href="/Instructor/instructor-community-support/instructor-community">Community</a></li> -->
+            </ul>
+          </li>
+        </ul>
+  
+        <!-- Profile Section (Right Side) -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+              <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_f5dddc105ddd9405c9c1bbdee23c2959.webp" 
+                   alt="Profile" class="rounded-circle" width="30">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/Instructor/profile">👤 Profile</a></li>
+              <li><a class="dropdown-item" href="/Instructor/settings">⚙️ Settings</a></li>
+              <li><a class="dropdown-item text-danger" href="/logout">🚪 Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

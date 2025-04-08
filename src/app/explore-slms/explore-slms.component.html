@@ -1,0 +1,61 @@
+<div class="explore-slms">
+  <h1>Explore SLMS Categories</h1>
+  <div class="card-container container">
+    <div *ngFor="let category of categories" class="card">
+      <img [src]="category.image" [alt]="category.title" />
+      <div class="card-content">
+        <h3>{{ category.title }}</h3>
+        <p>{{ category.courses }} courses</p>
+      </div>
+      <div class="expand-arrow">
+        &#x25B6; <!-- Rightward arrow symbol -->
+        <div class="course-card">
+          <h2 class="course-title">The Complete AI Guide: Learn ChatGPT, Generative AI & More</h2>
+          <div class="course-badges">
+            <span class="badge premium">Premium</span>
+            <span class="badge bestseller">Bestseller</span>
+          </div>
+          <p class="course-updated">Updated <span class="highlight">April 2025</span></p>
+          <p class="course-meta">34 total hours • All Levels • Subtitles, CC</p>
+          <p class="course-description">
+            50+ Generative AI Tools to 10x Business, Productivity, Creativity | ChatGPT, Artificial Intelligence, Prompt Engineering
+          </p>
+          <ul class="course-features">
+            <li>Generative AI: Create content, synthesize information, and learn faster than ever with effective prompt engineering!</li>
+            <li>ChatGPT: Turn your creativity into paid work, generate fresh ideas, reach new audiences, and scale your projects!</li>
+            <li>Productivity: Achieve goals faster with artificial intelligence, manage time, prioritize tasks, and create an optimized daily schedule!</li>
+          </ul>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="outcomes-wrapper">
+  <div class="outcomes-container">
+    <div class="images-container">
+      <div class="image image-top-left">
+        <img src="https://www.knowledgeworker.com/fileadmin/mediamanager/chemmedia/media/blog/KI-im-E-Learning-Vorteile-Grenzen-Aengste.jpg" alt="Top Left" />
+      </div>
+      <div class="image image-middle-right">
+        <img src="https://www.aptaracorp.com/wp-content/uploads/2023/05/AI_Mentorship-scaled.jpg" alt="Middle Right" />
+      </div>
+      <div class="image image-bottom-left">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSWP0srX_KvFIKte29vfLfDMZDBNsqiebvoRJd7A1go9Ln5dCXqpXsjM1pRiHUvjPQSVo&usqp=CAU" alt="Bottom Left" />
+      </div>
+    </div>
+
+    <div class="text-container">
+      <h2>
+        Learner outcomes on <strong>SLMS</strong>
+      </h2>
+      <p class="highlight">
+        98% of learners report career benefits,
+      </p>
+      <p class="subtext">
+        such as new skills, increased pay, and new job opportunities.
+        2025 SLMS Learner Outcomes Report.
+      </p>
+    </div>
+  </div>
+</div>

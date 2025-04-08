@@ -1,0 +1,70 @@
+<!-- Terms & Conditions Modal -->
+<div *ngIf="showTerms" class="terms-container">
+  <div class="terms-card">
+    <h2>Terms & Conditions</h2>
+    <div class="terms-content">
+      <p><strong>1. Ensure a stable internet connection.</strong> A stable internet connection is required to prevent disruptions during the exam.</p>
+      <p><strong>2. Do not navigate away during the exam.</strong> Navigating away will end your session.</p>
+      <p><strong>3. Enable camera and microphone access.</strong> You must allow access to your camera and microphone to proceed with the exam.</p>
+      <p><strong>4. Exam duration is strictly timed.</strong> Once started, the exam must be completed within the allotted time.</p>
+    </div>
+    <button (click)="startExam()">Accept & Start Exam</button>
+  </div>
+</div>
+
+<!-- Main Exam Container -->
+<!-- Main Exam Container -->
+<div *ngIf="cameraAccessGranted && !isAssessmentComplete" class="exam-container">
+  <!-- Sidebar with Question Numbers -->
+  <div class="sidebar">
+    <h3>Questions</h3>
+    <div class="question-numbers">
+      <button *ngFor="let question of questions; let i = index"
+              [ngClass]="{
+                'answered': question.selectedAnswer, 
+                'marked': question.markedForReview,
+                'current': currentQuestionIndex === i
+              }"
+              (click)="goToQuestion(i)">
+        {{ question.id }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Exam Content Section -->
+  <div class="exam-content">
+    <h2>Online Assessment: Basics of C# Programming</h2>
+    <span class="timer">{{ minutes }}:{{ seconds < 10 ? '0' + seconds : seconds }}</span>
+    <h4>{{ questions[currentQuestionIndex].question }}</h4>
+    
+    <div class="options">
+      <label *ngFor="let option of questions[currentQuestionIndex].options">
+        <input type="radio" [value]="option" (change)="saveAnswer(questions[currentQuestionIndex].id, option)" 
+               [checked]="questions[currentQuestionIndex].selectedAnswer === option">
+        {{ option }}
+      </label>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation">
+      <button (click)="goToQuestion(currentQuestionIndex - 1)" [disabled]="currentQuestionIndex === 0">Previous</button>
+      <button (click)="goToQuestion(currentQuestionIndex + 1)" [disabled]="currentQuestionIndex === questions.length - 1">Next</button>
+      <button (click)="submitAssessment()" [disabled]="!canSubmit">End Exam</button>
+    </div>
+
+    <!-- Mark for Review Button -->
+    <div class="review-mark">
+      <button (click)="markForReview()">Mark for Review</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Result Container After Exam Completion -->
+<div *ngIf="isAssessmentComplete" class="result-container">
+  <div class="result-card">
+    <h2>Exam Completed</h2>
+    <p>Your Score: <strong>{{ userScore }} / 10</strong></p>
+    <button (click)="returnToHome()">Return to Home</button>
+  </div>
+</div>

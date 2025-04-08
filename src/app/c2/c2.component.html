@@ -1,0 +1,86 @@
+<div class="course-landing-container">
+    <h1 class="heading">Course Landing Page</h1>
+    <p class="description">
+      Your course landing page is crucial to your success. A well-crafted page can boost visibility and enrollments.
+      <a href="#">creating your course landing page</a> and
+      <a href="#">course title standards</a>.
+    </p>
+  
+    <!-- Course Title -->
+    <div class="input-group">
+      <label for="courseTitle">Course Title</label>
+      <input type="text" id="courseTitle" [(ngModel)]="courseTitle" placeholder="Learn Angular" />
+      <p class="hint">Your title should be attention-grabbing and optimized for search.</p>
+    </div>
+  
+    <!-- Course Subtitle -->
+    <div class="input-group">
+      <label for="courseSubtitle">Course Subtitle</label>
+      <input type="text" id="courseSubtitle" [(ngModel)]="courseSubtitle" placeholder="Insert your course subtitle" />
+      <p class="hint">Use 1-2 keywords and mention 3-4 important areas covered.</p>
+    </div>
+  
+    <!-- Course Description -->
+    <div class="input-group">
+      <label for="courseDescription">Course Description</label>
+      <textarea id="courseDescription" [(ngModel)]="courseDescription" placeholder="Insert your course description"></textarea>
+      <p class="hint">Description should have at least 200 words.</p>
+    </div>
+  
+    <!-- Course Image Upload -->
+    <div class="upload-section">
+      <p class="section-title">Course Image</p>
+      <div class="upload-box">
+        <img src="https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg" class="upload-placeholder" />
+        <div class="upload-text">
+          <p>Upload your course image here. It must meet our course image quality standards to be accepted.</p>
+          <input type="file" (change)="onFileSelect($event, 'image')" />
+        </div>
+      </div>
+    </div>
+  
+    <!-- Promo Video Upload -->
+    <div class="upload-section">
+      <p class="section-title">Promotional Video</p>
+      <div class="upload-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZasuiUn5QS2vulosA_1mKfMShh4QyEgmLA&s" class="upload-placeholder" width="150"/>
+        <div class="upload-text">
+          <p>Your promo video is a quick and compelling way for students to preview what they’ll learn in your course.</p>
+          <input type="file" (change)="onFileSelect($event, 'video')" />
+        </div>
+      </div>
+    </div>
+  
+    <!-- Sections and Lectures -->
+   
+  
+    <!-- Add Section & Upload -->
+    <!-- <div style="text-align: center; margin: 40px auto;">
+      <button class="submit-btn" (click)="addSection()">+ Add Section</button>
+      <button class="submit-btn pulse" (click)="uploadCourseContent()">Upload Course Content</button>
+    </div>
+  
+    <div *ngIf="isUploading" class="upload-timer hint">
+      Uploading... Please wait.
+    </div> -->
+  
+    <div class="page">
+      
+      <header class="page-header">
+        <h1>Access Teaching Resources</h1>
+      </header>
+      <main class="page-main">
+        <div class="cards-container">
+          <div class="card" *ngFor="let card of cards" (click)="navigateTo(card.route)">
+            <h3>{{ card.title }}</h3>
+            <p>Click to proceed</p>
+          </div>
+        </div>
+      </main>
+    </div>
+    
+    <!-- Final Submit Button -->
+    <div style="text-align: center; margin-top: 40px;">
+      <button class="submit-btn pulse" (click)="submitCourse()">🚀 Submit Course</button>
+    </div>
+  </div>

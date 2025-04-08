@@ -118,14 +118,14 @@ export class StudentProfileComponent implements OnInit {
       return;
     }
 
-    console.log(`${this.activeTab} Details Submitted:`, currentForm.value);
+    console.log(`${this.activeTab} Details Submitted:, currentForm.value`);
     alert('Changes saved successfully!');
   }
 
   updateProfileName() {
     const firstName = this.basicForm.get('firstName')?.value || '';
     const lastName = this.basicForm.get('lastName')?.value || '';
-    this.profileName = `${firstName} ${lastName}`.trim();
+    this.profileName = `${firstName} ${lastName}.trim()`;
   }
 
   discardChanges() {

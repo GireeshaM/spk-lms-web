@@ -1,2 +1,41 @@
-<p>add-faqs works!</p>
-console.log("hello")
+<app-instructor-navbar></app-instructor-navbar>
+<div class="container">
+    <h3>Course-wise FAQs</h3>
+
+    <form [formGroup]="faqForm" (ngSubmit)="submit()">
+        <!-- Course Selection -->
+        <div class="mb-3">
+            <label for="course" class="form-label">Select Course</label>
+            <select class="form-select" formControlName="course">
+                <option value="">-- Select a Course --</option>
+                <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+            </select>
+        </div>
+
+        <!-- FAQ Inputs -->
+        <div formArrayName="faqs">
+            <div *ngFor="let faq of faqs.controls; let i = index" [formGroupName]="i" class="faq-item row align-items-center mb-3">
+                <!-- Question Input -->
+                <div class="col-md-5">
+                    <input type="text" class="form-control" formControlName="question" placeholder="Enter Question" />
+                </div>
+
+                <!-- Answer Input -->
+                <div class="col-md-5">
+                    <textarea class="form-control" formControlName="answer" placeholder="Enter Answer"></textarea>
+                </div>
+
+                <!-- Remove Button -->
+                <div class="col-md-2 text-center">
+                    <button type="button" class="btn btn-danger" (click)="removeFaq(i)">Remove</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add FAQ Button -->
+        <button type="button" class="btn btn-primary mt-3" (click)="addFaq()">+ Add FAQ</button>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success mt-3 w-100" [disabled]="faqForm.invalid">Submit FAQs</button>
+    </form>
+</div>

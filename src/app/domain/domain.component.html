@@ -1,0 +1,15 @@
+<div class="explore-container">
+    <h2>Explore Coursera</h2>
+    <div class="course-grid">
+      <div *ngFor="let course of courses" class="course-card">
+        <div class="image-container">
+          <img [src]="course.image" alt="{{ course.title }}" />
+        </div>
+        <div class="course-info">
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.count }} courses</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

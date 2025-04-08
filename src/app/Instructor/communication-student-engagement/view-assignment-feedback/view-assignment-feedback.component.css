@@ -1,0 +1,84 @@
+/* Container Styling */
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    margin-top: 90px;
+}
+
+/* Heading Styling */
+h3, h4 {
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Styled Dropdown */
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+/* Submit Button */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Feedback Summary Section */
+.feedback-summary {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Star Ratings */
+.star {
+    color: gold;
+    font-size: 22px;
+    padding: 2px;
+}
+
+/* Table Styling */
+.table {
+    margin-top: 15px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Feedback Response Colors */
+.easy { color: #28a745; font-weight: bold; }
+.medium { color: #ffc107; font-weight: bold; }
+.hard { color: #dc3545; font-weight: bold; }

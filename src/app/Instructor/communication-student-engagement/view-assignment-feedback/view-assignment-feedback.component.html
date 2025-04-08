@@ -1,1 +1,64 @@
-<p>view-assignment-feedback works!</p>
+<app-instructor-navbar></app-instructor-navbar>
+<div class="container">
+    <h3>📊 Instructor Quiz Feedback</h3>
+
+    <form [formGroup]="feedbackForm">
+        <!-- Course Selection -->
+        <div class="mb-3">
+            <label class="form-label">Select Course</label>
+            <select class="form-select" formControlName="course" (change)="onCourseChange(feedbackForm.value.course)">
+                <option value="">-- Select a Course --</option>
+                <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+            </select>
+        </div>
+
+        <!-- Quiz Selection -->
+        <div class="mb-3">
+            <label class="form-label">Select Quiz</label>
+            <select class="form-select" formControlName="quiz" [disabled]="!selectedQuizzes.length">
+                <option value="">-- Select a Quiz --</option>
+                <option *ngFor="let quiz of selectedQuizzes" [value]="quiz">{{ quiz }}</option>
+            </select>
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="generateFeedbackReport()">🔍 View Feedback</button>
+    </form>
+
+    <hr />
+
+    <!-- Feedback Summary -->
+    <div *ngIf="averageRating > 0" class="feedback-summary">
+        <p><strong>Average Rating:</strong> 
+            <span *ngFor="let star of [1,2,3,4,5]; let i = index" [class.star]="i+1 <= averageRating">★</span> 
+            ({{ averageRating.toFixed(1) }})
+        </p>
+    </div>
+
+    <!-- Feedback Breakdown -->
+    <table class="table table-bordered" *ngIf="averageRating > 0">
+        <thead>
+            <tr>
+                <th>Difficulty Level</th>
+                <th>Responses</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="easy">✔ Easy</td>
+                <td>{{ difficultyCounts.Easy }}</td>
+            </tr>
+            <tr>
+                <td class="medium">⚖ Medium</td>
+                <td>{{ difficultyCounts.Medium }}</td>
+            </tr>
+            <tr>
+                <td class="hard">❗ Hard</td>
+                <td>{{ difficultyCounts.Hard }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="averageRating === 0" class="alert alert-warning mt-3 text-center">
+        No feedback available for this quiz.
+    </div>
+</div>

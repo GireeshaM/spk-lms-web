@@ -389,4 +389,9 @@ input[type="checkbox"] {
     left: 0;
   }
 
+  .create-course-video {
+    justify-content: center;
+    align-items: center !important;
+    margin-left: 80px !important;
+  }
 }

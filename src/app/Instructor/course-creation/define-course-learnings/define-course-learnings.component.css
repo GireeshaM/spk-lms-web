@@ -1,118 +1,122 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif; /* Use a modern, clean font */
+/* General Card Styling */
+.card-row, .card-row1, .card-row2, .card-row3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  padding: 20px;
+  gap: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  background: linear-gradient(to right, #8595ec, #eef1ff);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-body {
-    background-color: #f4f7fb;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-   
-    font-size: 16px;
-    
+/* Hover effect for cards */
+.card-row:hover, .card-row1:hover, .card-row2:hover, .card-row3:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-    flex: 0; /* Ensures the container takes up available space */
-    display: flex;
-    flex-direction: column;
+/* Image Styling */
+.image-container img, .image-container1 img, .image-container2 img, .image-container3 img {
+  width: 260px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 4px solid #6b47dc;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Header */
-header {
-    text-align: center;
-    margin-bottom: 30px;
+/* Image Hover Effect */
+.image-container img:hover, .image-container1 img:hover, .image-container2 img:hover, .image-container3 img:hover {
+  transform: scale(1.05);
+  border-color: #5234c6;
 }
 
-header h1 {
-    font-size: 2.5em;
-    color: #2d3e50;
+/* Content Styling */
+.content, .content1, .content2, .content3 {
+  flex: 1;
+  padding-left: 20px;
 }
 
-header p {
-    font-size: 1.1em;
-    color: #888;
+/* Title Styling */
+.content h2, .content1 h2, .content2 h2, .content3 h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
 }
 
-/* Sections */
-.section {
-    margin-bottom: 40px;
+/* Icons Before Title */
+.content h2::before, 
+.content1 h2::before, 
+.content2 h2::before, 
+.content3 h2::before {
+  content: "🎯";  /* Change icons for different sections if needed */
+  font-size: 1.5rem;
+  margin-right: 10px;
 }
 
-.section-title {
-    font-size: 2em;
-    color: #1a3d5a;
-    margin-bottom: 15px;
+/* Paragraph Styling */
+.content p, .content1 p, .content2 p, .content3 p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
 }
 
-ul.feature-list, ul.benefit-list {
-    list-style-type: none;
-    padding-left: 0;
+/* Button Styling */
+.content a, .content1 a, .content2 a, .content3 a {
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background: #6b47dc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(107, 71, 220, 0.3);
 }
 
-li {
-    font-size: 1.1em;
-    margin-bottom: 12px;
-    line-height: 1.5;
+.content a:hover, .content1 a:hover, .content2 a:hover, .content3 a:hover {
+  background: #5234c6;
+  box-shadow: 0 6px 12px rgba(82, 52, 198, 0.4);
 }
 
-li strong {
-    color: #2b8b88;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-row, .card-row1, .card-row2, .card-row3 {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .image-container img, .image-container1 img, .image-container2 img, .image-container3 img {
+      width: 100%;
+      max-width: 300px;
+  }
+
+  .content, .content1, .content2, .content3 {
+      padding: 0;
+  }
+}
+.card-row, .card-row1, .card-row2, .card-row3 {
+  background: url('https://source.unsplash.com/900x500/?technology,learning') no-repeat center center/cover;
+  color: rgb(49, 47, 47);
+}
+.content h2, .content p, .content a {
+  color: rgb(34, 31, 31);
+}
+.card-row, .card-row1, .card-row2, .card-row3 {
+
+  color: white;
+  box-shadow: 0 8px 20px rgba(107, 71, 220, 0.3);
+  border: 1px solid #6b47dc;
 }
 
-/* Collapsible Section */
-.collapsible {
-    background-color: #2d3e50;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    font-size: 1.2em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
-}
-
-.collapsible:hover {
-    background-color: #1a3d5a; /* Slightly darker shade on hover */
-}
-
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 1.1em; /* Ensure content text is legible */
-}
-
-.collapsible.active + .content {
-    display: block;
-    transition: max-height 0.3s ease-out;
-}
-
-/* Footer */
-/* footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #2d3e50;
-    color: white;
-    margin-top: auto;  /* Pushes footer to the bottom */
- 
-html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
+/* ------------------------------------------- */

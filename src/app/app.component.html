@@ -1,11 +1,19 @@
-<app-navbar></app-navbar>
+  <app-navbar></app-navbar> 
+
+
 <nav *ngIf="authService.isLoggedIn()">
   <a routerLink="/dashboard">Dashboard</a>
   <a *ngIf="authService.getUserRole() === 'admin'" routerLink="/admin">Admin Panel</a>
   <button (click)="openLoginDialog()">Open Login</button>
   <button (click)="authService.logout()">Logout</button>
 </nav>
-<router-outlet></router-outlet>
-<footer>
-  <app-footer></app-footer> <!-- Make sure footer is outside -->
-</footer>
+<!-- <app-head></app-head> -->
+ <br>
+ <!-- <app-head *ngIf="isPageLoaded"></app-head> -->
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+
+    <app-footer></app-footer>
+
+
+
+   

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { InstructorNavbarComponent } from "../../instructor-navbar/instructor-navbar.component";
 
 @Component({
   selector: 'app-add-accessibility',
-  imports: [CommonModule],
+  imports: [CommonModule, InstructorNavbarComponent],
   templateUrl: './add-accessibility.component.html',
   styleUrl: './add-accessibility.component.css'
 })

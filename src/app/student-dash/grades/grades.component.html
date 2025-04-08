@@ -1,14 +1,13 @@
+<div class="container">
+  <div class="sidebar">
+    <app-hnav></app-hnav>
+  </div>
+</div>
 <div class="grades-container">
+  
     <div class="container mt-5">
         <div class="row mt-3 d-flex align-items-start">
-            <!-- Profile Card -->
-            <div class="profile-container">
-                <!-- Profile Section -->
-                <div class="profile-card">
-                    <img src="images/student.jpg" alt="Profile Picture" class="profile-pic">
-                    <h2 class="profile-name">{{ learnerName }}</h2>
-                </div>
-            
+           
                <!-- Proficiency Sections -->
         <div class="proficiency-container">
     
@@ -62,162 +61,22 @@
     <div class="skill-list">
         <span *ngFor="let domain of improvementDomains" class="skill-badge domain-badge mt-4">
             {{ domain.name }} ({{ domain.averageScore.toFixed(0) }}%)
+            <button class="btn btn-primary mt-2 reach-mentor-btn" (click)="scrollToMentors()">
+              📩 Reach Mentor / Peer Mentor
+            </button>
         </span>
     </div>
 </div>
     </div>
- </div>
+ 
  </div>
             
                  
- <h3 class="mb-4">📊 Training Evaluation Summary</h3>
+ <!-- <h3 class="mb-4">📊 Training Evaluation Summary</h3> -->
 
- <!-- Overall Summary Card -->
- <div class="summary-card p-3 mb-4 bg-light rounded shadow-sm">
-     <div class="mt-3 text-muted small">
-         <i class="fas fa-info-circle me-2"></i> 
-         Performance categories based on organizational benchmarks: 
-         <span class="badge bg-success">Exceeds (80-100%)</span>
-         <span class="badge bg-warning">Meets (60-79%)</span>
-         <span class="badge bg-danger">Needs Improvement (<60%)</span>
-     </div>
  
-     <!-- Performance & Benchmark Cards -->
-     <div class="row g-3 mt-2">
-         <!-- Performance Overview Card -->
-         <div class="col-md-6">
-             <div class="card h-100 hover-shadow">
-                 <div class="card-header bg-primary text-white" data-bs-toggle="collapse" data-bs-target="#performanceCollapse">
-                     <h4 class="mb-0 d-flex justify-content-between align-items-center">
-                         <div>
-                             <i class="fas fa-chart-line me-2"></i>
-                             Performance Overview
-                         </div>
-                         <i class="fas fa-chevron-down transition-rotate"></i>
-                     </h4>
-                 </div>
-                 <div id="performanceCollapse" class="collapse show">
-                     <div class="card-body">
-                         <div class="metric-item d-flex align-items-center mb-3 p-2 bg-light rounded">
-                             <div class="metric-icon me-3 text-primary">
-                                 <i class="fas fa-tachometer-alt fa-2x"></i>
-                             </div>
-                             <div class="flex-grow-1">
-                                 <div class="d-flex justify-content-between align-items-center">
-                                     <span class="fw-bold">Performance Index:</span>
-                                     <strong class="text-primary display-6">{{ overallPerformance | number:'1.0-2' }}%</strong>
-                                 </div>
-                             </div>
-                         </div>
- 
-                         <div class="metric-item d-flex justify-content-between align-items-center mb-3">
-                             <div class="d-flex align-items-center">
-                                 <i class="fas fa-medal me-2 text-muted"></i>
-                                 <span>Performance Category:</span>
-                             </div>
-                             <span class="badge gradient-badge" [ngClass]="{
-                                 'bg-success': overallPerformance >= 80,
-                                 'bg-warning': overallPerformance >= 60 && overallPerformance < 80,
-                                 'bg-danger': overallPerformance < 60
-                             }">
-                                 <i class="fas fa-certificate me-2"></i>
-                                 {{ overallPerformance >= 80 ? 'Exceeds Expectations' : 
-                                    overallPerformance >= 60 ? 'Meets Expectations' : 
-                                    'Needs Improvement' }}
-                             </span>
-                         </div>
- 
-                         <div class="metric-item d-flex justify-content-between align-items-center mb-3">
-                             <div class="d-flex align-items-center">
-                                 <i class="fas fa-star-half-alt me-2 text-muted"></i>
-                                 <span>Proficiency Level:</span>
-                             </div>
-                             <strong class="text-success">
-                                 <i class="fas fa-level-up-alt me-2"></i>
-                                 {{ getProficiencyLevel(overallPerformance) }}
-                             </strong>
-                         </div>
-                     </div>
-                     <div class="alert alert-success m-3">
-                         <h5 class="alert-heading">
-                             <i class="fas fa-trophy me-2"></i>Key Strengths
-                         </h5>
-                         <ul class="mb-0">
-                             <li><i class="fas fa-check-circle me-2 text-success"></i>Consistently exceeds technical competency targets</li>
-                             <li><i class="fas fa-check-circle me-2 text-success"></i>Top 10% in cross-functional collaboration metrics</li>
-                         </ul>
-                     </div>
-                 </div>
-             </div>
-         </div>
- 
-        
-                <!-- Benchmark Analysis Card -->
-                <div class="col-md-6">
-                    <div class="card h-100 hover-shadow">
-                        <div class="card-header bg-info text-white" data-bs-toggle="collapse" data-bs-target="#benchmarkCollapse">
-                            <h4 class="mb-0 d-flex justify-content-between align-items-center">
-                                <div>
-                                    <i class="fas fa-clipboard-check me-2"></i>
-                                    Benchmark Analysis
-                                </div>
-                                <i class="fas fa-chevron-down transition-rotate"></i>
-                            </h4>
-                        </div>
-                        <div id="benchmarkCollapse" class="collapse show">
-                            <div class="card-body">
-                                <div class="metric-item d-flex align-items-center mb-3">
-                                    <div class="metric-icon me-3 text-info">
-                                        <i class="fas fa-users fa-2x"></i>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <div class="d-flex justify-content-between">
-                                            <span class="fw-bold">Peer Comparison:</span>
-                                            <strong class="text-info">Top 15% Cohort</strong>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <div class="metric-item mb-3">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="fas fa-cogs me-2 text-muted"></i>
-                                        <span>Skill Application:</span>
-                                    </div>
-                                    <div class="progress progress-lg">
-                                        <div class="progress-bar bg-info progress-bar-striped animate-progress" 
-                                             [style.width.%]="engagementScore * 10">
-                                            {{ engagementScore * 10 }}%
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <div class="metric-item d-flex justify-content-between align-items-center mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-bullseye me-2 text-muted"></i>
-                                        <span>Role Readiness:</span>
-                                    </div>
-                                    <strong class="text-info">
-                                        <i class="fas fa-level-up-alt me-2"></i>
-                                        Level II Capacity
-                                    </strong>
-                                </div>
-                            </div>
-                            <div class="alert alert-warning m-3">
-                                <h5 class="alert-heading">
-                                    <i class="fas fa-lightbulb me-2"></i>Development Opportunities
-                                </h5>
-                                <ul class="mb-0">
-                                    <li><i class="fas fa-exclamation-triangle me-2 text-warning"></i>Strategic prioritization skills (Current: 65%)</li>
-                                    <li><i class="fas fa-exclamation-triangle me-2 text-warning"></i>Stakeholder communication frequency (+15% needed)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>     
-            </div>
            
-            
+            <div class="mentors-section">
             <!-- Mentor Cards -->
             <div class="mentor-type" *ngIf="officialMentors.length > 0">
                 <h5>Expert Mentors</h5>
@@ -276,6 +135,7 @@
                 </div>
               </div>
               <p *ngIf="peerMentors.length === 0">No peer mentors available.</p>
+              </div>
               <!-- Chat Container -->
         <div class="chat-container" *ngIf="activeChat.participant">
     <div class="chat-header">
@@ -296,7 +156,6 @@
         </div>
       </div>
     </div>
-  
     <div class="chat-input">
       <input type="text" 
              [(ngModel)]="newMessage"
@@ -313,15 +172,10 @@
       </div> 
             </div>
         </div>
-
-
-
-
         <!-- Grades Cards with Skill Badges -->
         <div class="row mt-2 g-4">
-            <div class="col-md-3" *ngFor="let grade of grades">
-              <div class="analytics-card position-relative overflow-hidden">
-                
+            <div class="col-md-4" *ngFor="let grade of grades">
+              <div class="analytics-card position-relative ">
                 <!-- Performance Glow Effect -->
                 <div class="performance-glow"
                      [ngClass]="{
@@ -404,5 +258,4 @@
           </div>
           
           
-    </div>   
-
+    </div>
